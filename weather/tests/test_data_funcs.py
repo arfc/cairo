@@ -1,7 +1,7 @@
 import numpy as np 
 import pandas as pd 
-from data_proc import isfloat
-from data_proc import to_float
+from data_funcs import isfloat
+from data_funcs import to_float
 
 
 # ===================================================================
