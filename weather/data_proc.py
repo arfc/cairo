@@ -2,65 +2,7 @@ import pandas as pd
 import numpy as np 
 import datetime as dt
 import matplotlib.pyplot as plt 
-
-# ===================================================================
-# Useful functions
-# ===================================================================
-
-def isfloat(value):
-	"""
-	This function checks if a string can be converted to a float.
-
-	Parameters:
-	-----------
-	value : string
-
-	Returns:
-	--------
-	boolean
-	"""
-	try:
-		float(value)
-		return True
-	except ValueError:
-		return False
-
-
-def to_float(dataframe, column):
-	"""
-	This function converts all values in a specified column to float.
-	It is necessary to create my own function because the data has some
-	errors in it that prevent it from being parsed as a single data type.
-
-	Parameters:
-	-----------
-	dataframe : pandas dataframe
-	column : string
-		The name of the column in the dataframe that
-	
-	Returns:
-	--------
-	float_df : pandas dataframe
-		This is the correctly formatted dataframe with the correct dtype.
-	"""
-
-	float_df = dataframe
-
-	for index, value in enumerate(float_df[column]):
-
-		if isfloat(value):
-			float_df.at[index,column] = float(value)
-		elif (type(value) == str):
-			value_float = [float(i) for i in value.split() if i.isdigit()]
-			if len(value_float) > 0:
-				# If there was a value at the location
-				float_df.at[index,column] = value_float[0]
-			else:
-				# If the value at location was NaN
-				float_df.at[index,column] = -999.99
-
-	float_df[column] = float_df[column].astype(float)
-	return float_df
+from data_funcs import to_float
 
 
 if __name__ == '__main__':
@@ -81,17 +23,25 @@ if __name__ == '__main__':
 	# date, time = zip(*[(d.date(), d.time()) for d in weather_df['DATE']])
 	# weather_df = weather_df.assign(DATE=date, time=time)
 
+
+	# ===================================================================
+	# Temperature
+	# ===================================================================
 	temp_df = weather_df[['DATE', 'TEMP']]
 	temp_df = to_float(temp_df, 'TEMP')
 	temp_df = temp_df[temp_df.TEMP != -999.99]
-	temp_df.plot(x='DATE', y='TEMP')
-	plt.show()
+	# temp_df.plot(x='DATE', y='TEMP')
+	# plt.show()
 
+	# ===================================================================
+	# Precipitation
+	# ===================================================================
 	prec_df = weather_df[['DATE', 'PREC']]
 	prec_df = to_float(prec_df, 'PREC')
 	prec_df = prec_df[prec_df.PREC != -999.99]
-	prec_df.plot(x='DATE', y='PREC',)
-	plt.show()
+	print(prec_df['PREC'].dtype)
+	# prec_df.plot(x='DATE', y='PREC',)
+	# plt.show()
 
 	# ===================================================================
 	# Export cleaned datasets

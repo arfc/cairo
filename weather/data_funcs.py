@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np 
 import datetime as dt
 import matplotlib.pyplot as plt 
+import re
 
 # ===================================================================
 # Useful functions
@@ -51,7 +52,8 @@ def to_float(dataframe, column):
 		if isfloat(value):
 			float_df.at[index,column] = float(value)
 		elif (type(value) == str):
-			value_float = [float(i) for i in value.split() if i.isdigit()]
+			value_float = re.findall(r"[-+]?\d*\.\d+|\d+", value)
+			# value_float = [i for i in value.split() if i.isdigit()]
 			if len(value_float) > 0:
 				# If there was a value at the location
 				float_df.at[index,column] = value_float[0]
