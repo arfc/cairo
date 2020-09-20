@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def MSE(yhat, y):
     '''
     This function calculates the mean squared error between
