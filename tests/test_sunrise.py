@@ -7,8 +7,4 @@ def test_frac_year1():
     midnight on January 1st.
     """
 
-def test_frac_year1():
-    """
-    Tests if year fraction is correct for
-    midnight on January 1st.
-    """
+
