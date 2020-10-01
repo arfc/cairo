@@ -1,6 +1,4 @@
 import numpy as np
-from pandas import date_range
-import jdcal
 import datetime as dt
 import matplotlib.pyplot as plt
 
@@ -295,9 +293,11 @@ if __name__ == "__main__":
     print(f"The hour angle is: {ha}")
     print(f"The elevation angle is: {elangle}")
 
-    t = np.arange(0,24,1)
+    t = np.arange(0,8760*4,1)
     elevation = generate_time_series(t)
 
     plt.figure(figsize=(12,9), facecolor='w')
+    plt.ylabel("Solar Elevation Angle in Degrees")
+    plt.xlabel("Hours Since Start Date")
     plt.plot(t, elevation)
     plt.show()
