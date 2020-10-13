@@ -119,7 +119,6 @@ def equation_of_time(hour):
     """
     B = frac_year(hour)
     et = 9.87*np.sin(2*B*(np.pi/180)) - 7.53*np.cos(B*(np.pi/180)) - 1.5*np.cos(B*(np.pi/180))
-    # et = 9.87*np.sin(2*B) - 7.53*np.cos(B) - 1.5*np.cos(B)
 
     return et
 

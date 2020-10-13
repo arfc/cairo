@@ -3,6 +3,7 @@ import numpy as np
 import datetime as dt
 import matplotlib.pyplot as plt
 
+
 def test_hour_number_initial():
     """
     Tests the hour at an initial and then
