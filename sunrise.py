@@ -94,13 +94,13 @@ def declination(hour, leap_year=False):
     delta : float
         The declination at the given hour
     """
-    B = frac_year(hour)
+    B = frac_year(hour, leap_year)
     delta = 23.44*np.sin((np.pi/180)*B)
 
     return delta
 
 
-def equation_of_time(hour):
+def equation_of_time(hour, leap_year=False):
     """
     This function calculates the equation of time. The equation
     of time gives the difference between the solar time and wall
@@ -117,8 +117,9 @@ def equation_of_time(hour):
     et : float
         The time in minutes
     """
-    B = frac_year(hour)
-    et = 9.87*np.sin(2*B*(np.pi/180)) - 7.53*np.cos(B*(np.pi/180)) - 1.5*np.cos(B*(np.pi/180))
+    B = frac_year(hour, leap_year)
+    # et = 9.87*np.sin(2*B*(np.pi/180)) - 7.53*np.cos(B*(np.pi/180)) - 1.5*np.cos(B*(np.pi/180))
+    et = -7.655*np.sin(B*np.pi/180) + 9.873*np.sin((2*B+3.588)*np.pi/180)
 
     return et
 
