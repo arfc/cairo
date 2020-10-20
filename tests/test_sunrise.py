@@ -1,7 +1,5 @@
 from sunrise import *
-import numpy as np
-import datetime as dt
-import matplotlib.pyplot as plt
+from pytest import approx
 
 
 def test_hour_number_initial():
