@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # coordinates for solar farm 1.0
 lat = 40.081798
 lon = -88.244027
-utc = -5
+utc = -6
 
 
 def hour_number(N, time):
@@ -74,7 +74,7 @@ def frac_year(hour, leap_year=False):
         n_days = 365
 
     B = (hour-1944)/24*360/n_days
-
+    # B = (360/365)*(hour/24-81)
     return B
 
 
@@ -118,8 +118,8 @@ def equation_of_time(hour, leap_year=False):
         The time in minutes
     """
     B = frac_year(hour, leap_year)
-    # et = 9.87*np.sin(2*B*(np.pi/180)) - 7.53*np.cos(B*(np.pi/180)) - 1.5*np.cos(B*(np.pi/180))
-    et = -7.655*np.sin(B*np.pi/180) + 9.873*np.sin((2*B+3.588)*np.pi/180)
+    et = 9.87*np.sin(2*B*(np.pi/180)) - 7.53*np.cos(B*(np.pi/180)) - 1.5*np.sin(B*(np.pi/180))
+    # et = -7.655*np.sin(B*np.pi/180) + 9.873*np.sin((2*B+3.588)*np.pi/180)
 
     return et
 
@@ -172,7 +172,6 @@ def time_correction(lstm, et, lon=lon):
     tc : float
         Time correction factor in minutes.
     """
-
     tc = 4*(lon - lstm) + et
 
     return tc
@@ -213,7 +212,7 @@ def hour_angle(lst):
     ha : float
         The hour angle in minutes
     """
-    ha = 15*(lst-12)
+    ha = (15*(lst-12))
 
     return ha
 
@@ -265,8 +264,8 @@ def generate_time_series(hour_range, lat=lat, lon=lon, utc=utc):
     return elevation_angles
 
 if __name__ == "__main__":
-    time = 12  # hours since midnight
-    N = 274
+    time = 0  # hours since midnight
+    N = 0
 
     hour = hour_number(N, time)
 
@@ -293,11 +292,16 @@ if __name__ == "__main__":
     print(f"The hour angle is: {ha}")
     print(f"The elevation angle is: {elangle}")
 
-    t = np.arange(0,8760*4,1)
-    elevation = generate_time_series(t)
 
-    plt.figure(figsize=(12,9), facecolor='w')
-    plt.ylabel("Solar Elevation Angle in Degrees")
-    plt.xlabel("Hours Since Start Date")
-    plt.plot(t, elevation)
-    plt.show()
+    rise = 12 - (180/np.pi)*(1/15)*np.arccos(-np.sin(lat*np.pi/180)*np.sin(dec*np.pi/180)/(np.cos(lat*np.pi/180)*np.cos(dec*np.pi/180))) - tc/60
+    print(rise)
+    # t = np.arange(0,8760*4,1)
+    # elevation = generate_time_series(t)
+    #
+    # plt.figure(figsize=(12,9), facecolor='w')
+    # plt.ylabel("Solar Elevation Angle in Degrees")
+    # plt.xlabel("Hours Since Start Date")
+    # plt.plot(t, elevation)
+    # plt.show()
+
+    # print(f'LST = 24, HA = {hour_angle(23.07)}')
