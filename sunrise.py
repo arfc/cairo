@@ -69,12 +69,11 @@ def frac_year(hour, leap_year=False):
         The fraction of the year
     """
     if leap_year:
-        n_days = 366
+        n_days = 365
     else:
         n_days = 365
 
     B = (hour-1944)/24*360/n_days
-    # B = (360/365)*(hour/24-81)
     return B
 
 
@@ -119,7 +118,6 @@ def equation_of_time(hour, leap_year=False):
     """
     B = frac_year(hour, leap_year)
     et = 9.87*np.sin(2*B*(np.pi/180)) - 7.53*np.cos(B*(np.pi/180)) - 1.5*np.sin(B*(np.pi/180))
-    # et = -7.655*np.sin(B*np.pi/180) + 9.873*np.sin((2*B+3.588)*np.pi/180)
 
     return et
 
@@ -295,13 +293,11 @@ if __name__ == "__main__":
 
     rise = 12 - (180/np.pi)*(1/15)*np.arccos(-np.sin(lat*np.pi/180)*np.sin(dec*np.pi/180)/(np.cos(lat*np.pi/180)*np.cos(dec*np.pi/180))) - tc/60
     print(rise)
-    # t = np.arange(0,8760*4,1)
-    # elevation = generate_time_series(t)
-    #
-    # plt.figure(figsize=(12,9), facecolor='w')
-    # plt.ylabel("Solar Elevation Angle in Degrees")
-    # plt.xlabel("Hours Since Start Date")
-    # plt.plot(t, elevation)
-    # plt.show()
+    t = np.arange(0,8760,1)
+    elevation = generate_time_series(t)
 
-    # print(f'LST = 24, HA = {hour_angle(23.07)}')
+    plt.figure(figsize=(12,9), facecolor='w')
+    plt.ylabel("Solar Elevation Angle in Degrees")
+    plt.xlabel("Hours Since Start Date")
+    plt.plot(t, elevation)
+    plt.show()
