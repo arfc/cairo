@@ -359,7 +359,7 @@ if __name__ == "__main__":
         dec * np.pi / 180) / (np.cos(lat * np.pi / 180) * np.cos(dec * np.pi / 180))) - tc / 60
     print(rise)
 
-    dates = pd.date_range(start='1/1/2016', end='7/1/2019', freq='h')[:-2]
+    dates = pd.date_range(start='1/1/2015', end='7/1/2019', freq='h')[:-2]
 
     # t = np.arange(0, 8760, 1)
     # elevation = generate_elevation_series(t)
