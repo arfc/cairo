@@ -345,7 +345,8 @@ def test_hour_angle_initial():
     longitude of -88.208139.
     """
     obs_i = 15 * (local_solar_time(local_time(0),
-                                   time_correction(-90, equation_of_time(0), -88.208139)) - 12)
+                                   time_correction(
+                                   -90, equation_of_time(0), -88.208139)) - 12)
     exp_i = hour_angle(local_solar_time(local_time(
         0), time_correction(-90, equation_of_time(0), -88.208139)))
     assert obs_i == exp_i
@@ -358,7 +359,8 @@ def test_hour_angle_one_year():
     longitude of -88.208139.
     """
     obs_one_year = 15 * (local_solar_time(local_time(8784),
-                                          time_correction(-90, equation_of_time(8784), -88.208139)) - 12)
+                                          time_correction(-90, equation_of_time(
+                                          8784), -88.208139)) - 12)
     exp_one_year = hour_angle(local_solar_time(local_time(
         8784), time_correction(-90, equation_of_time(8784), -88.208139)))
     assert obs_one_year == exp_one_year
