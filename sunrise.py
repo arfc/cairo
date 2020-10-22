@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import datetime as dt
 import matplotlib.pyplot as plt
 
@@ -305,7 +306,7 @@ def generate_elevation_series(
     --------
     elevation_angles : list
         The list of elevation angles corresponding to each
-        hour or timestamp. Units in degrees. 
+        hour or timestamp. Units in degrees.
     """
     elevation_angles = []
 
@@ -358,17 +359,20 @@ if __name__ == "__main__":
         dec * np.pi / 180) / (np.cos(lat * np.pi / 180) * np.cos(dec * np.pi / 180))) - tc / 60
     print(rise)
 
-    import pandas as pd
-    dates = pd.date_range(start='1/1/2016', end='1/1/2019', freq='h')
-    start = dates[0]
+    dates = pd.date_range(start='1/1/2016', end='7/1/2019', freq='h')[:-2]
 
-    t = np.arange(0, 8760, 1)
+    # t = np.arange(0, 8760, 1)
     # elevation = generate_elevation_series(t)
     elevation = generate_elevation_series(dates, timestamps=True)
 
-    plt.figure(figsize=(12, 9), facecolor='w')
-    plt.ylabel("Solar Elevation Angle in Degrees")
-    plt.xlabel("Hours Since Start Date")
-    # plt.plot(t, elevation)
-    plt.plot(dates, elevation)
-    plt.show()
+    # plt.figure(figsize=(12, 9), facecolor='w')
+    # plt.ylabel("Solar Elevation Angle in Degrees")
+    # plt.xlabel("Hours Since Start Date")
+    # # plt.plot(t, elevation)
+    # plt.plot(dates, elevation)
+    # plt.show()
+
+    # data = {'Time':dates, 'angle':elevation}
+    # df = pd.DataFrame(data)
+    # print(df)
+    # df.to_csv('solar_elevation_demand.csv')
