@@ -94,7 +94,7 @@ def frac_year(hour, leap_year=False):
         The fraction of the year
     """
     if leap_year:
-        n_days = 365
+        n_days = 366
     else:
         n_days = 365
 
