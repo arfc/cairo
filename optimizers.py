@@ -47,8 +47,8 @@ def grid_optimize(data, params, xset, yset=None, verbose=False, visualize=False 
 
     Returns:
     --------
-    x_optimal : int or float
-        The optimal value for xset
-    y_optimal : int or float
-        The optimal value for yset. Only returned if yset is not None.
+    loss : numpy array
+        The array or matrix of loss values. 
     """
+
+    # get the number of inputs and outputs.

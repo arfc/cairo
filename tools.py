@@ -21,3 +21,28 @@ def MSE(yhat, y):
     mse = np.sqrt(np.mean((yhat.flatten() - y)**2))
 
     return mse
+
+
+def optimal_values(loss, xset, yset):
+    """
+    This function returns the optimal set of values given
+    a matrix of error values. The optimal set is the pair
+    of values that minimizes the error.
+
+    Parameters:
+    -----------
+    loss : numpy matrix
+        The matrix of loss values.
+
+    Returns:
+    --------
+    x, y : float
+        The optimal set of values
+    """
+
+    minLoss = np.min(loss)
+    index_min = np.where(loss == minLoss)
+    x_optimal = xset[int(index_min[0])]
+    y_optimal = yset[int(index_min[1])]
+
+    return
