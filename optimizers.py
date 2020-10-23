@@ -29,8 +29,8 @@ def grid_optimize(data, params, xset, yset=None, verbose=False, visualize=False 
             "rho" : float, the spectral radius
             "noise" : the noise used for regularization
             "trainlen" : int, the training length
-            "futureTotal" : int, the total prediction length
-            "future" : int or None, the window size
+            "future" : int, the total prediction length
+            "window" : int or None, the window size
     xset : numpy array
         The first set of values to be tested.
     yset : numpy array or None
@@ -48,7 +48,7 @@ def grid_optimize(data, params, xset, yset=None, verbose=False, visualize=False 
     Returns:
     --------
     loss : numpy array
-        The array or matrix of loss values. 
+        The array or matrix of loss values.
     """
 
     # get the number of inputs and outputs.

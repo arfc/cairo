@@ -23,7 +23,7 @@ def test_optimal_values_1():
     x = np.array([-1,0,0])
     y = np.array([1,0,0])
     b = np.outer(x,y)
-    min_set = (0,0)
+    min_set = (-1,1)
 
     opt_set = optimal_values(b, x, y)
     assert(min_set==opt_set)
