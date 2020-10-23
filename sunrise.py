@@ -127,7 +127,7 @@ def equation_of_time(hour, leap_year=False):
     """
     This function calculates the equation of time. The equation
     of time gives the difference between the solar time and wall
-    clock time. Effectively correcting for the eccentricity of
+    clock time, effectively correcting for the eccentricity of
     Earth's orbit.
 
     Parameters:
