@@ -35,5 +35,20 @@ def grid_optimize(data, params, xset, yset=None, verbose=False, visualize=False 
         The first set of values to be tested.
     yset : numpy array or None
         The second set of values to be tested at the same
-        time as the xset. Can be None. 
+        time as the xset. Can be None.
+    verbose : boolean
+        Specifies if the simulation outputs should be printed.
+        Useful for debugging.
+    visualize : boolean
+        Specifies if the results should be visualized.
+    kwargs**:
+        The keys of the ESN parameters that should be optimized.
+        Correspond to xset and yset.
+
+    Returns:
+    --------
+    x_optimal : int or float
+        The optimal value for xset
+    y_optimal : int or float
+        The optimal value for yset. Only returned if yset is not None.
     """
