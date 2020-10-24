@@ -66,7 +66,7 @@ def grid_optimizer(
                ), f"{variable} not in parameters"
 
     if len(args) > 1:
-        assert(yset is not None), "Two variables specified, but second set not given."
+        assert(yset is not None), "Two variables specified, two sets not given."
 
     xvar = args[0]
     loss = np.zeros(len(xset))
