@@ -97,17 +97,17 @@ def esn_prediction(data, params):
     else:
         n_vars = 1
 
-    esn = ESN(n_inputs = n_vars,
-              n_outputs = n_vars,
-              n_reservoir = params['n_reservoir'],
-              sparsity= params['sparsity'],
-              random_state = params['rand_seed'],
-              spectral_radius = params['rho'],
-              noise = params['noise'])
+    esn = ESN(n_inputs=n_vars,
+              n_outputs=n_vars,
+              n_reservoir=params['n_reservoir'],
+              sparsity=params['sparsity'],
+              random_state=params['rand_seed'],
+              spectral_radius=params['rho'],
+              noise=params['noise'])
 
     trainlen = params['trainlen']
     futureTotal = params['future']
-    pred_tot = np.ones((futureTotal,n_vars))
+    pred_tot = np.ones((futureTotal, n_vars))
 
     # train the ESN
     pred_training = esn.fit(np.ones((trainlen, n_vars)),
@@ -118,9 +118,9 @@ def esn_prediction(data, params):
 
 
 if __name__ == "__main__":
-    x = np.array([-1,0,0])
-    y = np.array([1,0,0])
-    b = np.outer(x,y)
-    min_set = (-1,1)
+    x = np.array([-1, 0, 0])
+    y = np.array([1, 0, 0])
+    b = np.outer(x, y)
+    min_set = (-1, 1)
 
     opt_set = optimal_values(b, x, y)
