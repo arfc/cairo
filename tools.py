@@ -19,7 +19,7 @@ def MSE(yhat, y):
     mse : float
         The mean squared error between yhat and y.
     '''
-    mse = np.sqrt(np.mean((yhat.flatten() - y)**2))
+    mse = np.sqrt(np.mean((yhat.flatten() - y.flatten())**2))
 
     return mse
 
@@ -93,7 +93,6 @@ def esn_prediction(data, params):
     ndims = len(data.shape)
     if ndims > 1:
         n_vars = data.shape[1]
-        print
     else:
         n_vars = 1
 

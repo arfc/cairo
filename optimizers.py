@@ -1,11 +1,11 @@
 import time
 import numpy as np
 import matplotlib.pyplot as plt
-from tools import MSE
+from tools import MSE, optimal_values, esn_prediction
 from pyESN.pyESN import ESN
 
 
-def grid_optimize(data, params, xset, yset=None, verbose=False, visualize=False , kwargs**):
+def grid_optimizer(data, params, args, xset, yset=None, verbose=False, visualize=False):
     """
     This function optimizes the ESN parameters, x and y, over a specified
     range of values. The optimal values are determined by minimizing
@@ -31,6 +31,9 @@ def grid_optimize(data, params, xset, yset=None, verbose=False, visualize=False 
             "trainlen" : int, the training length
             "future" : int, the total prediction length
             "window" : int or None, the window size
+    args : list or tuple
+        The list of variables you want to optimize. Must be less
+        than or equal to two.
     xset : numpy array
         The first set of values to be tested.
     yset : numpy array or None
@@ -50,5 +53,77 @@ def grid_optimize(data, params, xset, yset=None, verbose=False, visualize=False 
     loss : numpy array
         The array or matrix of loss values.
     """
+    assert(len(args) <= 2), "Too many variables to optimize. Pick two or fewer."
+    for variable in args:
+        assert(variable in list(params.keys())), f"{variable} not in parameters"
 
-    # get the number of inputs and outputs.
+    if len(args) > 1:
+        assert(yset is not None), "Two variables specified, but second set not given."
+
+    xvar = args[0]
+    loss = np.zeros(len(xset))
+
+    if yset is not None:
+        assert(len(args) > 1), "Second parameter set given, but not specified."
+        yvar = args[1]
+        loss = np.zeros([len(xset), len(yset)])
+
+    if verbose:
+        print(f"Optimizing over {args}:")
+
+    predictLen = params['future']
+    for x, xvalue in enumerate(xset):
+        params[xvar] = xvalue
+        if yset is not None:
+            for y, yvalue in enumerate(yset):
+                params[yvar] = yvalue
+                predicted = esn_prediction(data, params)
+                loss[x, y] = MSE(predicted, data[-predictLen:])
+
+                if verbose:
+                    print(f"{xvar} = {xvalue}, {yvar} = {yvalue}, MSE={loss[x][y]}")
+
+        else:
+            predicted = esn_prediction(data, params)
+            loss[x] = MSE(predicted, data[-predictLen:])
+
+            if verbose:
+                print(f"{xvar} = {xvalue}, MSE={loss[x]}")
+
+    #=======================================================================
+    # Visualization
+    #=======================================================================
+
+    if visualize and yset is not None:
+        plt.figure(figsize=(16,8))
+        plt.title(f"Hyper-parameter Optimization over {args}")
+        im = plt.imshow(loss.T,
+                        vmin=abs(loss).min(),
+                        vmax=abs(loss).max(),
+                        origin='lower',
+                        cmap='PuBu')
+        plt.xticks(np.linspace(0,len(xset)-1,
+                               len(xset)),
+                               xset)
+        plt.yticks(np.linspace(0,len(yset)-1,
+                               len(yset)),
+                               yset)
+        plt.xlabel(f'{xvar}', fontsize=16)
+        plt.ylabel(f'{yvar}', fontsize=16)
+        cb = plt.colorbar(im)
+        cb.set_label(label="Mean Squared Error",
+                     fontsize=16,
+                     rotation=-90,
+                     labelpad=25);
+
+    elif visualize and yset is None:
+        plt.figure(figsize=(16,9))
+        plt.plot(xset, loss,'-ok', alpha=0.6)
+        plt.title(f'MSE as a Function of {xvar}', fontsize=20)
+        plt.xlabel(f'{xvar}', fontsize=18)
+        plt.ylabel('MSE', fontsize=18)
+
+    #=======================================================================
+    #=======================================================================
+
+    return loss
