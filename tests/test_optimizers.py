@@ -4,29 +4,29 @@ import numpy.random as rd
 from tools import MSE, optimal_values, esn_prediction
 from optimizers import grid_optimizer
 
-#=========================================================
+# =========================================================
 # Set up code
-#=========================================================
+# =========================================================
 N = 1000
-t = np.linspace(0,6*np.pi, N)
-noisy_cos = np.cos(t) + (2*rd.random(N)-1)/10
+t = np.linspace(0, 6 * np.pi, N)
+noisy_cos = np.cos(t) + (2 * rd.random(N) - 1) / 10
 smooth_cos = np.cos(t)
 X_in = np.concatenate([[noisy_cos, smooth_cos]], axis=1)
 
 reservoir_set = [600, 800, 1000]
 sparsity_set = [0.005, 0.01, 0.03]
-trainingLengths = np.arange(100,800,100)
+trainingLengths = np.arange(100, 800, 100)
 
-params = {'n_reservoir':600,
-          'sparsity':0.1,
-          'rand_seed':85,
-          'rho':0.7,
-          'noise':0.001,
-          'future':20,
-          'window':None,
-          'trainlen':500}
-#=========================================================
-#=========================================================
+params = {'n_reservoir': 600,
+          'sparsity': 0.1,
+          'rand_seed': 85,
+          'rho': 0.7,
+          'noise': 0.001,
+          'future': 20,
+          'window': None,
+          'trainlen': 500}
+# =========================================================
+# =========================================================
 
 
 def test_grid_optimize_1():
@@ -36,7 +36,7 @@ def test_grid_optimize_1():
     with pytest.raises(AssertionError):
         loss = grid_optimizer(X_in.T,
                               params,
-                              args=['trainlen','rho','noise'],
+                              args=['trainlen', 'rho', 'noise'],
                               xset=trainingLengths,
                               verbose=False,
                               visualize=False)
