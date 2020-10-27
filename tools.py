@@ -24,6 +24,45 @@ def MSE(yhat, y):
     return mse
 
 
+def param_string(params):
+    """
+    This function generates a formatted string from
+    model parameters.
+
+    Parameters:
+    -----------
+    params : dictionary
+        A dictionary containing all of the parameters required to
+        initialize an ESN.
+        Required parameters are:
+            "n_reservoir" : int, the reservoir size
+            "sparsity" : float, the sparsity of the reservoir
+            "rand_seed" : int or None, specifies the initial seed
+            "rho" : float, the spectral radius
+            "noise" : the noise used for regularization
+            "trainlen" : int, the training length
+            "future" : int, the total prediction length
+            "window" : int or None, the window size
+
+    Returns:
+    --------
+    pstring : string
+        The formatted parameter string.
+    """
+
+    n_reservoir = params['n_reservoir']
+    sparsity = params['sparsity']
+    spectral_radius = params['rho']
+    noise = params['noise']
+    trainlen = params['trainlen']
+
+    pstring = (f"Reservoir Size:{n_reservoir}, Sparsity: {sparsity}, "
+               f"Spectral Radius: {spectral_radius}, Noise: {noise}, "
+               f"Training Length: {trainlen}")
+
+    return pstring
+
+
 def optimal_values(loss, xset, yset):
     """
     This function returns the optimal set of values given
@@ -110,16 +149,7 @@ def esn_prediction(data, params):
 
     # train the ESN
     pred_training = esn.fit(np.ones((trainlen, n_vars)),
-                            data[-trainlen-futureTotal:-futureTotal])
+                            data[-trainlen - futureTotal:-futureTotal])
     prediction = esn.predict(pred_tot)
 
     return prediction
-
-
-if __name__ == "__main__":
-    x = np.array([-1, 0, 0])
-    y = np.array([1, 0, 0])
-    b = np.outer(x, y)
-    min_set = (-1, 1)
-
-    opt_set = optimal_values(b, x, y)
