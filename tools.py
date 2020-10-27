@@ -56,7 +56,9 @@ def param_string(params):
     noise = params['noise']
     trainlen = params['trainlen']
 
-    pstring = f"Reservoir Size:{n_reservoir}, Sparsity: {sparsity}, Spectral Radius: {spectral_radius}, Noise: {noise}, Training Length: {trainlen}"
+    pstring = (f"Reservoir Size:{n_reservoir}, Sparsity: {sparsity}, "
+               f"Spectral Radius: {spectral_radius}, Noise: {noise}, "
+               f"Training Length: {trainlen}")
 
     return pstring
 
