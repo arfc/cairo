@@ -147,16 +147,7 @@ def esn_prediction(data, params):
 
     # train the ESN
     pred_training = esn.fit(np.ones((trainlen, n_vars)),
-                            data[-trainlen-futureTotal:-futureTotal])
+                            data[-trainlen - futureTotal:-futureTotal])
     prediction = esn.predict(pred_tot)
 
     return prediction
-
-
-if __name__ == "__main__":
-    x = np.array([-1, 0, 0])
-    y = np.array([1, 0, 0])
-    b = np.outer(x, y)
-    min_set = (-1, 1)
-
-    opt_set = optimal_values(b, x, y)
