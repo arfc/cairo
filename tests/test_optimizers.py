@@ -99,3 +99,26 @@ def test_grid_optimize_5():
                               verbose=False,
                               visualize=False)
     return
+
+
+def test_grid_optimize_6():
+    """
+    Case 6: No xset is given to test. Should raise TypeError.
+    """
+    with pytest.raises(TypeError):
+        loss = grid_optimizer(X_in,
+                              params,
+                              args=['n_reservoir'])
+    return
+
+
+def test_grid_optimize_7():
+    """
+    Case 7: yset is given, but not xset.
+    """
+    with pytest.raises(TypeError):
+        loss = grid_optimizer(X_in,
+                              params,
+                              args=['n_reservoir'],
+                              yset=reservoir_set)
+    return

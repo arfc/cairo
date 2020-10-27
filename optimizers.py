@@ -42,7 +42,7 @@ def grid_optimizer(
         The list of variables you want to optimize. Must be less
         than or equal to two.
     xset : numpy array
-        The first set of values to be tested.
+        The first set of values to be tested. Cannot be None.
     yset : numpy array or None
         The second set of values to be tested at the same
         time as the xset. Can be None.
