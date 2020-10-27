@@ -15,3 +15,6 @@ git clone git@github.com:cknd/pyESN.git
 
 ### Contributing
 See the `contributing.md` document for instructions on how to  contribute to `CAIRO`.
+
+### Continuous Integration
+This repository uses continuous integration with CircleCI to automatically run tests.
