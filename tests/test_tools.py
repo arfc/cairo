@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 import numpy.random as rd
-from tools import MSE, optimal_values, esn_prediction
+from tools import MSE, optimal_values, esn_prediction, param_string
 
 # =========================================================
 # Set up code
@@ -44,6 +44,8 @@ def test_optimal_values_1():
     opt_set = optimal_values(b, x, y)
     assert(min_set == opt_set)
 
+    return
+
 
 def test_esn_prediction_1():
     """
@@ -53,3 +55,13 @@ def test_esn_prediction_1():
 
     with pytest.raises(IndexError):
         pred = esn_prediction(X_in, params)
+
+    return
+
+
+def test_param_string():
+    """
+    Verifies that param_string returns string.
+    """
+    pstring = param_string(params)
+    assert(type(pstring) is str)

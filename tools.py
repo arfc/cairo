@@ -24,6 +24,43 @@ def MSE(yhat, y):
     return mse
 
 
+def param_string(params):
+    """
+    This function generates a formatted string from
+    model parameters.
+
+    Parameters:
+    -----------
+    params : dictionary
+        A dictionary containing all of the parameters required to
+        initialize an ESN.
+        Required parameters are:
+            "n_reservoir" : int, the reservoir size
+            "sparsity" : float, the sparsity of the reservoir
+            "rand_seed" : int or None, specifies the initial seed
+            "rho" : float, the spectral radius
+            "noise" : the noise used for regularization
+            "trainlen" : int, the training length
+            "future" : int, the total prediction length
+            "window" : int or None, the window size
+
+    Returns:
+    --------
+    pstring : string
+        The formatted parameter string.
+    """
+
+    n_reservoir = params['n_reservoir']
+    sparsity = params['sparsity']
+    spectral_radius = params['rho']
+    noise = params['noise']
+    trainlen = params['trainlen']
+
+    pstring = f"Reservoir Size:{n_reservoir}, Sparsity: {sparsity}, Spectral Radius: {spectral_radius}, Noise: {noise}, Training Length: {trainlen}"
+
+    return pstring
+
+
 def optimal_values(loss, xset, yset):
     """
     This function returns the optimal set of values given
