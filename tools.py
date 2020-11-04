@@ -149,16 +149,15 @@ def esn_prediction(data, params):
               spectral_radius=params['rho'],
               noise=params['noise'])
 
-
     # train the ESN
     prediction = np.ones((futureTotal, n_vars))
     window_pred = np.ones((window, n_vars))
 
     for i in range(0, futureTotal, window):
         pred_training = esn.fit(np.ones((trainlen, n_vars)),
-                                data[-trainlen-futureTotal+i:-futureTotal+i])
+                                data[-trainlen - futureTotal + i:-futureTotal + i])
         inter_pred = esn.predict(window_pred)
-        prediction[i:i+window] = inter_pred
+        prediction[i:i + window] = inter_pred
 
     return prediction
 

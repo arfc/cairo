@@ -58,6 +58,7 @@ def test_esn_prediction_1():
 
     return
 
+
 def test_esn_prediction_1():
     """
     Case 2: The window size is not a multiple of the total future.
@@ -74,4 +75,4 @@ def test_param_string():
     Verifies that param_string returns string.
     """
     pstring = param_string(params)
-    assert(type(pstring) is str)
+    assert(isinstance(pstring, str))
