@@ -18,7 +18,7 @@ params = {'n_reservoir': 600,
           'rho': 0.7,
           'noise': 0.001,
           'future': 20,
-          'window': None,
+          'window': 3,
           'trainlen': 500}
 # =========================================================
 # =========================================================
@@ -54,6 +54,16 @@ def test_esn_prediction_1():
     """
 
     with pytest.raises(IndexError):
+        pred = esn_prediction(X_in, params)
+
+    return
+
+def test_esn_prediction_1():
+    """
+    Case 2: The window size is not a multiple of the total future.
+    """
+
+    with pytest.raises(AssertionError):
         pred = esn_prediction(X_in, params)
 
     return
