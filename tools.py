@@ -154,8 +154,9 @@ def esn_prediction(data, params):
     window_pred = np.ones((window, n_vars))
 
     for i in range(0, futureTotal, window):
+        data_slice = data[-trainlen - futureTotal + i:-futureTotal + i]
         pred_training = esn.fit(np.ones((trainlen, n_vars)),
-                                data[-trainlen - futureTotal + i:-futureTotal + i])
+                                data_slice)
         inter_pred = esn.predict(window_pred)
         prediction[i:i + window] = inter_pred
 
