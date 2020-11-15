@@ -7,13 +7,13 @@
 \documentclass[9pt]{beamer}
 \usetheme[white]{Illinois}
 %\title[short title]{long title}
-\title[Short Title]{A Very Very Long Title for a Presentation about Cats}
+\title[Short Title]{Echo State Networks for Renewable Energy Forecasting}
 %\subtitle[short subtitle]{long subtitle}
-\subtitle[Short SubTitle]{Mostly Kittens}
+% \subtitle[Short SubTitle]{Mostly Kittens}
 %\author[short name]{long name}
-\author[Your Name]{Your Name\\Advanced Reactors and Fuel Cycles Group}
+\author[Sam Dotson]{Samuel G. Dotson\\Advanced Reactors and Fuel Cycles Group}
 %\date[short date]{long date}
-\date[04.01.2100]{April 1, 2100}
+\date[01.17.2020]{November 17, 2020}
 %\institution[short name]{long name}
 \institute[UIUC]{University of Illinois at Urbana-Champaign}
 
@@ -22,6 +22,7 @@
 \usepackage{amsmath}
 \usepackage{xspace}
 \usepackage{graphicx}
+\graphicspath{{./images/}}
 \usepackage{subfigure}
 \usepackage{booktabs} % nice rules for tables
 \usepackage{microtype} % if using PDF
@@ -31,7 +32,7 @@
 \newcommand{\units}[1] {\:\text{#1}}%
 \newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
 \DeclareMathOperator{\erf}{erf}
-%I need some complimentary error funcitons... 
+%I need some complimentary error funcitons...
 \DeclareMathOperator{\erfc}{erfc}
 %Those icons in the references are terrible looking
 \setbeamertemplate{bibliography item}[text]
@@ -63,7 +64,7 @@
 \makeatletter
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% From uw-beamer Here's a handy bit of code to place at 
+%% From uw-beamer Here's a handy bit of code to place at
 %% the beginning of your presentation (after \begin{document}):
 \newcommand*{\alphabet}{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}
 \newlength{\highlightheight}
@@ -93,18 +94,11 @@
 }
 
 \section{Motivation}
-\subsection{Cat Behavior}
-\input{cat_behavior}
-\subsection{Cat Appearance}
-\input{cat_appearance}
-\subsection{Cat Math}
-\input{cat_math}
+\input{motivation}
 \section{Methods}
-\subsection{Illinois Colors}
-\input{fierce}
+\section{Results}
 \section{Conclusion}
-\input{conclusion}
-\input{acks}
+
 %%--------------------------------%%
 %%--------------------------------%%
 \begin{frame}[allowframebreaks]
@@ -118,6 +112,3 @@
 
 
 \end{document}
-
-
-
