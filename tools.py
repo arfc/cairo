@@ -55,10 +55,12 @@ def param_string(params):
     spectral_radius = params['rho']
     noise = params['noise']
     trainlen = params['trainlen']
+    window = params['window']
 
     pstring = (f"Reservoir Size:{n_reservoir}, Sparsity: {sparsity}, "
                f"Spectral Radius: {spectral_radius}, Noise: {noise}, "
-               f"Training Length: {trainlen}")
+               f"Training Length: {trainlen}, "
+               f"Prediction Window: {window}")
 
     return pstring
 
