@@ -17,6 +17,7 @@ def lorenz96(x, t, N=5, F=8):
     t : The time of the simulation
     N : integer
         The number of variables in the system
+        N >=4
     F : integer or float
         The forcing constant
 
