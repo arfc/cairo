@@ -28,7 +28,7 @@ def lorenz96(x, t, N=5, F=8):
     dxdt = np.ones(N)
 
     for i in range(N):
-        dxdt[i] = (x[(i+1) % N] - x[i-2]) * x[i-1] - x[i] + F
+        dxdt[i] = (x[(i + 1) % N] - x[i - 2]) * x[i - 1] - x[i] + F
 
     return dxdt
 
@@ -56,7 +56,7 @@ def generate_L96(t, P=0.01, N=5, F=8):
     """
 
     # set initial conditions
-    x0 = F*np.ones(N)
+    x0 = F * np.ones(N)
     x0[0] += P
 
     data = odeint(lorenz96, x0, t)
@@ -66,7 +66,7 @@ def generate_L96(t, P=0.01, N=5, F=8):
 
 if __name__ == "__main__":
     # t = np.linspace(0,30,10000)
-    t = np.arange(0,30.0, 0.01)
+    t = np.arange(0, 30.0, 0.01)
     x = generate_L96(t)
 
     print(x)
