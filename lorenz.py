@@ -65,7 +65,7 @@ def generate_L96(t, P=0.01, N=5, F=8):
     return data
 
 
-def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0/3.0)):
+def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     """
     This is the Lorenz-63 model used in paper by
     Pathak et. al. 2017. DOI: 10.1063/1.5010300
@@ -80,16 +80,16 @@ def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0/3.0)):
 
     for i in range(N):
         if i == 0:
-            dxdt[i] = sigma*(x[i+1] - x[i])
+            dxdt[i] = sigma * (x[i + 1] - x[i])
         elif i == 1:
-            dxdt[i] = x[i-1]*(rho - x[i+1]) - x[i]
+            dxdt[i] = x[i - 1] * (rho - x[i + 1]) - x[i]
         elif i == 2:
-            dxdt[i] = x[i-2]*x[i-1] - beta*x[i]
+            dxdt[i] = x[i - 2] * x[i - 1] - beta * x[i]
 
     return dxdt
 
 
-def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0/3.0)):
+def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     """
     This function generates data for the Lorenz-63
     model.
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     # ax.set_zlabel("$x_3$")
     # plt.show()
 
-    fig, ax = plt.subplots(3,1)
+    fig, ax = plt.subplots(3, 1)
     ax[0].plot(t, x[:, 0], label=r'$X_1$')
     ax[0].legend()
     ax[1].plot(t, x[:, 1], label=r'$X_2$')
