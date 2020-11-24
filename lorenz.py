@@ -103,7 +103,11 @@ def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
 
 
 if __name__ == "__main__":
-    # t = np.linspace(0,30,10000)
+
+#==================================================================
+# Lorenz 96 : Three Dimensional Plot
+#==================================================================
+
     # t = np.arange(0, 40.0, 0.01)
     # x = generate_L96(t)
     #
@@ -115,8 +119,11 @@ if __name__ == "__main__":
     # ax.set_zlabel("$x_3$")
     # plt.show()
 
-    t = np.arange(0, 40.0, 0.01)
-    x = generate_L63(t, rho=1.2, sigma=0.1, beta=0)
+#==================================================================
+# Lorenz 63 : Three Dimensional Plot
+#==================================================================
+    # t = np.arange(0, 40.0, 0.01)
+    # x = generate_L63(t, rho=1.2, sigma=0.1, beta=0)
 
     # fig = plt.figure()
     # ax = fig.gca(projection="3d")
@@ -125,6 +132,12 @@ if __name__ == "__main__":
     # ax.set_ylabel("$x_2$")
     # ax.set_zlabel("$x_3$")
     # plt.show()
+
+#==================================================================
+# Lorenz 96 : One Dimensional Plots
+#==================================================================
+    t = np.arange(0, 40.0, 0.01)
+    x = generate_L63(t, rho=1.2, sigma=0.1, beta=0)
 
     fig, ax = plt.subplots(3, 1)
     ax[0].plot(t, x[:, 0], label=r'$X_1$')
