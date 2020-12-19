@@ -1,5 +1,6 @@
 import time
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 from tools import MSE, optimal_values, esn_prediction
@@ -19,7 +20,7 @@ def grid_optimizer(
         yset=None,
         verbose=False,
         visualize=False,
-        save_data=False):
+        save_path=None):
     """
     This function optimizes the ESN parameters, x and y, over a specified
     range of values. The optimal values are determined by minimizing
@@ -59,7 +60,8 @@ def grid_optimizer(
     visualize : boolean, string
         Specifies if the results should be visualized.
         * 'surface' will plot a 3D error surface.
-    save_data : saves
+    save_path : string
+        Specifies where the data should be saved. Default is None.
 
     Returns:
     --------
@@ -157,9 +159,21 @@ def grid_optimizer(
         ax.set_zlabel('MSE', fontsize=18)
 
         cb = plt.colorbar(mappable)
-        cb.set_label(label="Mean Squared Error")
+        cb.set_label(label="Mean Squared Error",
+                     fontsize=16,
+                     rotation=-90,
+                     labelpad=25)
         fig.tight_layout()
     # =======================================================================
+    # Save data
     # =======================================================================
+
+    if save_path is not None:
+        if yset is not None:
+            fname = f"{xvar}_{yvar}_loss"
+            np.save(save_path+fname, loss)
+        else:
+            fname = f"{xvar}_loss"
+            np.save(save_path+fname, loss)
 
     return loss
