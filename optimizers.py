@@ -6,11 +6,12 @@ from mpl_toolkits import mplot3d
 from tools import MSE, optimal_values, esn_prediction
 from pyESN.pyESN import ESN
 
-variables = {'n_reservoir':'Reservoir Size',
+variables = {'n_reservoir': 'Reservoir Size',
              'sparsity': 'Sparsity',
              'rho': 'Spectral Radius',
-             'noise':'Noise',
-             'trainlen':'Training Length'}
+             'noise': 'Noise',
+             'trainlen': 'Training Length'}
+
 
 def grid_optimizer(
         data,
@@ -115,7 +116,7 @@ def grid_optimizer(
     if visualize is True and yset is not None:
         plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
         plt.title((f"Hyper-parameter Optimization over {variables[xvar]}",
-                  f"and {variables[yvar]}"))
+                   f"and {variables[yvar]}"))
         im = plt.imshow(loss.T,
                         vmin=abs(loss).min(),
                         vmax=abs(loss).max(),
@@ -141,7 +142,7 @@ def grid_optimizer(
         plt.ylabel('MSE', fontsize=18)
 
     elif visualize is 'surface' and yset is not None:
-        fig = plt.figure(figsize=(16,9), facecolor='w', edgecolor='k')
+        fig = plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
         ax = plt.axes(projection='3d')
 
         X = xset
@@ -151,7 +152,7 @@ def grid_optimizer(
         mappable = plt.cm.ScalarMappable()
         mappable.set_array(Z)
 
-        ax.plot_surface(X,Y,Z, rstride=1, cstride=1,
+        ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
                         cmap=mappable.cmap,
                         norm=mappable.norm)
         ax.set_xlabel(f'{variables[xvar]}', fontsize=18)
@@ -171,9 +172,9 @@ def grid_optimizer(
     if save_path is not None:
         if yset is not None:
             fname = f"{xvar}_{yvar}_loss"
-            np.save(save_path+fname, loss)
+            np.save(save_path + fname, loss)
         else:
             fname = f"{xvar}_loss"
-            np.save(save_path+fname, loss)
+            np.save(save_path + fname, loss)
 
     return loss
