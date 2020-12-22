@@ -1,4 +1,4 @@
-tools module
+Tools Module
 ============
 
 .. automodule:: tools

@@ -1,4 +1,4 @@
-sunrise module
+Sunrise Module
 ==============
 
 .. automodule:: sunrise

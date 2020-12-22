@@ -1,54 +1,104 @@
 
+
+
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>sunrise module &#8212; CAIRO  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Module &#8212; CAIRO  documentation</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
+    <link rel="next" title="Tests Package" href="tests.html" />
+    <link rel="prev" title="Welcome to CAIRO’s Documentation!" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tests.html" title="Tests Package"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to CAIRO’s Documentation!"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">CAIRO  documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Sunrise Module</a></li> 
+      </ul>
+    </div>
+    </div>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          
-
           <div class="body" role="main">
             
   <div class="section" id="module-sunrise">
-<span id="sunrise-module"></span><h1>sunrise module<a class="headerlink" href="#module-sunrise" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<span id="sunrise-module"></span><h1>Sunrise Module<a class="headerlink" href="#module-sunrise" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
 <dt id="sunrise.day_number">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">day_number</code><span class="sig-paren">(</span><em class="sig-param">hour_number</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.day_number" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">day_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hour_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.day_number" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the day_number given a particular hour_number.</p>
+<dl class="simple">
+<dt>hour_number<span class="classifier">float</span></dt><dd><p>The number of hours since Jan first of a given year</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>day_number<span class="classifier">int</span></dt><dd><p>The hour number</p>
+</dd>
+</dl>
+<p>Midnight on day 366 of a leap year</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour_number</span> <span class="o">=</span> <span class="mi">8784</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">day_number</span><span class="p">(</span><span class="n">hour_number</span><span class="p">)</span>
+<span class="go">    366</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.declination">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">declination</code><span class="sig-paren">(</span><em class="sig-param">hour</em>, <em class="sig-param">leap_year=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.declination" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function calculates the declination angle of the sun.
-Parameters:
-———–
-hour : integer, float</p>
-<blockquote>
-<div><p>The hour of the day. Could be a decimal value.</p>
-</div></blockquote>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">declination</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hour</span></em>, <em class="sig-param"><span class="n">leap_year</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.declination" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the declination angle of the sun.</p>
 <dl class="simple">
+<dt>hour<span class="classifier">integer, float</span></dt><dd><p>The hour of the day. Could be a decimal value.</p>
+</dd>
 <dt>leap_year<span class="classifier">boolean</span></dt><dd><p>Indicates if the year is a leap year. Default
 is False.</p>
 </dd>
@@ -57,28 +107,50 @@ is False.</p>
 <dt>delta<span class="classifier">float</span></dt><dd><p>The declination at the given hour</p>
 </dd>
 </dl>
+<p>The declination six minutes into January third of
+a leap year can be calculated as follows. It is
+important to remember that for a leap year you
+must put the True Boolean as the second parameter.
+If you want a non-leap year you can either put only
+one argument or use the False Boolean.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">declination</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">    -22.81293175279647</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.equation_of_time">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">equation_of_time</code><span class="sig-paren">(</span><em class="sig-param">hour</em>, <em class="sig-param">leap_year=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.equation_of_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">equation_of_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hour</span></em>, <em class="sig-param"><span class="n">leap_year</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.equation_of_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function calculates the equation of time. The equation
 of time gives the difference between the solar time and wall
 clock time, effectively correcting for the eccentricity of
 Earth’s orbit.</p>
 <dl class="simple">
-<dt>hour<span class="classifier">float</span></dt><dd><p>The number of hours since midnight, January 1st.</p>
+<dt>hour<span class="classifier">float</span></dt><dd><p>The number of hours since midnight, January first.</p>
 </dd>
 </dl>
 <dl class="simple">
 <dt>et<span class="classifier">float</span></dt><dd><p>The time in minutes</p>
 </dd>
 </dl>
+<p>Equation of time at six minutes on January 3rd of a
+leap year It is important to remember that for a
+leap year you must put the True Boolean as the
+second parameter. If you want a non-leap year you
+can either put only one argument or use the False
+Boolean.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">    -4.684279708368122</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.frac_year">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">frac_year</code><span class="sig-paren">(</span><em class="sig-param">hour</em>, <em class="sig-param">leap_year=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.frac_year" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">frac_year</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hour</span></em>, <em class="sig-param"><span class="n">leap_year</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.frac_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function calculates the fraction of the year.</p>
 <dl class="simple">
 <dt>hour<span class="classifier">integer, float</span></dt><dd><p>The hour of the day. Could be a decimal value.</p>
@@ -91,11 +163,21 @@ is False.</p>
 <dt>B<span class="classifier">float</span></dt><dd><p>The fraction of the year</p>
 </dd>
 </dl>
+<p>Six minutes into the third day of a leap year.
+It is important to remember that for a leap year you
+must put the True Boolean as the second parameter.
+If you want a non-leap year you can either put only
+one argument or use the False Boolean.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frac_year</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">    -76.7172131147541</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.generate_elevation_series">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">generate_elevation_series</code><span class="sig-paren">(</span><em class="sig-param">hour_range</em>, <em class="sig-param">lat=40.081798</em>, <em class="sig-param">lon=-88.244027</em>, <em class="sig-param">utc=-6</em>, <em class="sig-param">timestamps=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.generate_elevation_series" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">generate_elevation_series</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hour_range</span></em>, <em class="sig-param"><span class="n">lat</span><span class="o">=</span><span class="default_value">40.081798</span></em>, <em class="sig-param"><span class="n">lon</span><span class="o">=</span><span class="default_value">- 88.244027</span></em>, <em class="sig-param"><span class="n">utc</span><span class="o">=</span><span class="default_value">- 6</span></em>, <em class="sig-param"><span class="n">timestamps</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.generate_elevation_series" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a time series of elevation angles for a given
 set of hours or Pandas timestamps.</p>
 <dl class="simple">
@@ -122,11 +204,21 @@ True if hour_range is a pandas series of Timestamps.</p>
 hour or timestamp. Units in degrees.</p>
 </dd>
 </dl>
+<p>Find the elevation angles for Solar Farm 1.0 in Urbana, IL
+on the first day at time zero and six minutes later.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lat</span> <span class="o">=</span> <span class="mf">40.081798</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generate_elevation_series</span><span class="p">(</span><span class="n">hour_range</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">utc</span><span class="p">)</span>
+<span class="go">    [-72.97564456089731, -72.86924538817553]</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.hour_angle">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">hour_angle</code><span class="sig-paren">(</span><em class="sig-param">lst</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.hour_angle" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">hour_angle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lst</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.hour_angle" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function calculates the hour angle of the sun.
 The hour angle is the number of degrees the sun has
 moved across the sky.</p>
@@ -138,11 +230,28 @@ moved across the sky.</p>
 <dt>ha<span class="classifier">float</span></dt><dd><p>The hour angle in minutes</p>
 </dd>
 </dl>
+<p>For six minutes into the third day of January of
+a leap year at Solar Farm 1.0 in Urbana IL, calculate
+the hour angle as follows. Remember to use
+the True and False Booleans accordingly, where True
+corresponds to a leap year.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span> <span class="o">=</span> <span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">local_time</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="n">local_solar_time</span><span class="p">(</span><span class="n">local_time</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hour_angle</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">    -177.55855552584526</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.hour_number">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">hour_number</code><span class="sig-paren">(</span><em class="sig-param">N</em>, <em class="sig-param">time</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.hour_number" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">hour_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.hour_number" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes the day number and time (in hours) and
 converts to hour number.</p>
 <dl class="simple">
@@ -155,11 +264,18 @@ converts to hour number.</p>
 <dt>hour<span class="classifier">float</span></dt><dd><p>The hour number</p>
 </dd>
 </dl>
+<p>Take the example of six minutes into January first</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hour_number</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+<span class="go">    24.1</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.local_meridian">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">local_meridian</code><span class="sig-paren">(</span><em class="sig-param">utc=-6</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.local_meridian" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">local_meridian</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">utc</span><span class="o">=</span><span class="default_value">- 6</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.local_meridian" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function calculates the local standard time meridian,
 LSTM. The LSTM is a reference meridian for given time zones.
 LSTM is calculated according to the equation:</p>
@@ -178,11 +294,17 @@ E.g. Chicago time is UTC-5, so we take utc = 5.</p>
 <dt>lstm<span class="classifier">float</span></dt><dd><p>The LSTM in degrees</p>
 </dd>
 </dl>
+<p>Calculating the Local Meridian for Urbana, IL</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
+<span class="go">    -90</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.local_solar_time">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">local_solar_time</code><span class="sig-paren">(</span><em class="sig-param">local_time</em>, <em class="sig-param">tc</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.local_solar_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">local_solar_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">local_time</span></em>, <em class="sig-param"><span class="n">tc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.local_solar_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Corrects the local time to give the local solar time.</p>
 <dl class="simple">
 <dt>local_time<span class="classifier">float</span></dt><dd><p>The local time in hours</p>
@@ -193,17 +315,49 @@ E.g. Chicago time is UTC-5, so we take utc = 5.</p>
 <dt>lst<span class="classifier">float</span></dt><dd><p>The local solar time in hours.</p>
 </dd>
 </dl>
+<p>For six minutes into the third day of January of
+a leap year at Solar Farm 1.0 in Urbana IL, calculate
+the local solar time as follows. Remember to use
+the True and False Booleans accordingly, where True
+corresponds to a leap year.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span> <span class="o">=</span> <span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">local_time</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_solar_time</span><span class="p">(</span><span class="n">local_time</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
+<span class="go">    0.16276296494364917</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.local_time">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">local_time</code><span class="sig-paren">(</span><em class="sig-param">hour_number</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.local_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">local_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hour_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.local_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes the hour number, and converts to local time.</p>
+<dl class="simple">
+<dt>hour_number<span class="classifier">float</span></dt><dd><p>The number of hours since Jan first of a given year</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>time<span class="classifier">float</span></dt><dd><p>The number of hours since 12 AM on any given day</p>
+</dd>
+</dl>
+<p>Midnight on the third day of a year.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N_days</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hour_number</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span><span class="p">(</span><span class="n">hour_number</span><span class="p">)</span>
+<span class="go">    0</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.solar_elevation">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">solar_elevation</code><span class="sig-paren">(</span><em class="sig-param">ha</em>, <em class="sig-param">delta</em>, <em class="sig-param">lat=40.081798</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.solar_elevation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">solar_elevation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ha</span></em>, <em class="sig-param"><span class="n">delta</span></em>, <em class="sig-param"><span class="n">lat</span><span class="o">=</span><span class="default_value">40.081798</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.solar_elevation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the solar elevation for a given hour angle,
 latitude, and declination.</p>
 <dl class="simple">
@@ -218,11 +372,31 @@ latitude, and declination.</p>
 <dt>alpha<span class="classifier">float</span></dt><dd><p>The elevation angle</p>
 </dd>
 </dl>
+<p>For six minutes into the third day of January of
+a leap year at Solar Farm 1.0 in Urbana IL, calculate
+the solar elevation as follows. Remember to use
+the True and False Booleans accordingly, where True
+corresponds to a leap year.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span> <span class="o">=</span> <span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">local_time</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="n">local_solar_time</span><span class="p">(</span><span class="n">local_time</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ha</span> <span class="o">=</span> <span class="n">hour_angle</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">declination</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lat</span> <span class="o">=</span> <span class="mf">40.081798</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solar_elevation</span><span class="p">(</span><span class="n">ha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<span class="go">    -72.64124833502152</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.time_correction">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">time_correction</code><span class="sig-paren">(</span><em class="sig-param">lstm</em>, <em class="sig-param">et</em>, <em class="sig-param">lon=-88.244027</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.time_correction" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">time_correction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lstm</span></em>, <em class="sig-param"><span class="n">et</span></em>, <em class="sig-param"><span class="n">lon</span><span class="o">=</span><span class="default_value">- 88.244027</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.time_correction" title="Permalink to this definition">¶</a></dt>
 <dd><p>The time correction factor adjusts for differences in
 Local Solar Time (LST) and the location of interest, at
 a given longitude. There is a factor of 4 due to the speed
@@ -239,46 +413,72 @@ of Earth’s rotation.</p>
 <dt>tc<span class="classifier">float</span></dt><dd><p>Time correction factor in minutes.</p>
 </dd>
 </dl>
+<p>To calculate the time correction at Solar Farm 1.0 in Champaign
+Illinois, define the longitude, hour, and utm. Then use the
+local_meridian and equation_of_time functions to calculate
+et and lstm. Six minutes into a non-leap year at Solar Farm 1.0
+the time_correction calculation looks like</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+<span class="go">3.7657778966189506</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="sunrise.timestamp_to_hour">
-<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">timestamp_to_hour</code><span class="sig-paren">(</span><em class="sig-param">timestamp</em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.timestamp_to_hour" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">timestamp_to_hour</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timestamp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.timestamp_to_hour" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the hour number
 of a particular timestamp.</p>
 <dl class="simple">
 <dt>timestamp<span class="classifier">pandas Timestamp</span></dt><dd><p>The time stamp of interest, must be in 24-hour.</p>
 </dd>
 </dl>
+<dl class="simple">
+<dt>hour<span class="classifier">float</span></dt><dd><p>The number of hours since 12 AM on January first.</p>
+</dd>
+</dl>
+<p>Take the example of six minutes into January in 2017.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2017-01-01T0006&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+<span class="go">    2017-01-01 00:06:00</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">timestamp_to_hour</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+<span class="go">    24.1</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
 
 
+            <div class="clearer"></div>
           </div>
-          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">CAIRO</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="index.html"
+                          title="Previous page">&larr; Welcome to CAIRO’s Documentation!</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="tests.html"
+                          title="Next page">&rarr; Tests Package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/sunrise.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -289,32 +489,55 @@ of a particular timestamp.</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &copy;2020, Samuel Dotson.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/sunrise.rst.txt"
-          rel="nofollow">Page source</a>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tests.html" title="Tests Package"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to CAIRO’s Documentation!"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">CAIRO  documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Sunrise Module</a></li> 
+      </ul>
+    </div>
     </div>
 
-    
-
-    
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Samuel Dotson.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
   </body>
 </html>

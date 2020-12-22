@@ -1,8 +1,5 @@
-tests package
+Tests Package
 =============
-
-Submodules
-----------
 
 tests.test\_sunrise module
 --------------------------
@@ -20,11 +17,3 @@ tests.test\_tools module
    :undoc-members:
    :show-inheritance:
 
-
-Module contents
----------------
-
-.. automodule:: tests
-   :members:
-   :undoc-members:
-   :show-inheritance:

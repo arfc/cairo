@@ -21,7 +21,8 @@ def timestamp_to_hour(timestamp):
 
     Returns:
     --------
-
+    hour : float
+        The number of hours since 12 AM on January first.
     """
     minutes_of_hour = timestamp.minute / 60
     seconds_of_hour = timestamp.second / 3600
@@ -38,7 +39,7 @@ def hour_number(N, time):
     Takes the day number and time (in hours) and
     converts to hour number.
 
-    Parameters:
+#    Parameters:
     -----------
     N : integer
         The day number
@@ -58,6 +59,16 @@ def hour_number(N, time):
 def day_number(hour_number):
     """
     Returns the day_number given a particular hour_number.
+    
+    Parameters:
+    -----------
+    hour_number : float
+        The number of hours since Jan first of a given year
+
+    Returns:
+    --------
+    day_number : int
+        The hour number
     """
     N = (hour_number / 8760) * 365
 
@@ -67,6 +78,16 @@ def day_number(hour_number):
 def local_time(hour_number):
     """
     Takes the hour number, and converts to local time.
+    
+    Parameters:
+    -----------
+    hour_number : float
+        The number of hours since Jan first of a given year
+
+    Returns:
+    --------
+    time : float
+        The number of hours since 12 AM on any given day
     """
     N = day_number(hour_number)
 
@@ -104,6 +125,7 @@ def frac_year(hour, leap_year=False):
 def declination(hour, leap_year=False):
     """
     This function calculates the declination angle of the sun.
+    
     Parameters:
     -----------
     hour : integer, float
@@ -133,7 +155,7 @@ def equation_of_time(hour, leap_year=False):
     Parameters:
     -----------
     hour : float
-        The number of hours since midnight, January 1st.
+        The number of hours since midnight, January first.
 
     Returns:
     --------
