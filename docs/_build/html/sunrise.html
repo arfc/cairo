@@ -84,12 +84,6 @@
 <dt>day_number<span class="classifier">int</span></dt><dd><p>The hour number</p>
 </dd>
 </dl>
-<p>Midnight on day 366 of a leap year</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour_number</span> <span class="o">=</span> <span class="mi">8784</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">day_number</span><span class="p">(</span><span class="n">hour_number</span><span class="p">)</span>
-<span class="go">    366</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -107,17 +101,6 @@ is False.</p>
 <dt>delta<span class="classifier">float</span></dt><dd><p>The declination at the given hour</p>
 </dd>
 </dl>
-<p>The declination six minutes into January third of
-a leap year can be calculated as follows. It is
-important to remember that for a leap year you
-must put the True Boolean as the second parameter.
-If you want a non-leap year you can either put only
-one argument or use the False Boolean.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">declination</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="go">    -22.81293175279647</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -135,17 +118,6 @@ Earth’s orbit.</p>
 <dt>et<span class="classifier">float</span></dt><dd><p>The time in minutes</p>
 </dd>
 </dl>
-<p>Equation of time at six minutes on January 3rd of a
-leap year It is important to remember that for a
-leap year you must put the True Boolean as the
-second parameter. If you want a non-leap year you
-can either put only one argument or use the False
-Boolean.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="go">    -4.684279708368122</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -163,16 +135,6 @@ is False.</p>
 <dt>B<span class="classifier">float</span></dt><dd><p>The fraction of the year</p>
 </dd>
 </dl>
-<p>Six minutes into the third day of a leap year.
-It is important to remember that for a leap year you
-must put the True Boolean as the second parameter.
-If you want a non-leap year you can either put only
-one argument or use the False Boolean.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frac_year</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="go">    -76.7172131147541</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -204,16 +166,6 @@ True if hour_range is a pandas series of Timestamps.</p>
 hour or timestamp. Units in degrees.</p>
 </dd>
 </dl>
-<p>Find the elevation angles for Solar Farm 1.0 in Urbana, IL
-on the first day at time zero and six minutes later.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lat</span> <span class="o">=</span> <span class="mf">40.081798</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">generate_elevation_series</span><span class="p">(</span><span class="n">hour_range</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">utc</span><span class="p">)</span>
-<span class="go">    [-72.97564456089731, -72.86924538817553]</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -230,31 +182,17 @@ moved across the sky.</p>
 <dt>ha<span class="classifier">float</span></dt><dd><p>The hour angle in minutes</p>
 </dd>
 </dl>
-<p>For six minutes into the third day of January of
-a leap year at Solar Farm 1.0 in Urbana IL, calculate
-the hour angle as follows. Remember to use
-the True and False Booleans accordingly, where True
-corresponds to a leap year.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span> <span class="o">=</span> <span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">local_time</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="n">local_solar_time</span><span class="p">(</span><span class="n">local_time</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hour_angle</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
-<span class="go">    -177.55855552584526</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
 <dt id="sunrise.hour_number">
 <code class="sig-prename descclassname">sunrise.</code><code class="sig-name descname">hour_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sunrise.hour_number" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes the day number and time (in hours) and
+<dd><blockquote>
+<div><p>Takes the day number and time (in hours) and
 converts to hour number.</p>
-<dl class="simple">
+</div></blockquote>
+<dl>
+<dt>#    Parameters:</dt><dd><dl class="simple">
 <dt>N<span class="classifier">integer</span></dt><dd><p>The day number</p>
 </dd>
 <dt>time<span class="classifier">float</span></dt><dd><p>The time in hours (24-hour clock)</p>
@@ -264,13 +202,8 @@ converts to hour number.</p>
 <dt>hour<span class="classifier">float</span></dt><dd><p>The hour number</p>
 </dd>
 </dl>
-<p>Take the example of six minutes into January first</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hour_number</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
-<span class="go">    24.1</span>
-</pre></div>
-</div>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -294,12 +227,6 @@ E.g. Chicago time is UTC-5, so we take utc = 5.</p>
 <dt>lstm<span class="classifier">float</span></dt><dd><p>The LSTM in degrees</p>
 </dd>
 </dl>
-<p>Calculating the Local Meridian for Urbana, IL</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
-<span class="go">    -90</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -315,22 +242,6 @@ E.g. Chicago time is UTC-5, so we take utc = 5.</p>
 <dt>lst<span class="classifier">float</span></dt><dd><p>The local solar time in hours.</p>
 </dd>
 </dl>
-<p>For six minutes into the third day of January of
-a leap year at Solar Farm 1.0 in Urbana IL, calculate
-the local solar time as follows. Remember to use
-the True and False Booleans accordingly, where True
-corresponds to a leap year.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span> <span class="o">=</span> <span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">local_time</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_solar_time</span><span class="p">(</span><span class="n">local_time</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
-<span class="go">    0.16276296494364917</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -345,14 +256,6 @@ corresponds to a leap year.</p>
 <dt>time<span class="classifier">float</span></dt><dd><p>The number of hours since 12 AM on any given day</p>
 </dd>
 </dl>
-<p>Midnight on the third day of a year.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N_days</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="mi">24</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hour_number</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span><span class="p">(</span><span class="n">hour_number</span><span class="p">)</span>
-<span class="go">    0</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -372,26 +275,6 @@ latitude, and declination.</p>
 <dt>alpha<span class="classifier">float</span></dt><dd><p>The elevation angle</p>
 </dd>
 </dl>
-<p>For six minutes into the third day of January of
-a leap year at Solar Farm 1.0 in Urbana IL, calculate
-the solar elevation as follows. Remember to use
-the True and False Booleans accordingly, where True
-corresponds to a leap year.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="n">hour_number</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span> <span class="o">=</span> <span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">local_time</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="n">local_solar_time</span><span class="p">(</span><span class="n">local_time</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ha</span> <span class="o">=</span> <span class="n">hour_angle</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">declination</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lat</span> <span class="o">=</span> <span class="mf">40.081798</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solar_elevation</span><span class="p">(</span><span class="n">ha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="go">    -72.64124833502152</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -413,20 +296,6 @@ of Earth’s rotation.</p>
 <dt>tc<span class="classifier">float</span></dt><dd><p>Time correction factor in minutes.</p>
 </dd>
 </dl>
-<p>To calculate the time correction at Solar Farm 1.0 in Champaign
-Illinois, define the longitude, hour, and utm. Then use the
-local_meridian and equation_of_time functions to calculate
-et and lstm. Six minutes into a non-leap year at Solar Farm 1.0
-the time_correction calculation looks like</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hour</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">88.244027</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">utc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">lstm</span> <span class="o">=</span> <span class="n">local_meridian</span><span class="p">(</span><span class="n">utc</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">et</span> <span class="o">=</span> <span class="n">equation_of_time</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">time_correction</span><span class="p">(</span><span class="n">lstm</span><span class="p">,</span> <span class="n">et</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
-<span class="go">3.7657778966189506</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -442,15 +311,6 @@ of a particular timestamp.</p>
 <dt>hour<span class="classifier">float</span></dt><dd><p>The number of hours since 12 AM on January first.</p>
 </dd>
 </dl>
-<p>Take the example of six minutes into January in 2017.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2017-01-01T0006&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
-<span class="go">    2017-01-01 00:06:00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">timestamp_to_hour</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
-<span class="go">    24.1</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </div>
