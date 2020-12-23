@@ -1,8 +1,16 @@
 import time
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 from tools import MSE, optimal_values, esn_prediction
 from pyESN.pyESN import ESN
+
+variables = {'n_reservoir': 'Reservoir Size',
+             'sparsity': 'Sparsity',
+             'rho': 'Spectral Radius',
+             'noise': 'Noise',
+             'trainlen': 'Training Length'}
 
 
 def grid_optimizer(
@@ -12,7 +20,8 @@ def grid_optimizer(
         xset,
         yset=None,
         verbose=False,
-        visualize=False):
+        visualize=False,
+        save_path=None):
     """
     This function optimizes the ESN parameters, x and y, over a specified
     range of values. The optimal values are determined by minimizing
@@ -49,11 +58,11 @@ def grid_optimizer(
     verbose : boolean
         Specifies if the simulation outputs should be printed.
         Useful for debugging.
-    visualize : boolean
+    visualize : boolean, string
         Specifies if the results should be visualized.
-    kwargs**:
-        The keys of the ESN parameters that should be optimized.
-        Correspond to xset and yset.
+        * 'surface' will plot a 3D error surface.
+    save_path : string
+        Specifies where the data should be saved. Default is None.
 
     Returns:
     --------
@@ -90,7 +99,8 @@ def grid_optimizer(
 
                 if verbose:
                     print(
-                        f"{xvar} = {xvalue}, {yvar} = {yvalue}, MSE={loss[x][y]}")
+                        f"{variables[xvar]} = {xvalue},"
+                        f"{variables[yvar]} = {yvalue}, MSE={loss[x][y]}")
 
         else:
             predicted = esn_prediction(data, params)
@@ -103,36 +113,68 @@ def grid_optimizer(
     # Visualization
     # =======================================================================
 
-    if visualize and yset is not None:
-        plt.figure(figsize=(16, 8))
-        plt.title(f"Hyper-parameter Optimization over {args}")
+    if visualize is True and yset is not None:
+        plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
+        plt.title((f"Hyper-parameter Optimization over {variables[xvar]}",
+                   f"and {variables[yvar]}"))
         im = plt.imshow(loss.T,
                         vmin=abs(loss).min(),
                         vmax=abs(loss).max(),
                         origin='lower',
                         cmap='PuBu')
         plt.xticks(np.linspace(0, len(xset) - 1,
-                               len(xset)),
-                   xset)
+                               len(xset)), xset)
         plt.yticks(np.linspace(0, len(yset) - 1,
-                               len(yset)),
-                   yset)
-        plt.xlabel(f'{xvar}', fontsize=16)
-        plt.ylabel(f'{yvar}', fontsize=16)
+                               len(yset)), yset)
+        plt.xlabel(f'{variables[xvar]}', fontsize=16)
+        plt.ylabel(f'{variables[yvar]}', fontsize=16)
         cb = plt.colorbar(im)
         cb.set_label(label="Mean Squared Error",
                      fontsize=16,
                      rotation=-90,
                      labelpad=25)
 
-    elif visualize and yset is None:
-        plt.figure(figsize=(16, 9))
+    elif visualize is True and yset is None:
+        plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
         plt.plot(xset, loss, '-ok', alpha=0.6)
-        plt.title(f'MSE as a Function of {xvar}', fontsize=20)
-        plt.xlabel(f'{xvar}', fontsize=18)
+        plt.title(f'MSE as a Function of {variables[xvar]}', fontsize=20)
+        plt.xlabel(f'{variables[xvar]}', fontsize=18)
         plt.ylabel('MSE', fontsize=18)
 
+    elif visualize is 'surface' and yset is not None:
+        fig = plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
+        ax = plt.axes(projection='3d')
+
+        X = xset
+        Y = yset
+        Z = np.array(loss).T
+
+        mappable = plt.cm.ScalarMappable()
+        mappable.set_array(Z)
+
+        ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
+                        cmap=mappable.cmap,
+                        norm=mappable.norm)
+        ax.set_xlabel(f'{variables[xvar]}', fontsize=18)
+        ax.set_ylabel(f'{variables[yvar]}', fontsize=18)
+        ax.set_zlabel('MSE', fontsize=18)
+
+        cb = plt.colorbar(mappable)
+        cb.set_label(label="Mean Squared Error",
+                     fontsize=16,
+                     rotation=-90,
+                     labelpad=25)
+        fig.tight_layout()
     # =======================================================================
+    # Save data
     # =======================================================================
+
+    if save_path is not None:
+        if yset is not None:
+            fname = f"{xvar}_{yvar}_loss"
+            np.save(save_path + fname, loss)
+        else:
+            fname = f"{xvar}_loss"
+            np.save(save_path + fname, loss)
 
     return loss
