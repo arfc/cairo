@@ -1,0 +1,118 @@
+%        File: arfc-beamer.tex
+%     Created: Sun May 5 10:00 PM 2013 C
+%
+
+
+%\documentclass[11pt,handout]{beamer}
+\documentclass[9pt]{beamer}
+\usetheme[white]{Illinois}
+%\title[short title]{long title}
+\title[Short Title]{Echo State Networks for Renewable Energy Forecasting}
+%\subtitle[short subtitle]{long subtitle}
+% \subtitle[Short SubTitle]{Mostly Kittens}
+%\author[short name]{long name}
+\author[Sam Dotson]{Samuel G. Dotson and Kathryn D. Huff\\Advanced Reactors and Fuel Cycles Group}
+%\date[short date]{long date}
+\date[01.17.2020]{November 17, 2020}
+%\institution[short name]{long name}
+\institute[UIUC]{University of Illinois at Urbana-Champaign}
+
+%\usepackage{bbding}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xspace}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{subfigure}
+\usepackage{booktabs} % nice rules for tables
+\usepackage{microtype} % if using PDF
+\usepackage{bigints}
+% \usepackage{subcaption}
+\usepackage{minted}
+
+\newcommand{\units}[1] {\:\text{#1}}%
+\newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
+\DeclareMathOperator{\erf}{erf}
+%I need some complimentary error funcitons...
+\DeclareMathOperator{\erfc}{erfc}
+%Those icons in the references are terrible looking
+\setbeamertemplate{bibliography item}[text]
+
+%%%% Acronym support
+
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+
+\makeglossaries
+
+%try to get rid of header on title page\dots
+\makeatletter
+    \newenvironment{withoutheadline}{
+        \setbeamertemplate{headline}[default]
+        \def\beamer@entrycode{\vspace*{-\headheight}}
+    }{}
+\makeatother
+
+\makeatother
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+    \rightline{\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}}
+  }%
+  \vskip0pt%
+}
+\makeatletter
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% From uw-beamer Here's a handy bit of code to place at
+%% the beginning of your presentation (after \begin{document}):
+\newcommand*{\alphabet}{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}
+\newlength{\highlightheight}
+\newlength{\highlightdepth}
+\newlength{\highlightmargin}
+\setlength{\highlightmargin}{2pt}
+\settoheight{\highlightheight}{\alphabet}
+\settodepth{\highlightdepth}{\alphabet}
+\addtolength{\highlightheight}{\highlightmargin}
+\addtolength{\highlightdepth}{\highlightmargin}
+\addtolength{\highlightheight}{\highlightdepth}
+\newcommand*{\Highlight}{\rlap{\textcolor{HighlightBackground}{\rule[-\highlightdepth]{\linewidth}{\highlightheight}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%--------------------------------%%
+\begin{withoutheadline}
+\frame{
+  \titlepage
+}
+\end{withoutheadline}
+
+%%--------------------------------%%
+\AtBeginSection[]{
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+}
+
+\section{Motivation}
+\input{motivation}
+\section{Methods}
+\input{methods}
+\section{Results}
+\input{results}
+\section{Conclusion and Future Work}
+\input{conclusion}
+
+%%--------------------------------%%
+%%--------------------------------%%
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \bibliographystyle{plain}
+  {\footnotesize \bibliography{bibliography.bib} }
+
+\end{frame}
+
+%%--------------------------------%%
+
+
+\end{document}
