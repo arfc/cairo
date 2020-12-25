@@ -145,9 +145,13 @@ def grid_optimizer(
         fig = plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
         ax = plt.axes(projection='3d')
 
-        X = xset
-        Y = yset
+        X = np.array(xset)
+        Y = np.array(yset)
         Z = np.array(loss).T
+
+        print(f"Shape X {X.shape}")
+        print(f"Shape Y {Y.shape}")
+        print(f"Shape Z {Z.shape}")
 
         mappable = plt.cm.ScalarMappable()
         mappable.set_array(Z)
@@ -165,6 +169,8 @@ def grid_optimizer(
                      rotation=-90,
                      labelpad=25)
         fig.tight_layout()
+
+        plt.show()
     # =======================================================================
     # Save data
     # =======================================================================
