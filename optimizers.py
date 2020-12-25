@@ -177,10 +177,10 @@ def grid_optimizer(
 
     if save_path is not None:
         if yset is not None:
-            fname = f"{xvar}_{yvar}_loss"
+            fname = f"_{xvar}_{yvar}_loss"
             np.save(save_path + fname, loss)
         else:
-            fname = f"{xvar}_loss"
+            fname = f"_{xvar}_loss"
             np.save(save_path + fname, loss)
 
     return loss
