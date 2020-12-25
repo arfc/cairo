@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
     try:
         opts, args = getopt.getopt(sys.argv[1:],
-                                   'uwdpheHi:f:oS:',
+                                   'uwdpheH:i:f:oS:',
                                    ['infile=', 'altfile','outfile=',
                                    'save_prefix='])
     except getopt.GetoptError:
@@ -153,12 +153,19 @@ if __name__ == "__main__":
 
     # pred = esn_prediction(X_in.T, params)
     print('Optimizing spectral radius and regularization')
+    tic = time.perf_counter()
     radiusxnoise_loss = grid_optimizer(X_in.T,
                         params,
                         args=['rho', 'noise'],
                         xset=radius_set,
                         yset=noise_set,
+                        verbose=True,
                         save_path=save_prefix)
+
+    toc = time.perf_counter()
+    elapsed = toc - tic
+    print(f"This simulation took {elapsed:0.02f} seconds")
+    print(f"This simulation took {elapsed/60:0.02f} minutes")
 
     opt_radius, opt_noise = optimal_values(radiusxnoise_loss,
                                            radius_set,
@@ -167,12 +174,19 @@ if __name__ == "__main__":
     params['noise'] = opt_noise
 
     print('Optimizing network size and sparsity')
+    tic = time.perf_counter()
     sizexsparsity_loss = grid_optimizer(X_in.T,
                          params,
                          args=['n_reservoir', 'sparsity'],
                          xset=reservoir_set,
                          yset=sparsity_set,
+                         verbose=True,
                          save_path=save_prefix)
+
+    toc = time.perf_counter()
+    elapsed = toc - tic
+    print(f"This simulation took {elapsed:0.02f} seconds")
+    print(f"This simulation took {elapsed/60:0.02f} minutes")
 
     opt_size, opt_sparsity = optimal_values(sizexsparsity_loss,
                                             reservoir_set,
@@ -183,11 +197,18 @@ if __name__ == "__main__":
     trainingLengths = np.arange(5000, MAX_TRAINLEN, 2000)
 
     print('Optimizing training length')
+    tic = time.perf_counter()
     trainlen_loss = grid_optimizer(X_in.T,
                                    params,
                                    args=['trainlen'],
                                    xset=trainingLengths,
+                                   verbose=True,
                                    save_path=save_prefix)
+    toc = time.perf_counter()
+    elapsed = toc - tic
+    print(f"This simulation took {elapsed:0.02f} seconds")
+    print(f"This simulation took {elapsed/60:0.02f} minutes")
+
     minloss = np.min(trainlen_loss)
     index_min = np.where(trainlen_loss == minloss)
     l_opt = trainingLengths[index_min][0]
