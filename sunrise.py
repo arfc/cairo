@@ -14,13 +14,13 @@ def timestamp_to_hour(timestamp):
     This function returns the hour number
     of a particular timestamp.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     timestamp : pandas Timestamp
         The time stamp of interest, must be in 24-hour.
 
-    Returns:
-    --------
+    Returns
+    -------
     hour : float
         The number of hours since 12 AM on January first.
     """
@@ -39,15 +39,15 @@ def hour_number(N, time):
     Takes the day number and time (in hours) and
     converts to hour number.
 
-#    Parameters:
-    -----------
+    Parameters
+    ----------
     N : integer
         The day number
     time : float
         The time in hours (24-hour clock)
 
-    Returns:
-    --------
+    Returns
+    -------
     hour : float
         The hour number
     """
@@ -60,13 +60,13 @@ def day_number(hour_number):
     """
     Returns the day_number given a particular hour_number
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     hour_number : float
         The number of hours since Jan first of a given year
 
-    Returns:
-    --------
+    Returns
+    -------
     day_number : int
         The hour number
     """
@@ -79,13 +79,13 @@ def local_time(hour_number):
     """
     Takes the hour number, and converts to local time.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     hour_number : float
         The number of hours since Jan first of a given year
 
-    Returns:
-    --------
+    Returns
+    -------
     time : float
         The number of hours since 12 AM on any given day
     """
@@ -100,16 +100,16 @@ def frac_year(hour, leap_year=False):
     """
     This function calculates the fraction of the year.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     hour : integer, float
         The hour of the day. Could be a decimal value.
     leap_year : boolean
         Indicates if the year is a leap year. Default
         is False.
 
-    Returns:
-    --------
+    Returns
+    -------
     B : float
         The fraction of the year
     """
@@ -126,16 +126,16 @@ def declination(hour, leap_year=False):
     """
     This function calculates the declination angle of the sun.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     hour : integer, float
         The hour of the day. Could be a decimal value.
     leap_year : boolean
         Indicates if the year is a leap year. Default
         is False.
 
-    Returns:
-    --------
+    Returns
+    -------
     delta : float
         The declination at the given hour
     """
@@ -152,13 +152,13 @@ def equation_of_time(hour, leap_year=False):
     clock time, effectively correcting for the eccentricity of
     Earth's orbit.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     hour : float
         The number of hours since midnight, January first.
 
-    Returns:
-    --------
+    Returns
+    -------
     et : float
         The time in minutes
     """
@@ -175,22 +175,22 @@ def local_meridian(utc=utc):
     LSTM. The LSTM is a reference meridian for given time zones.
     LSTM is calculated according to the equation:
         LSTM = 360/24*UTC
+    
     UTC < 0 gives the answer in degrees West.
     UTC > 0 gives the answer in degrees East.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     utc : integer
         UTC is the "coordinated universal time." This parameter
         gives the UTC offset for a particular timezone.
         E.g. Chicago time is UTC-5, so we take utc = 5.
 
-    Returns:
-    --------
+    Returns
+    -------
     lstm : float
         The LSTM in degrees
     """
-
     lstm = 15 * utc
 
     return lstm
@@ -203,8 +203,8 @@ def time_correction(lstm, et, lon=lon):
     a given longitude. There is a factor of 4 due to the speed
     of Earth's rotation.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     lstm : float
         The local standard time meridian.
     et : float
@@ -212,8 +212,8 @@ def time_correction(lstm, et, lon=lon):
     lon : float
         The longitude of the location of interest.
 
-    Returns:
-    --------
+    Returns
+    -------
     tc : float
         Time correction factor in minutes.
     """
@@ -226,14 +226,14 @@ def local_solar_time(local_time, tc):
     """
     Corrects the local time to give the local solar time.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     local_time : float
         The local time in hours
     tc : the time correction factor
 
-    Returns:
-    --------
+    Returns
+    -------
     lst : float
         The local solar time in hours.
     """
@@ -249,13 +249,13 @@ def hour_angle(lst):
     The hour angle is the number of degrees the sun has
     moved across the sky.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     lst : float
         The local solar time
 
-    Returns:
-    --------
+    Returns
+    -------
     ha : float
         The hour angle in minutes
     """
@@ -269,8 +269,8 @@ def solar_elevation(ha, delta, lat=lat):
     Calculate the solar elevation for a given hour angle,
     latitude, and declination.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     ha : float
         The hour angle
     delta : float
@@ -278,8 +278,8 @@ def solar_elevation(ha, delta, lat=lat):
     lat : float
         The latitude at the location of interest.
 
-    Returns:
-    --------
+    Returns
+    -------
     alpha : float
         The elevation angle
     """
@@ -302,8 +302,8 @@ def generate_elevation_series(
     Creates a time series of elevation angles for a given
     set of hours or Pandas timestamps.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     hour_range : numpy array or pandas series of Timestamps
         The time period of desired solar elevation angles.
         Default is a list of hours, a pandas series of
@@ -322,8 +322,8 @@ def generate_elevation_series(
         Default is False (hour_range is array of float or int).
         True if hour_range is a pandas series of Timestamps.
 
-    Returns:
-    --------
+    Returns
+    -------
     elevation_angles : list
         The list of elevation angles corresponding to each
         hour or timestamp. Units in degrees.
