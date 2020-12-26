@@ -7,3 +7,15 @@
 .~lock.railsplitter_data.csv#
 .~lock.solarfarm_data.csv#
 _build/*
+*.aux
+*.acn	
+*.aux
+*.bbl
+*.blg
+*.glo
+arfc-pres.ist
+*.log
+*.nav
+*.out
+*.snm
+*.toc
