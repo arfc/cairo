@@ -1,5 +1,7 @@
 numpy 
 matplotlib
 pandas
+scipy
 pytest
+sphinx
 cloud-sptheme

@@ -2,6 +2,7 @@ from sunrise import *
 import numpy as np
 from pytest import approx
 
+
 def test_timestamp_to_hour_initial():
     """
     Tests the timestamp output in hours
@@ -10,7 +11,8 @@ def test_timestamp_to_hour_initial():
     obs_i = 24.0
     exp_i = timestamp_to_hour(pd.Timestamp('2017-01-01T0000'))
     assert obs_i == exp_i
-    
+
+
 def test_timestamp_to_hour_later():
     """
     Tests the timestamp output in hours
@@ -19,6 +21,7 @@ def test_timestamp_to_hour_later():
     obs_i = 792.0
     exp_i = timestamp_to_hour(pd.Timestamp('2017-02-02T0000'))
     assert obs_i == exp_i
+
 
 def test_hour_number_initial():
     """

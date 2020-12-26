@@ -58,8 +58,8 @@ def hour_number(N, time):
 
 def day_number(hour_number):
     """
-    Returns the day_number given a particular hour_number.
-    
+    Returns the day_number given a particular hour_number
+
     Parameters:
     -----------
     hour_number : float
@@ -78,7 +78,7 @@ def day_number(hour_number):
 def local_time(hour_number):
     """
     Takes the hour number, and converts to local time.
-    
+
     Parameters:
     -----------
     hour_number : float
@@ -125,7 +125,7 @@ def frac_year(hour, leap_year=False):
 def declination(hour, leap_year=False):
     """
     This function calculates the declination angle of the sun.
-    
+
     Parameters:
     -----------
     hour : integer, float
