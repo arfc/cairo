@@ -57,10 +57,8 @@ Midnight on the third day of a year.
 
 For a period of two days, the function local_time behaves as
 
->>> q = np.linspace(0,48,480).tolist()
->>> ts = []
->>> for i in q:
->>>     ts.append(local_time(i))
+>>> w = np.linspace(0,48,480).tolist()
+>>> ts = [local_time(i) for i in w]
 >>> plt.plot(q,ts)
 >>> plt.title('Local Time Plot')
 >>> plt.xlabel('Hour Number')
@@ -89,9 +87,7 @@ one argument or use the False Boolean.
 For a period of one year, the function frac_year behaves as
 
 >>> w = np.linspace(0,8760,87600).tolist()
->>> ts = []
->>> for i in w:
->>>     ts.append(frac_year(i))
+>>> ts = [frac_year(i) for i in w]
 >>> plt.plot(w,ts)
 >>> plt.title('Year Fraction')
 >>> plt.xlabel('Hour Number')
@@ -120,9 +116,7 @@ one argument or use the False Boolean.
 For a period of one year, the function declination behaves as
 
 >>> w = np.linspace(0,8760,87600).tolist()
->>> ts = []
->>> for i in w:
->>>     ts.append(declination(i))
+>>> ts = [declination(i) for i in w]
 >>> plt.plot(w,ts)
 >>> plt.title('Declination of the Sun')
 >>> plt.xlabel('Hour Number')
@@ -151,9 +145,7 @@ Boolean.
 For a period of two years, the function equation_of_time behaves as
 
 >>> w = np.linspace(0,17520,87600).tolist()
->>> ts = []
->>> for i in w:
->>>     ts.append(equation_of_time(i))
+>>> ts = [equation_of_time(i) for i in w]
 >>> plt.plot(w,ts)
 >>> plt.title('Equation of Time')
 >>> plt.xlabel('Hour Number')
@@ -193,13 +185,11 @@ the time_correction calculation looks like
     
 For a period of two years, the function time_correction behaves as
 
->>> z = np.linspace(0,17520,87600).tolist()
->>> ts = []
+>>> w = np.linspace(0,17520,87600).tolist()
 >>> lstm = -90
 >>> lon = -88.244027
->>> for i in z:
->>>     et = equation_of_time(i)
->>>     ts.append(time_correction(lstm,et,lon))
+>>> ts = [time_correction(lstm,equation_of_time(i),
+        lon) for i in w]
 >>> plt.plot(z,ts)
 >>> plt.title('Time Correction')
 >>> plt.xlabel('Hour Number')
@@ -230,15 +220,13 @@ corresponds to a leap year.
     
 For a period of four days, the function local_solar_time behaves as
 
->>> z = np.linspace(0,8760,87600).tolist()
->>> ts = []
+>>> w = np.linspace(0,8760,87600).tolist()
 >>> lstm = -90
 >>> lon = -88.244027
->>> for i in z:
->>>     lt = local_time(i)
->>>     et = equation_of_time(i)
->>>     tc = time_correction(lstm,et,lon)
->>>     ts.append(local_solar_time(lt,tc))
+>>> ts = [local_solar_time(local_time(i),
+        time_correction(lstm,
+        equation_of_time(i),lon))
+        for i in w]
 >>> plt.plot(z,ts)
 >>> plt.xlim(0,97)
 >>> plt.title('Local Solar Time')
@@ -271,16 +259,12 @@ corresponds to a leap year.
 
 For a period of four days, the function hour_angle behaves as
 
->>> z = np.linspace(0,8760,87600).tolist()
->>> ts = []
+>>> w = np.linspace(0,8760,87600).tolist()
 >>> lstm = -90
 >>> lon = -88.244027
->>> for i in z:
->>>     lt = local_time(i)
->>>     et = equation_of_time(i)
->>>     tc = time_correction(lstm,et,lon)
->>>     lst = local_solar_time(lt,tc)
->>>     ts.append(hour_angle(lst))
+>>> ts = [hour_angle(local_solar_time(local_time(i),
+        time_correction(lstm,equation_of_time(i),
+        lon))) for i in w]
 >>> plt.plot(z,ts)
 >>> plt.xlim(0,97)
 >>> plt.title('Hour Angle')
@@ -317,24 +301,15 @@ corresponds to a leap year.
 For a period of one year, we can map the solar elevation and overlay the
 plot of the declination to get
 
->>> z = np.linspace(0,8760,87600).tolist()
->>> ts = []
+>>> w = np.linspace(0,8760,87600).tolist()
 >>> lon = -88.244027
 >>> lat = 40.081798
 >>> lstm = -90
+>>> ts = [solar_elevation(hour_angle(local_solar_time(local_time(i),
+        time_correction(lstm,equation_of_time(i),lon))),
+        declination(i),lat) for i in w]
 >>>
->>> for i in z:
->>>     dec = declination(i)
->>>     et = equation_of_time(i)
->>>     lt = local_time(i)
->>>     tc = time_correction(lstm,et,lon)
->>>     lst = local_solar_time(lt, tc)
->>>     ha = hour_angle(lst)
->>>     ts.append(solar_elevation(ha,dec,lat))
->>>
->>> td = []
->>> for i in z:
->>>     td.append(declination(i))
+>>> td = [declination(i) for i in w]
 >>>
 >>> plt.plot(z,ts)
 >>> plt.plot(z,td) #adding the plot of declination to show the contrast

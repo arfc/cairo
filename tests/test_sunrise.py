@@ -403,7 +403,7 @@ def test_solar_elevation_one_year():
     at Chicago's LSTM, at a longitude of -88.244027,
     latitude of 40.081798, declination angle of
     -22.99872231 (which corresponds to
-     six minutes into the 366th day of a leap year).
+    six minutes into the 366th day of a leap year).
     """
     obs_i = -72.77981432
     exp_i = solar_elevation(-177.6347861, -22.97813925, 40.081798)
