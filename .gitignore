@@ -18,3 +18,5 @@ arfc-pres.ist
 *.out
 *.snm
 *.toc
+*.npy
+.snakemake

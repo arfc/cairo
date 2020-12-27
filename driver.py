@@ -43,7 +43,7 @@ params = {'n_reservoir':1000,
           'window':96,
           'trainlen':8000}
 
-VARIABLES = {'solar':'Solar Generation', 'railsplitter':'Wind Generation',
+VARIABLES = {'solarfarm':'Solar Generation', 'railsplitter':'Wind Generation',
              'demand':'Demand'}
 
 def main():
@@ -55,7 +55,7 @@ def get_variable_name(fname):
     the name of a variable.
     """
 
-    variables  = ['demand', 'solar', 'railsplitter']
+    variables  = ['demand', 'solarfarm', 'railsplitter']
     split_str = fname.split('/')
     file_name = split_str[-1]
     pieces = file_name.split('_')
