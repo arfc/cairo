@@ -7,15 +7,15 @@ def MSE(yhat, y):
     This function calculates the mean squared error between
     a predicted and target vector.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     yhat : numpy array
         The predicted, approximated, or calculated vector
     y : numpy array
         The target vector
 
-    Returns:
-    --------
+    Returns
+    -------
     mse : float
         The mean squared error between yhat and y.
     '''
