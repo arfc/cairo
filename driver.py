@@ -1,12 +1,22 @@
 import numpy as np
 import pandas as pd
-import sys, getopt
+import matplotlib.pyplot as plt
+import sys, getopt, os
 import time
 
 from tools import esn_prediction, optimal_values, param_string
 from optimizers import grid_optimizer
 from lorenz import generate_L96
 from sunrise import generate_elevation_series
+
+# Plot Parameters
+plt.rcParams['figure.figsize'] = (12, 9)
+plt.rcParams['figure.edgecolor'] = 'k'
+plt.rcParams['figure.facecolor'] = 'w'
+plt.rcParams['savefig.dpi'] = 400
+plt.rcParams['savefig.bbox'] = 'tight'
+plt.rcParams['text.usetex'] = True
+plt.rcParams['font.family'] = "serif"
 
 # Optimization Sets
 # radius_set = [0.5, 0.7, 0.9, 1, 1.1,1.3,1.5]
@@ -33,13 +43,27 @@ params = {'n_reservoir':1000,
           'window':96,
           'trainlen':8000}
 
-SOLAR_PATH = "./data/solarfarm_data.csv"
-WIND_PATH = "./data/railsplitter_data.csv"
-DEMAND_PATH = "./data/"
+VARIABLES = {'solar':'Solar Generation', 'railsplitter':'Wind Generation',
+             'demand':'Demand'}
 
 def main():
     pass
 
+def get_variable_name(fname):
+    """
+    This function takes a file path and returns
+    the name of a variable.
+    """
+
+    variables  = ['demand', 'solar', 'railsplitter']
+    split_str = fname.split('/')
+    file_name = split_str[-1]
+    pieces = file_name.split('_')
+
+    for p in pieces:
+        if any(p in var for var in variables):
+            return p
+    return
 
 if __name__ == "__main__":
 
@@ -48,6 +72,7 @@ if __name__ == "__main__":
 # =============================================================================
     X_in = []
     data_norms = []
+    datafile_name = None
     df = None
     wdf = None
     list_keys = None
@@ -81,6 +106,7 @@ if __name__ == "__main__":
             except FileNotFoundError:
                 print(f"Data file {arg} not found")
 
+            datafile_name = arg
         if opt in ('-f', '--altfile'):
             assert (df is not None), "No data to predict"
             try:
@@ -194,7 +220,7 @@ if __name__ == "__main__":
     params['n_reservoir'] = opt_size
     params['sparsity'] = opt_sparsity
 
-    trainingLengths = np.arange(5000, MAX_TRAINLEN, 2000)
+    trainingLengths = np.arange(5000, MAX_TRAINLEN, 5000)
 
     print('Optimizing training length')
     tic = time.perf_counter()
@@ -213,3 +239,50 @@ if __name__ == "__main__":
     index_min = np.where(trainlen_loss == minloss)
     l_opt = trainingLengths[index_min][0]
     params['trainlen'] = l_opt
+
+# =============================================================================
+# ESN Prediction
+# =============================================================================
+    print("Generating optimized prediction...")
+    tic = time.perf_counter()
+
+    init_pred = esn_prediction(X_in.T, params, save_path=save_prefix)
+
+    toc = time.perf_counter()
+    elapsed = toc - tic
+    print(f"This simulation took {elapsed:0.02f} seconds")
+    print(f"This simulation took {elapsed/60:0.02f} minutes")
+
+
+# =============================================================================
+# Plot Prediction
+# =============================================================================
+    assert(save_prefix is not None), "No output filename given by user."
+    target_folder = "./figures/"
+
+    futureTotal = params['future']
+
+    if not os.path.isdir(target_folder):
+        os.mkdir(target_folder)
+
+    var = get_variable_name(datafile_name)
+
+    plt.suptitle(f"{VARIABLES[var]} Prediction with ESN", fontsize=21)
+    plt.title(param_string(params))
+    plt.ylabel("Energy [kWh]", fontsize=16)
+    # plt.xlabel(f"Hours since {df.index[0]}", fontsize=16)
+    # plot the truth
+    plt.plot(xdf.index[-2*futureTotal:],xdf.kw[-2*futureTotal:],
+             'b',label=f"True {VARIABLES[var]}",
+             alpha=0.7,
+             color='tab:blue')
+    # # plot the prediction
+    plt.plot(xdf.index[-futureTotal:], power_norm*init_pred.T[0],  alpha=0.8,
+             label='ESN Prediction',
+             color='tab:red',
+             linestyle='-')
+    plt.legend()
+    # save prefix should be something like "04_wind_elevation"
+    # Check if there is a figures folder, if not, make one.
+    plt.savefig(target_folder+save_prefix+'_prediction.png')
+    plt.close()

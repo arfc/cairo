@@ -90,7 +90,7 @@ def optimal_values(loss, xset, yset):
     return x_optimal, y_optimal
 
 
-def esn_prediction(data, params):
+def esn_prediction(data, params, save_path=None):
     """
     This function generates a prediction with an ESN over
     the specified time range. Currently, only n_inputs=n_outputs
@@ -114,14 +114,17 @@ def esn_prediction(data, params):
         A dictionary containing all of the parameters required to
         initialize an ESN.
         Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
+
+    save_path : string
+        Save the prediction data to this location as a .npy file.
 
     Return:
     -------
@@ -161,6 +164,13 @@ def esn_prediction(data, params):
                                 data_slice)
         inter_pred = esn.predict(window_pred)
         prediction[i:i + window] = inter_pred
+
+
+    # ===================================================
+    # Save Data
+    # ===================================================
+    if save_path is not None:
+        np.save("./data/"+save_path+"_prediction", prediction)
 
     return prediction
 
