@@ -1,7 +1,9 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import sys, getopt, os
+import sys
+import getopt
+import os
 import time
 
 from tools import esn_prediction, optimal_values, param_string
@@ -32,22 +34,26 @@ reservoir_set = [600, 800, 1000]
 sparsity_set = [0.005, 0.01, 0.2]
 
 # This must change depending on the length of available data
-trainingLengths = np.arange(4000,25000,300)
+trainingLengths = np.arange(4000, 25000, 300)
 
-params = {'n_reservoir':1000,
-          'sparsity':0.1,
-          'rand_seed':85,
-          'rho':1.5,
-          'noise':0.0001,
-          'future':96,
-          'window':96,
-          'trainlen':8000}
+params = {'n_reservoir': 1000,
+          'sparsity': 0.1,
+          'rand_seed': 85,
+          'rho': 1.5,
+          'noise': 0.0001,
+          'future': 96,
+          'window': 96,
+          'trainlen': 8000}
 
-VARIABLES = {'solarfarm':'Solar Generation', 'railsplitter':'Wind Generation',
-             'demand':'Demand'}
+VARIABLES = {
+    'solarfarm': 'Solar Generation',
+    'railsplitter': 'Wind Generation',
+    'demand': 'Demand'}
+
 
 def main():
     pass
+
 
 def get_variable_name(fname):
     """
@@ -55,7 +61,7 @@ def get_variable_name(fname):
     the name of a variable.
     """
 
-    variables  = ['demand', 'solarfarm', 'railsplitter']
+    variables = ['demand', 'solarfarm', 'railsplitter']
     split_str = fname.split('/')
     file_name = split_str[-1]
     pieces = file_name.split('_')
@@ -65,11 +71,12 @@ def get_variable_name(fname):
             return p
     return
 
+
 if __name__ == "__main__":
 
-# =============================================================================
-# Set Up the Training Data
-# =============================================================================
+    # =============================================================================
+    # Set Up the Training Data
+    # =============================================================================
     X_in = []
     data_norms = []
     datafile_name = None
@@ -78,11 +85,11 @@ if __name__ == "__main__":
     list_keys = None
     sun_elevation = None
     save_prefix = None
-    options_dict = {'-u':'windspeed',
-                    '-w':'wettemp',
-                    '-d':'drytemp',
-                    '-p':'pressure',
-                    '-h':'humidity',
+    options_dict = {'-u': 'windspeed',
+                    '-w': 'wettemp',
+                    '-d': 'drytemp',
+                    '-p': 'pressure',
+                    '-h': 'humidity',
                     }
 
     # get arguments
@@ -90,8 +97,8 @@ if __name__ == "__main__":
     try:
         opts, args = getopt.getopt(sys.argv[1:],
                                    'uwdpheH:i:f:oS:',
-                                   ['infile=', 'altfile','outfile=',
-                                   'save_prefix='])
+                                   ['infile=', 'altfile', 'outfile=',
+                                    'save_prefix='])
     except getopt.GetoptError:
         print(f'Valid options are: {options_dict}')
         sys.exit(1)
@@ -125,14 +132,14 @@ if __name__ == "__main__":
         if opt in ('-e'):
             # print('adding sun')
             assert (df is not None), "No data to predict"
-            sun_elevation = generate_elevation_series(df.index, timestamps=True)
+            sun_elevation = generate_elevation_series(
+                df.index, timestamps=True)
 
         if opt in ('-S', '--save_prefix'):
             save_prefix = arg
 
         if opt in ('-H'):
             params['window'] = int(arg)
-
 
     # Align the two dataframes
     if wdf is not None:
@@ -147,14 +154,13 @@ if __name__ == "__main__":
     power = np.array(xdf.kw).astype('float64')
     power_norm = np.linalg.norm(power)
     data_norms.append(power_norm)
-    X_in.append(power/power_norm)
-
+    X_in.append(power / power_norm)
 
     if sun_elevation is not None:
         # print("Adding sun elevation")
         elevation_norm = np.linalg.norm(sun_elevation)
         data_norms.append(elevation_norm)
-        X_in.append(sun_elevation/elevation_norm)
+        X_in.append(sun_elevation / elevation_norm)
 
     if list_keys is not None:
         for key in list_keys:
@@ -165,7 +171,7 @@ if __name__ == "__main__":
                 aspect_data = np.array(xdf[key]).astype('float64')
                 aspect_norm = np.linalg.norm(aspect_data)
                 data_norms.append(aspect_norm)
-                X_in.append(aspect_data/aspect_norm)
+                X_in.append(aspect_data / aspect_norm)
 
     X_in = np.array(X_in)
     print(X_in.shape, len(X_in.shape))
@@ -181,12 +187,12 @@ if __name__ == "__main__":
     print('Optimizing spectral radius and regularization')
     tic = time.perf_counter()
     radiusxnoise_loss = grid_optimizer(X_in.T,
-                        params,
-                        args=['rho', 'noise'],
-                        xset=radius_set,
-                        yset=noise_set,
-                        verbose=True,
-                        save_path=save_prefix)
+                                       params,
+                                       args=['rho', 'noise'],
+                                       xset=radius_set,
+                                       yset=noise_set,
+                                       verbose=True,
+                                       save_path=save_prefix)
 
     toc = time.perf_counter()
     elapsed = toc - tic
@@ -202,12 +208,12 @@ if __name__ == "__main__":
     print('Optimizing network size and sparsity')
     tic = time.perf_counter()
     sizexsparsity_loss = grid_optimizer(X_in.T,
-                         params,
-                         args=['n_reservoir', 'sparsity'],
-                         xset=reservoir_set,
-                         yset=sparsity_set,
-                         verbose=True,
-                         save_path=save_prefix)
+                                        params,
+                                        args=['n_reservoir', 'sparsity'],
+                                        xset=reservoir_set,
+                                        yset=sparsity_set,
+                                        verbose=True,
+                                        save_path=save_prefix)
 
     toc = time.perf_counter()
     elapsed = toc - tic
@@ -272,17 +278,17 @@ if __name__ == "__main__":
     plt.ylabel("Energy [kWh]", fontsize=16)
     # plt.xlabel(f"Hours since {df.index[0]}", fontsize=16)
     # plot the truth
-    plt.plot(xdf.index[-2*futureTotal:],xdf.kw[-2*futureTotal:],
-             'b',label=f"True {VARIABLES[var]}",
+    plt.plot(xdf.index[-2 * futureTotal:], xdf.kw[-2 * futureTotal:],
+             'b', label=f"True {VARIABLES[var]}",
              alpha=0.7,
              color='tab:blue')
     # # plot the prediction
-    plt.plot(xdf.index[-futureTotal:], power_norm*init_pred.T[0],  alpha=0.8,
+    plt.plot(xdf.index[-futureTotal:], power_norm * init_pred.T[0], alpha=0.8,
              label='ESN Prediction',
              color='tab:red',
              linestyle='-')
     plt.legend()
     # save prefix should be something like "04_wind_elevation"
     # Check if there is a figures folder, if not, make one.
-    plt.savefig(target_folder+save_prefix+'_prediction.png')
+    plt.savefig(target_folder + save_prefix + '_prediction.png')
     plt.close()

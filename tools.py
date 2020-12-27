@@ -165,12 +165,11 @@ def esn_prediction(data, params, save_path=None):
         inter_pred = esn.predict(window_pred)
         prediction[i:i + window] = inter_pred
 
-
     # ===================================================
     # Save Data
     # ===================================================
     if save_path is not None:
-        np.save("./data/"+save_path+"_prediction", prediction)
+        np.save("./data/" + save_path + "_prediction", prediction)
 
     return prediction
 
