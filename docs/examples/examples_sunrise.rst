@@ -154,7 +154,7 @@ For a period of two years, the function equation_of_time behaves as
     :align: center
 
 
-:py:func:`local_meridian`
+:py:func:`sunrise.local_meridian`
 -------------------------
 
 Example:
