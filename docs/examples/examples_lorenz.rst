@@ -24,9 +24,6 @@ the first argument of `lorenz96`
 >>> lorenz96(x, t, N, F)
     """Doesn't Work!"""
 
-.. image:: ../examples/plots/lorenz_plots/lorenz96.png
-    :align: center
-
 
 :py:func:`lorenz.generate_L96`
 ------------------------------

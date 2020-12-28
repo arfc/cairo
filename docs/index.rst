@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
+   lorenz.rst
    sunrise.rst
    tests.rst
    tools.rst
