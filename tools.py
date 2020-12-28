@@ -4,7 +4,7 @@ from pyESN.pyESN import ESN
 
 def MSE(yhat, y):
     '''
-    This function calculates the mean squared error between
+    This function calculates the root mean squared error between
     a predicted and target vector.
 
     Parameters:
@@ -19,9 +19,30 @@ def MSE(yhat, y):
     mse : float
         The mean squared error between yhat and y.
     '''
-    mse = np.sqrt(np.mean((yhat.flatten() - y.flatten())**2))
+    mse = np.sqrt(np.mean((y.flatten() - yhat.flatten())**2))
 
     return mse
+
+def MAE(yhat, y):
+    '''
+    This function calculates the mean absolute error between
+    a predicted and target vector.
+
+    Parameters:
+    -----------
+    yhat : numpy array
+        The predicted, approximated, or calculated vector
+    y : numpy array
+        The target vector
+
+    Returns:
+    --------
+    mae : float
+        The mean squared error between yhat and y.
+    '''
+    mae = np.mean(np.abs(y.flatten() - yhat.flatten()))
+
+    return mae
 
 
 def param_string(params):
