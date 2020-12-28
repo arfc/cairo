@@ -9,11 +9,18 @@ def test_lorenz96_constant():
     For the case of a horizontal distribution,
     so that the slope should be a zero over
     time.
-    
-    Not finished
     """
     obs_i = np.array([8., 8., 8., 8., 8.])
     exp_i = lorenz96(np.array([0,0,0,0,0]), np.arange(0, 4, 1))
+    assert (obs_i == exp_i).all()
+
+
+def test_lorenz96_linear_distribution():
+    """
+    For the case of a linear input.
+    """
+    obs_i = np.array([0., 7., 9., 11., -2.])
+    exp_i = lorenz96(np.array([0,1,2,3,4]), np.arange(0, 4, 0.1))
     assert (obs_i == exp_i).all()
 
 
@@ -59,18 +66,30 @@ def test_generate_L96_perturbed():
     assert (obs_i == exp_i).all()
 
 
-def test_lorenz63():
+def test_lorenz63_constant():
     """
-    
+    For the case of a constant x input over
+    time.
     """
-    obs_i = 0
-    exp_i = 0
+    obs_i = np.array([0.,0.,0.])
+    exp_i = lorenz63(np.array([0,0,0,0,0]), np.arange(0, 4, 0.1))
+    assert (obs_i == exp_i).all()
+
+
+def test_lorenz63_linear_distribution():
+    """
+    For the case of a linearly increasing
+    x input over time
+    """
+    obs_i = np.array([10.,-1.,-16/3])
+    exp_i = lorenz63(np.array([0,1,2,3,4]), np.arange(0,4,0.1))
     assert (obs_i == exp_i).all()
 
 
 def test_generate_L63_rho_leq1():
     """
-    
+    Testing a time range with a rho value
+    less than one.
     """
     obs_i = np.array([[1.        , 1.        , 1.        ],
        [0.40779223, 0.37990175, 0.16719831],
@@ -82,7 +101,8 @@ def test_generate_L63_rho_leq1():
 
 def test_generate_L63_rho_geq1():
     """
-
+    Testing a time range with a rho value
+    greater than one.
     """
     obs_i = np.array([[ 1.        ,  1.        ,  1.        ],
            [-9.37856995, -8.35703373, 29.36232527],
@@ -94,8 +114,8 @@ def test_generate_L63_rho_geq1():
 
 def test_generate_L63_rho_eq1():
     """
-    Over a small range of inputs,
-    check that
+    Testing a time range with a rho value
+    equal to one.
     """
     obs_i = np.array([[1.        , 1.        , 1.        ],
        [0.63113547, 0.6153045 , 0.23992849],
@@ -107,7 +127,7 @@ def test_generate_L63_rho_eq1():
 
 def test_generate_L63_zeros():
     """
-    Generate a set with an input of zeros
+    Generate a set with an input of zeros.
     """
     obs_i = np.array([[1., 1., 1.],
            [1., 1., 1.],
