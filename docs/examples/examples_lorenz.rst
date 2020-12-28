@@ -16,13 +16,6 @@ This example makes use of the function
 is intended to aid in the creation of
 the first argument of `lorenz96`
 
->>> N = 4
->>> F = 8
->>> P = 0.
->>> t = np.arange(0, 4, 0.1)
->>> x = generate_L96(t, P, N, F)
->>> lorenz96(x, t, N, F)
-    """Doesn't Work!"""
 
 
 :py:func:`lorenz.generate_L96`

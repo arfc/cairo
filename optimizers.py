@@ -27,8 +27,8 @@ def grid_optimizer(
     range of values. The optimal values are determined by minimizing
     the mean squared error. Those optimal values are returned.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     data : numpy array
         This is the dataset that the ESN should train and predict.
         If the training length plus the future total exceed the
@@ -64,8 +64,8 @@ def grid_optimizer(
     save_path : string
         Specifies where the data should be saved. Default is None.
 
-    Returns:
-    --------
+    Returns
+    -------
     loss : numpy array
         The array or matrix of loss values.
     """

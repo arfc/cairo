@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
    
    lorenz.rst
+   optimizers.rst
    sunrise.rst
    tests.rst
    tools.rst
