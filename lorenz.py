@@ -11,18 +11,20 @@ def lorenz96(x, t, N=5, F=8):
     Here the differential equation is described for
     use with the ``odeint`` function.
 
-    Parameters:
-    -----------
-    x : The independent variable
-    t : The time of the simulation
+    Parameters
+    ----------
+    x : numpy array
+        The independent variable
+    t : numpy array
+        The time of the simulation
     N : integer
         The number of variables in the system
         N >=4
     F : integer or float
         The forcing constant
 
-    Returns:
-    --------
+    Returns
+    -------
     dxdt : The function
     """
 
@@ -39,8 +41,8 @@ def generate_L96(t, P=0.01, N=5, F=8):
     This function generates data for the Lorenz-96
     model.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     t : numpy array
         The array of time steps.
     P : integer or float
@@ -51,8 +53,8 @@ def generate_L96(t, P=0.01, N=5, F=8):
     F : integer or float
         The forcing constant.
 
-    Returns:
-    --------
+    Returns
+    -------
     data : The time series data for Lorenz-96.
     """
 
@@ -72,6 +74,23 @@ def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
 
     This function describes the differential equation
     for use with the ``odeint`` function from scipy.
+    
+    Parameters
+    ----------
+    x : numpy array
+        The independent variable
+    t : numpy array
+        The array of time steps.
+    rho : integer or float
+        The _______
+    sigma : integer or float
+        The _______
+    beta : integer or float
+        The _______
+    
+    Returns
+    -------
+    dxdt : The function
     """
 
     N = 3
@@ -93,6 +112,21 @@ def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     """
     This function generates data for the Lorenz-63
     model.
+    
+    Parameters
+    ----------
+    t: numpy array
+        The array of time steps
+    rho : integer or float
+        The ______
+    sigma : integer or float
+        The ______
+    beta : integer or float
+        The ______
+    
+    Returns
+    -------
+    data : The time series data for Lorenz-63.
     """
     N = 3
     x0 = np.ones(N)
