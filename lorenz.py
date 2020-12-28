@@ -13,9 +13,9 @@ def lorenz96(x, t, N=5, F=8):
 
     Parameters
     ----------
-    x : numpy array
+    x : numpy array or list
         The independent variable
-    t : numpy array
+    t : numpy array or list
         The time of the simulation
     N : integer
         The number of variables in the system
@@ -43,7 +43,7 @@ def generate_L96(t, P=0.01, N=5, F=8):
 
     Parameters
     ----------
-    t : numpy array
+    t : numpy array or list
         The array of time steps.
     P : integer or float
         The initial perturbation on the system.
@@ -77,22 +77,28 @@ def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     
     Parameters
     ----------
-    x : numpy array
+    x : numpy array or list
         The independent variable
-    t : numpy array
+    t : numpy array or list
         The array of time steps.
     rho : integer or float
-        The _______
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+        For rho < 1 there is one equilibrium point
+        at the origin. There is a bifurcation when
+        rho = 1, and when rho > 1 there are two
+        more critical.
     sigma : integer or float
-        The _______
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
     beta : integer or float
-        The _______
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
     
     Returns
     -------
     dxdt : The function
     """
-
     N = 3
 
     dxdt = np.ones(N)
@@ -115,14 +121,21 @@ def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     
     Parameters
     ----------
-    t: numpy array
+    t: numpy array or list
         The array of time steps
     rho : integer or float
-        The ______
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+        For rho < 1 there is one equilibrium point
+        at the origin. There is a bifurcation when
+        rho = 1, and when rho > 1 there are two
+        more critical.
     sigma : integer or float
-        The ______
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
     beta : integer or float
-        The ______
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
     
     Returns
     -------

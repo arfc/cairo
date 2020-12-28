@@ -12,10 +12,12 @@ perturbations.
 
 Example:
 This example makes use of the function
-:py:func:`lorenz.generate_L96`, which
-is intended to aid in the creation of
-the first argument of `lorenz96`
+:py:func:`lorenz.generate_L96`
 
+Example:
+>>> t = np.arange(0,30.0, 0.01)
+>>> x = generate_L96(t)
+>>>
 
 
 :py:func:`lorenz.generate_L96`
