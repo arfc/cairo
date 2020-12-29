@@ -220,3 +220,17 @@ if __name__ == "__main__":
     # save prefix should be something like "04_wind_elevation"
     plt.savefig(target_folder + save_prefix + '_prediction.png')
     plt.close()
+
+# =============================================================================
+# Save Metadata
+# =============================================================================
+
+    with open('./data/simulation_MD.txt', 'a') as file:
+        file.write("==========================================\n")
+        file.write(f"Metadata for [{save_prefix}]\n")
+        file.write(f"{param_string(params)}\n")
+        file.write(f"Random state: {params['rand_seed']}\n")
+        file.write(f"Optimized prediction took: {prediction_time} seconds\n")
+        file.write(f"Mean Absolute Error: {mae}\n")
+        file.write(f"Root Mean Squared Error: {rmse}\n")
+        file.write("\n")
