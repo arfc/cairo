@@ -3,5 +3,6 @@ matplotlib
 pandas
 scipy
 pytest
+snakemake
 sphinx
 cloud-sptheme
