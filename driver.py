@@ -12,7 +12,7 @@ from lorenz import generate_L96
 from sunrise import generate_elevation_series
 
 # Plot Parameters
-plt.rcParams['figure.figsize'] = (12, 9)
+plt.rcParams['figure.figsize'] = (16, 9)
 plt.rcParams['figure.edgecolor'] = 'k'
 plt.rcParams['figure.facecolor'] = 'w'
 plt.rcParams['savefig.dpi'] = 400
@@ -166,7 +166,7 @@ if __name__ == "__main__":
 
     if list_keys is not None:
         for key in list_keys:
-            if key is '-e':
+            if key == '-e':
                 pass
             else:
                 print(f"Adding key {key}")
@@ -249,6 +249,16 @@ if __name__ == "__main__":
     l_opt = trainingLengths[index_min][0]
     params['trainlen'] = l_opt
 
+# =============================================================================
+# Visualize Training Length Loss
+# =============================================================================
+
+    plt.plot(trainingLengths, trainlen_loss, '-ok', alpha=0.6)
+    plt.title(f'MSE as a Function of Training Length', fontsize=20)
+    plt.xlabel(f'Training Length', fontsize=18)
+    plt.ylabel('MSE', fontsize=18)
+    plt.savefig("./figures/"+save_prefix+"_trainlen_loss.png")
+    plt.close()
 # =============================================================================
 # ESN Prediction
 # =============================================================================
