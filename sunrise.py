@@ -263,8 +263,8 @@ def solar_elevation(ha, delta, lat=lat):
     """
 
     sin_term = np.sin(delta * np.pi / 180) * np.sin(lat * np.pi / 180)
-    cos_term = np.cos(delta * np.pi / 180) * np.cos(lat *
-                                                    np.pi / 180) * np.cos(ha * np.pi / 180)
+    cos_term = np.cos(delta * np.pi / 180) * np.cos(lat * \
+                      np.pi / 180) * np.cos(ha * np.pi / 180)
     alpha = np.arcsin((sin_term + cos_term)) * 180 / np.pi
 
     return alpha
