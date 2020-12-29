@@ -69,9 +69,9 @@ def get_variable_name(fname):
 
 if __name__ == "__main__":
 
-    # =============================================================================
-    # Set Up the Training Data
-    # =============================================================================
+# =============================================================================
+# Set Up the Training Data
+# =============================================================================
     X_in = []
     t = None
     df = None
@@ -86,10 +86,9 @@ if __name__ == "__main__":
     except getopt.GetoptError:
         print(f'Valid options are: {options_dict}')
         sys.exit(1)
-    # print(args)
     for opt, arg in opts:
         if opt in ('-L'):
-            t = np.arange(0, 30, 0.01)
+            t = np.arange(0, 100, 0.02)
             X_in = generate_L63(t)
         if opt in ('-S', '--save_prefix'):
             save_prefix = arg
@@ -99,7 +98,6 @@ if __name__ == "__main__":
     MAX_TRAINLEN = int(len(X_in) - params['future'])
     print(f"Maximum training length is {MAX_TRAINLEN}")
 
-    # pred = esn_prediction(X_in.T, params)
     print('Optimizing spectral radius and regularization')
     tic = time.perf_counter()
     radiusxnoise_loss = grid_optimizer(X_in,
@@ -142,7 +140,7 @@ if __name__ == "__main__":
     params['n_reservoir'] = opt_size
     params['sparsity'] = opt_sparsity
 
-    trainingLengths = np.arange(100, MAX_TRAINLEN, 100)
+    trainingLengths = np.arange(2000, MAX_TRAINLEN, 300)
 
     print('Optimizing training length')
     tic = time.perf_counter()
@@ -213,11 +211,12 @@ if __name__ == "__main__":
                                         futureTotal:, 2], label='Ground Truth')
     plt.plot(t[-futureTotal:], init_pred[:, 2], label='Prediction')
 
+    ax3.set_xlabel("t", fontsize=16)
     ax1.set_ylabel("x", fontsize=16)
     ax2.set_ylabel("y", fontsize=16)
     ax3.set_ylabel("z", fontsize=16)
-    plt.legend()
+    plt.legend(fontsize=16)
+
     # save prefix should be something like "04_wind_elevation"
-    # Check if there is a figures folder, if not, make one.
     plt.savefig(target_folder + save_prefix + '_prediction.png')
     plt.close()

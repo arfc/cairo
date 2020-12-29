@@ -44,14 +44,6 @@ SCENARIOS = ["lorenz63",
 
 rule all:
     input:
-        # "data/lorenz63_rho_noise_loss.npy",
-        # "data/lorenz63_n_reservoir_sparsity_loss.npy",
-        # "data/lorenz63_trainlen_loss.npy",
-        # "data/lorenz63_prediction.npy",
-        # "figures/lorenz63_prediction.png",
-        # "figures/lorenz63_rho_noise_loss.png",
-        # "figures/lorenz63_n_reservoir_sparsity_loss.png",
-        # "figures/lorenz63_trainlen_loss.png",
         expand("data/{scenario}_rho_noise_loss.npy", scenario=SCENARIOS),
         expand("data/{scenario}_n_reservoir_sparsity_loss.npy", scenario=SCENARIOS),
         expand("data/{scenario}_trainlen_loss.npy", scenario=SCENARIOS),

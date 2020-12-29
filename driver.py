@@ -102,7 +102,6 @@ if __name__ == "__main__":
     except getopt.GetoptError:
         print(f'Valid options are: {options_dict}')
         sys.exit(1)
-    # print(args)
     for opt, arg in opts:
         if opt in ('-i', '--infile'):
             try:
@@ -126,12 +125,10 @@ if __name__ == "__main__":
             list_keys = []
             for key in options_dict.keys():
                 if any(key in option for option in opts):
-                    # print(f'option present {options_dict[key]}')
                     list_keys.append(options_dict[key])
                     print(f"listkeys: {list_keys}")
 
         if opt in ('-e'):
-            # print('adding sun')
             assert (df is not None), "No data to predict"
             sun_elevation = generate_elevation_series(
                 df.index, timestamps=True)
@@ -145,7 +142,6 @@ if __name__ == "__main__":
     # Align the two dataframes
     if wdf is not None:
         print("joining dataframes")
-        # print('dataframes must be aligned')
         xdf = pd.concat([df, wdf], axis=1, join='inner')
         xdf.interpolate('linear', inplace=True)
         print(xdf.head())
@@ -159,7 +155,6 @@ if __name__ == "__main__":
     X_in.append(power / power_norm)
 
     if sun_elevation is not None:
-        # print("Adding sun elevation")
         elevation_norm = np.linalg.norm(sun_elevation)
         data_norms.append(elevation_norm)
         X_in.append(sun_elevation / elevation_norm)
@@ -186,7 +181,6 @@ if __name__ == "__main__":
     MAX_TRAINLEN = int(len(xdf) - params['future'])
     print(f"Maximum training length is {MAX_TRAINLEN}")
 
-    # pred = esn_prediction(X_in.T, params)
     print('Optimizing spectral radius and regularization')
     tic = time.perf_counter()
     radiusxnoise_loss = grid_optimizer(X_in.T,
@@ -293,7 +287,7 @@ if __name__ == "__main__":
     plt.suptitle(f"{VARIABLES[var]} Prediction with ESN", fontsize=21)
     plt.title(param_string(params))
     plt.ylabel("Energy [kWh]", fontsize=16)
-    # plt.xlabel(f"Hours since {df.index[0]}", fontsize=16)
+    plt.xlabel(f"Hours since {df.index[0]}", fontsize=16)
     # plot the truth
     plt.plot(xdf.index[-2 * futureTotal:], xdf.kw[-2 * futureTotal:],
              'b', label=f"True {VARIABLES[var]}",
@@ -305,8 +299,8 @@ if __name__ == "__main__":
              color='tab:red',
              linestyle='-')
     plt.legend()
+
     # save prefix should be something like "04_wind_elevation"
-    # Check if there is a figures folder, if not, make one.
     plt.savefig(target_folder + save_prefix + '_prediction.png')
     plt.close()
 
