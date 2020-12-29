@@ -141,9 +141,11 @@ def test_generate_L63_zeros():
     """
     Generate a set with an input of zeros.
     """
-    obs_i = np.array([[1., 1., 1.],
-               [1., 1., 1.],
-               [1., 1., 1.],
-               [1., 1., 1.]])
+    obs_i = np.array([
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]
+    ])
     exp_i = generate_L63(np.zeros(4))
     assert (obs_i == exp_i).all()
