@@ -6,6 +6,7 @@
 .~lock.uiuc_demand_data.csv#
 .~lock.railsplitter_data.csv#
 .~lock.solarfarm_data.csv#
+_build/*
 *.aux
 *.acn	
 *.aux
