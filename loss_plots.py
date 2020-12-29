@@ -1,5 +1,7 @@
 import numpy as np
-import os, glob, sys
+import os
+import glob
+import sys
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
@@ -19,10 +21,10 @@ noise_set = [0.001, 0.0007, 0.003]
 reservoir_set = [600, 800, 1000]
 sparsity_set = [0.005, 0.01, 0.2]
 
-parameter_sets = {"reservoir":reservoir_set,
-                  "sparsity":sparsity_set,
-                  "rho":radius_set,
-                  "noise":noise_set}
+parameter_sets = {"reservoir": reservoir_set,
+                  "sparsity": sparsity_set,
+                  "rho": radius_set,
+                  "noise": noise_set}
 
 variables = {'reservoir': 'Reservoir Size',
              'sparsity': 'Sparsity',
@@ -37,7 +39,6 @@ plt.rcParams['savefig.dpi'] = 400
 plt.rcParams['savefig.bbox'] = 'tight'
 plt.rcParams['text.usetex'] = True
 plt.rcParams['font.family'] = "serif"
-
 
 
 def get_loss_data():
@@ -83,7 +84,7 @@ def get_variable_sets(fname):
     """
     splitstring = fname.split('_')
 
-    xset,yset = None, None
+    xset, yset = None, None
     xvar, yvar = None, None
 
     # print(fname)
@@ -102,7 +103,6 @@ def get_variable_sets(fname):
     return xset, xvar, yset, yvar, figure_path
 
 
-
 if __name__ == "__main__":
     loss_files = get_loss_data()
     print(len(loss_files))
@@ -117,7 +117,6 @@ if __name__ == "__main__":
         if 'trainlen' in file:
             pass
         loss = np.load(file)
-
 
         xset, xvar, yset, yvar, path = get_variable_sets(file)
 

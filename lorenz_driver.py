@@ -21,17 +21,17 @@ plt.rcParams['text.usetex'] = True
 plt.rcParams['font.family'] = "serif"
 
 # Optimization Sets
-# radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3,1.5]
-# noise_set = [ 0.0001, 0.0003,0.0007, 0.001, 0.003, 0.005, 0.007,0.01]
+radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
+noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
 
-radius_set = [0.1, 0.5, 1]
-noise_set = [0.001, 0.0007, 0.003]
+# radius_set = [0.1, 0.5, 1]
+# noise_set = [0.001, 0.0007, 0.003]
 
-# reservoir_set = [600, 800, 1000, 1500, 2000, 3000, 4000]
-# sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.15, 0.2]
+reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
+sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
 
-reservoir_set = [600, 800, 1000]
-sparsity_set = [0.005, 0.01, 0.2]
+# reservoir_set = [600, 800, 1000]
+# sparsity_set = [0.005, 0.01, 0.2]
 
 # This must change depending on the length of available data
 trainingLengths = np.arange(4000, 25000, 300)
@@ -44,6 +44,7 @@ params = {'n_reservoir': 1000,
           'future': 500,
           'window': 500,
           'trainlen': 1000}
+
 
 def main():
     pass
@@ -79,7 +80,6 @@ if __name__ == "__main__":
     sun_elevation = None
     save_prefix = None
 
-
     try:
         opts, args = getopt.getopt(sys.argv[1:],
                                    'LS:', ['save_prefix='])
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     # print(args)
     for opt, arg in opts:
         if opt in ('-L'):
-            t = np.arange(0,30,0.01)
+            t = np.arange(0, 30, 0.01)
             X_in = generate_L63(t)
         if opt in ('-S', '--save_prefix'):
             save_prefix = arg
@@ -169,7 +169,7 @@ if __name__ == "__main__":
     plt.title(f'MSE as a Function of Training Length', fontsize=20)
     plt.xlabel(f'Training Length', fontsize=18)
     plt.ylabel('MSE', fontsize=18)
-    plt.savefig("./figures/"+save_prefix+"_trainlen_loss.png")
+    plt.savefig("./figures/" + save_prefix + "_trainlen_loss.png")
     plt.close()
 # =============================================================================
 # ESN Prediction
@@ -198,19 +198,20 @@ if __name__ == "__main__":
 
     plt.suptitle(f"Lorenz-63 Model Prediction with ESN", fontsize=21)
     plt.title(param_string(params))
-    plt.figure(figsize=(16,9))
+    plt.figure(figsize=(16, 9))
     futureTotal = params['future']
-    ax1=plt.subplot(311)
-    plt.plot(t[-2*futureTotal:], X_in[-2*futureTotal:, 0], label='Ground Truth')
+    ax1 = plt.subplot(311)
+    plt.plot(t[-2 * futureTotal:], X_in[-2 *
+                                        futureTotal:, 0], label='Ground Truth')
     plt.plot(t[-futureTotal:], init_pred[:, 0], label='Prediction')
-    ax2=plt.subplot(312, sharex=ax1)
-    plt.plot(t[-2*futureTotal:], X_in[-2*futureTotal:, 1], label='Ground Truth')
+    ax2 = plt.subplot(312, sharex=ax1)
+    plt.plot(t[-2 * futureTotal:], X_in[-2 *
+                                        futureTotal:, 1], label='Ground Truth')
     plt.plot(t[-futureTotal:], init_pred[:, 1], label='Prediction')
-    ax3=plt.subplot(313, sharex=ax1)
-    plt.plot(t[-2*futureTotal:], X_in[-2*futureTotal:, 2], label='Ground Truth')
+    ax3 = plt.subplot(313, sharex=ax1)
+    plt.plot(t[-2 * futureTotal:], X_in[-2 *
+                                        futureTotal:, 2], label='Ground Truth')
     plt.plot(t[-futureTotal:], init_pred[:, 2], label='Prediction')
-
-
 
     ax1.set_ylabel("x")
     ax2.set_ylabel("y")

@@ -23,6 +23,7 @@ def MSE(yhat, y):
 
     return mse
 
+
 def MAE(yhat, y):
     '''
     This function calculates the mean absolute error between
