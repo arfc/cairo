@@ -213,9 +213,9 @@ if __name__ == "__main__":
                                         futureTotal:, 2], label='Ground Truth')
     plt.plot(t[-futureTotal:], init_pred[:, 2], label='Prediction')
 
-    ax1.set_ylabel("x")
-    ax2.set_ylabel("y")
-    ax3.set_ylabel("z")
+    ax1.set_ylabel("x", fontsize=16)
+    ax2.set_ylabel("y", fontsize=16)
+    ax3.set_ylabel("z", fontsize=16)
     plt.legend()
     # save prefix should be something like "04_wind_elevation"
     # Check if there is a figures folder, if not, make one.

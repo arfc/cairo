@@ -5,8 +5,15 @@ import sys
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
-# from driver import radius_set, reservoir_set, sparsity_set, noise_set
-# from optimizer import variables
+
+plt.rcParams['figure.figsize'] = (12, 9)
+plt.rcParams['figure.edgecolor'] = 'k'
+plt.rcParams['figure.facecolor'] = 'w'
+plt.rcParams['savefig.dpi'] = 400
+plt.rcParams['savefig.bbox'] = 'tight'
+plt.rcParams['text.usetex'] = True
+plt.rcParams['font.family'] = "serif"
+
 
 # Optimization Sets
 # radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3,1.5]
@@ -31,14 +38,6 @@ variables = {'reservoir': 'Reservoir Size',
              'rho': 'Spectral Radius',
              'noise': 'Noise',
              'trainlen': 'Training Length'}
-
-plt.rcParams['figure.figsize'] = (12, 9)
-plt.rcParams['figure.edgecolor'] = 'k'
-plt.rcParams['figure.facecolor'] = 'w'
-plt.rcParams['savefig.dpi'] = 400
-plt.rcParams['savefig.bbox'] = 'tight'
-plt.rcParams['text.usetex'] = True
-plt.rcParams['font.family'] = "serif"
 
 
 def get_loss_data():
