@@ -86,9 +86,7 @@ def get_variable_sets(fname):
     xset, yset = None, None
     xvar, yvar = None, None
 
-    # print(fname)
     for st in splitstring:
-        # print(st)
         if st == 'trainlen':
             pass
         elif (st in parameter_sets) and (xset is None):
