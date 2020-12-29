@@ -17,3 +17,10 @@ tests.test\_tools module
    :undoc-members:
    :show-inheritance:
 
+tests.test\_lorenz module
+--------------------------
+
+.. automodule:: tests.test_lorenz
+   :members:
+   :undoc-members:
+   :show-inheritance:

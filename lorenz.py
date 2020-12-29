@@ -74,7 +74,7 @@ def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
 
     This function describes the differential equation
     for use with the ``odeint`` function from scipy.
-    
+
     Parameters
     ----------
     x : numpy array or list
@@ -94,7 +94,7 @@ def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     beta : integer or float
         Dimensionless quantity related to the Prandtl
         and Rayleigh numbers.
-    
+
     Returns
     -------
     dxdt : The function
@@ -118,7 +118,7 @@ def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     """
     This function generates data for the Lorenz-63
     model.
-    
+
     Parameters
     ----------
     t: numpy array or list
@@ -136,7 +136,7 @@ def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     beta : integer or float
         Dimensionless quantity related to the Prandtl
         and Rayleigh numbers.
-    
+
     Returns
     -------
     data : The time series data for Lorenz-63.
