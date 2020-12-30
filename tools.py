@@ -34,15 +34,16 @@ def param_string(params):
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
+
         Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
 
     Returns
     -------
@@ -105,23 +106,24 @@ def esn_prediction(data, params):
         **The shape of the transpose of the data will determine
         the number of inputs and outputs.**
 
-    E.g. Two datasets trained together
+            E.g. Two datasets trained together
 
-    >>> X_in = np.concatenate([[set1, set2]], axis=1)
-    >>> pred = esn_prediction(X_in.T, params)
+            >>> X_in = np.concatenate([[set1, set2]], axis=1)
+            >>> pred = esn_prediction(X_in.T, params)
 
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
+
         Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
 
     Return
     ------
@@ -180,23 +182,24 @@ def esn_scenario(data, params):
         **The shape of the transpose of the data will determine
         the number of inputs and outputs.**
 
-        E.g. Two datasets trained together
+            E.g. Two datasets trained together
 
-        >>> X_in = np.concatenate([[set1, set2]], axis=1)
-        >>> pred = esn_prediction(X_in.T, params)
+            >>> X_in = np.concatenate([[set1, set2]], axis=1)
+            >>> pred = esn_prediction(X_in.T, params)
 
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
+
         Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
 
     Return
     ------

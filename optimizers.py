@@ -38,15 +38,16 @@ def grid_optimizer(
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
+        
         Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
     args : list or tuple
         The list of variables you want to optimize. Must be less
         than or equal to two.
