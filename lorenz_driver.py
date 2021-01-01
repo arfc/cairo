@@ -6,10 +6,9 @@ import getopt
 import os
 import time
 
-from tools import esn_prediction, optimal_values, param_string
+from tools import esn_prediction, optimal_values, param_string, MSE, MAE
 from optimizers import grid_optimizer
 from lorenz import generate_L63
-from sunrise import generate_elevation_series
 
 # Plot Parameters
 plt.rcParams['figure.figsize'] = (16, 9)
@@ -34,7 +33,7 @@ sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
 # sparsity_set = [0.005, 0.01, 0.2]
 
 # This must change depending on the length of available data
-trainingLengths = np.arange(4000, 25000, 300)
+trainingLengths = np.arange(5000, 25000, 300)
 
 params = {'n_reservoir': 1000,
           'sparsity': 0.1,
@@ -179,17 +178,20 @@ if __name__ == "__main__":
 
     toc = time.perf_counter()
     elapsed = toc - tic
+    prediction_time = elapsed
     print(f"This simulation took {elapsed:0.02f} seconds")
     print(f"This simulation took {elapsed/60:0.02f} minutes")
 
+    futureTotal = params['future']
+
+    rmse = MSE(init_pred, X_in[-futureTotal:])
+    mae = MAE(init_pred, X_in[-futureTotal:])
 
 # =============================================================================
 # Plot Prediction
 # =============================================================================
     assert(save_prefix is not None), "No output filename given by user."
     target_folder = "./figures/"
-
-    futureTotal = params['future']
 
     if not os.path.isdir(target_folder):
         os.mkdir(target_folder)

@@ -8,7 +8,6 @@ import time
 
 from tools import esn_prediction, optimal_values, param_string, MSE, MAE
 from optimizers import grid_optimizer
-from lorenz import generate_L96
 from sunrise import generate_elevation_series
 
 # Plot Parameters
@@ -34,7 +33,7 @@ sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
 # sparsity_set = [0.005, 0.01, 0.2]
 
 # This must change depending on the length of available data
-trainingLengths = np.arange(4000, 25000, 300)
+trainingLengths = np.arange(5000, 25000, 300)
 
 params = {'n_reservoir': 1000,
           'sparsity': 0.1,
@@ -43,7 +42,7 @@ params = {'n_reservoir': 1000,
           'noise': 0.0001,
           'future': 96,
           'window': 96,
-          'trainlen': 8000}
+          'trainlen': 5000}
 
 VARIABLES = {
     'solarfarm': 'Solar Generation',
@@ -138,6 +137,7 @@ if __name__ == "__main__":
 
         if opt in ('-H'):
             params['window'] = int(arg)
+            params['future'] = int(arg)
 
     # Align the two dataframes
     if wdf is not None:

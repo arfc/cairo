@@ -1,7 +1,7 @@
 import numpy as np
 import os
 import glob
-import sys
+import sys, getopt
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
@@ -101,7 +101,20 @@ def get_variable_sets(fname):
 
 
 if __name__ == "__main__":
-    loss_files = get_loss_data()
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:],
+                                   'ai:',
+                                   ['infile=',])
+    except getopt.GetoptError:
+        print(f'Valid options are: -a, -i, --infile')
+        sys.exit(1)
+    for opt, arg in opts:
+        if opt in ('-i', '--infile'):
+            loss_files = [arg]
+        if opt in ('-e'):
+            loss_files = get_loss_data()
+
     print(len(loss_files))
 
     target_folder = "./figures/"

@@ -675,12 +675,18 @@ rule optimize_solar_windspeed_04:
 # ============================================================================
 # Produce Loss Plots
 # ============================================================================
-rule make_loss_plots:
+rule make_loss_plots_01:
     input:
-        "loss_plots.py"
+        data = "data/{scenario}_rho_noise_loss.npy"
     output:
         "figures/{scenario}_rho_noise_loss.png",
+    shell:
+        "python loss_plots.py -i {input.data}"
+
+rule make_loss_plots_02:
+    input:
+        data = "data/{scenario}_n_reservoir_sparsity_loss.npy",
+    output:
         "figures/{scenario}_n_reservoir_sparsity_loss.png",
-        # "figures/{scenario}_trainlen_loss.png",
-    script:
-        "loss_plots.py"
+    shell:
+        "python loss_plots.py -i {input.data}"
