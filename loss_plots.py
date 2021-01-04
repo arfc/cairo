@@ -1,7 +1,8 @@
 import numpy as np
 import os
 import glob
-import sys, getopt
+import sys
+import getopt
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
@@ -105,7 +106,7 @@ if __name__ == "__main__":
     try:
         opts, args = getopt.getopt(sys.argv[1:],
                                    'ai:',
-                                   ['infile=',])
+                                   ['infile=', ])
     except getopt.GetoptError:
         print(f'Valid options are: -a, -i, --infile')
         sys.exit(1)
