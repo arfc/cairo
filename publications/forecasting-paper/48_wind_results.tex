@@ -1,0 +1,19 @@
+% \begin{center}
+  \begin{table*}[b]
+    \centering
+    \caption{Tabulated error for 48-hour ahead wind forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting wind energy alone.}
+    \label{tab:wind48}
+    \begin{tabular}{l|c|c|c|c}
+      &  & & Improvement & Improvement \\
+      Scenario  & MAE & RMSE & MAE (\%) & RMSE (\%)\\
+      \hline
+      Wind Energy & 0.001285 & 0.001727 & [-] & [-] \\
+      Wind + Sun Elevation & 0.000739 & 0.001181 & -42.49& -31.62\\
+      Wind + Humidity & 0.000901 & 0.001304 & -29.88& -24.49\\
+      Wind + Pressure & 0.000689 & 0.001235 & -46.38& -28.49\\
+      Wind + Wet Bulb Temp. & 0.000965 & 0.001373 & -24.90& -20.50\\
+      Wind + Dry Bulb Temp. & 0.001059 & 0.001393 & -17.59& -19.34\\
+      Wind + Wind Speed & 0.001873 & 0.002437 & +45.76& +41.11\\
+    \end{tabular}
+  \end{table*}
+% \end{center}

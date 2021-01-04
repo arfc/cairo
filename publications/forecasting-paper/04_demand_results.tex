@@ -1,0 +1,19 @@
+% \begin{center}
+  \begin{table*}[t]
+    \centering
+    \caption{Tabulated error for 4-hour ahead total electricity demand forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting electricity demand alone.}
+    \label{tab:demand04}
+    \begin{tabular}{l|c|c|c|c}
+      &  & & Improvement & Improvement \\
+      Scenario  & MAE & RMSE & MAE (\%) & RMSE (\%)\\
+      \hline
+      Total Demand & 0.000073 & 0.000079 & [-] & [-] \\
+      Demand + Sun Elevation & 0.000051 & 0.000059 & -30.14 & -25.32\\
+      Demand + Humidity & 0.000221 & 0.000246 & +202.7 & +211.4\\
+      Demand + Pressure & 0.000041 & 0.000051 & -43.84 & -35.44\\
+      Demand + Wet Bulb Temp. & 0.000110 & 0.000128 & +50.68& +62.02\\
+      Demand + Dry Bulb Temp. & 0.000131 & 0.000142 & +79.45& +79.75\\
+      Demand + Wind Speed & 0.000812 & 0.001297 & +1012& +1541\\
+    \end{tabular}
+  \end{table*}
+% \end{center}

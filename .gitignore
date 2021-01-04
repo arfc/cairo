@@ -20,4 +20,6 @@ arfc-pres.ist
 *.snm
 *.toc
 *.npy
+*.ist
+*.spl
 .snakemake
