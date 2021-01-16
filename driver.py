@@ -40,8 +40,8 @@ params = {'n_reservoir': 1000,
           'rand_seed': 85,
           'rho': 1.5,
           'noise': 0.0001,
-          'future': 96,
-          'window': 96,
+          'future': 48,
+          'window': 48,
           'trainlen': 5000}
 
 VARIABLES = {
@@ -91,7 +91,7 @@ if __name__ == "__main__":
                     '-h': 'humidity',
                     }
 
-    # get arguments
+# get the command line arguments
 
     try:
         opts, args = getopt.getopt(sys.argv[1:],
@@ -137,7 +137,7 @@ if __name__ == "__main__":
 
         if opt in ('-H'):
             params['window'] = int(arg)
-            params['future'] = int(arg)
+            # params['future'] = int(arg)
 
     # Align the two dataframes
     if wdf is not None:
@@ -150,12 +150,20 @@ if __name__ == "__main__":
 
     # Get the training data
     power = np.array(xdf.kw).astype('float64')
-    power_norm = np.linalg.norm(power)
+    # uncomment for 2 norm
+    # power_norm = np.linalg.norm(power)
+
+    # uncomment for infinity norm
+    power_norm = np.linalg.norm(power, ord=np.inf)
     data_norms.append(power_norm)
     X_in.append(power / power_norm)
 
     if sun_elevation is not None:
-        elevation_norm = np.linalg.norm(sun_elevation)
+        # uncomment for 2 norm
+        # elevation_norm = np.linalg.norm(sun_elevation)
+
+        # uncomment for infinity norm
+        elevation_norm = np.linalg.norm(sun_elevation, ord=np.inf)
         data_norms.append(elevation_norm)
         X_in.append(sun_elevation / elevation_norm)
 
@@ -167,7 +175,11 @@ if __name__ == "__main__":
                 print(f"Adding key {key}")
                 # "Aspect" refers to data for a particular aspect of "weather"
                 aspect_data = np.array(xdf[key]).astype('float64')
-                aspect_norm = np.linalg.norm(aspect_data)
+                # uncomment for 2 norm
+                # aspect_norm = np.linalg.norm(aspect_data)
+
+                # uncomment for infinity norm
+                aspect_norm = np.linalg.norm(aspect_data, ord=np.inf)
                 data_norms.append(aspect_norm)
                 X_in.append(aspect_data / aspect_norm)
 
