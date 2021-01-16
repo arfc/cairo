@@ -40,8 +40,8 @@ params = {'n_reservoir': 1000,
           'rand_seed': 85,
           'rho': 1.5,
           'noise': 0.0001,
-          'future': 96,
-          'window': 96,
+          'future': 48,
+          'window': 48,
           'trainlen': 5000}
 
 VARIABLES = {
@@ -137,7 +137,7 @@ if __name__ == "__main__":
 
         if opt in ('-H'):
             params['window'] = int(arg)
-            params['future'] = int(arg)
+            # params['future'] = int(arg)
 
     # Align the two dataframes
     if wdf is not None:
