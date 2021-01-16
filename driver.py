@@ -91,7 +91,7 @@ if __name__ == "__main__":
                     '-h': 'humidity',
                     }
 
-    # get arguments
+# get the command line arguments
 
     try:
         opts, args = getopt.getopt(sys.argv[1:],
