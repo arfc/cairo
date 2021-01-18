@@ -38,7 +38,7 @@ def grid_optimizer(
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
-        
+
         Required parameters are:
             * "n_reservoir" : int, the reservoir size
             * "sparsity" : float, the sparsity of the reservoir
