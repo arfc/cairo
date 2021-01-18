@@ -8,7 +8,7 @@
 .~lock.solarfarm_data.csv#
 _build/*
 *.aux
-*.acn	
+*.acn
 *.aux
 *.bbl
 *.blg
@@ -19,3 +19,5 @@ arfc-pres.ist
 *.out
 *.snm
 *.toc
+*.npy
+.snakemake
