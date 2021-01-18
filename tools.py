@@ -76,6 +76,8 @@ def optimal_values(loss, xset, yset):
     ----------
     loss : numpy matrix
         The matrix of loss values.
+    xset : numpy matirx
+    yset: numpy matirx
 
     Returns
     -------

@@ -35,6 +35,18 @@ Example:
        [ 0.32729446, 11.42177354,  1.87815127,  2.61059131, -0.07544472],
        [-2.63491575,  3.05427465,  2.5680456 ,  3.20375244,  6.83414517]])
 
+Plot:
+
+>>> fig = plt.figure()
+>>> ax = fig.gca(projection="3d")
+>>> ax.plot(x[:, 0], x[:, 1], x[:, 2])
+>>> ax.set_xlabel("$x_1$")
+>>> ax.set_ylabel("$x_2$")
+>>> ax.set_zlabel("$x_3$")
+>>> plt.show()
+
+.. image:: ../examples/plots/lorenz_plots/gen96.png
+   :align: center
 
 :py:func:`lorenz.lorenz63`
 --------------------------
@@ -62,3 +74,16 @@ Example:
     array([[ 1., 1., 1.],
        [-9.37856995, -8.35703373, 29.36232527],
        [-8.17349956, -9.56202269, 24.62070256]])
+
+Plot:
+
+>>> fig = plt.figure()
+>>> ax = fig.gca(projection="3d")
+>>> ax.plot(x[:, 0], x[:, 1], x[:, 2])
+>>> ax.set_xlabel("$x_1$")
+>>> ax.set_ylabel("$x_2$")
+>>> ax.set_zlabel("$x_3$")
+>>> plt.show()
+
+.. image:: ../examples/plots/lorenz_plots/gen63.png
+   :align: center
