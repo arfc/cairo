@@ -27,8 +27,8 @@ def grid_optimizer(
     range of values. The optimal values are determined by minimizing
     the mean squared error. Those optimal values are returned.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     data : numpy array
         This is the dataset that the ESN should train and predict.
         If the training length plus the future total exceed the
@@ -38,15 +38,16 @@ def grid_optimizer(
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
+
         Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
     args : list or tuple
         The list of variables you want to optimize. Must be less
         than or equal to two.
@@ -64,8 +65,8 @@ def grid_optimizer(
     save_path : string
         Specifies where the data should be saved. Default is None.
 
-    Returns:
-    --------
+    Returns
+    -------
     loss : numpy array
         The array or matrix of loss values.
     """

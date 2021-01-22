@@ -21,3 +21,4 @@ arfc-pres.ist
 *.toc
 *.npy
 .snakemake
+.DS_Store

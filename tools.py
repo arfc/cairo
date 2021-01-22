@@ -51,23 +51,24 @@ def param_string(params):
     This function generates a formatted string from
     model parameters.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
-        Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
 
-    Returns:
-    --------
+        Required parameters are:
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
+
+    Returns
+    -------
     pstring : string
         The formatted parameter string.
     """
@@ -93,13 +94,15 @@ def optimal_values(loss, xset, yset):
     a matrix of error values. The optimal set is the pair
     of values that minimizes the error.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     loss : numpy matrix
         The matrix of loss values.
+    xset : numpy matirx
+    yset: numpy matirx
 
-    Returns:
-    --------
+    Returns
+    -------
     x, y : float
         The optimal set of values
     """
@@ -118,8 +121,8 @@ def esn_prediction(data, params, save_path=None):
     the specified time range. Currently, only n_inputs=n_outputs
     is supported.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     data : numpy array
         This is the dataset that the ESN should train and predict.
         If the training length plus the future total exceed the
@@ -127,14 +130,15 @@ def esn_prediction(data, params, save_path=None):
         **The shape of the transpose of the data will determine
         the number of inputs and outputs.**
 
-        E.g. Two datasets trained together
+            E.g. Two datasets trained together
 
-        >>> X_in = np.concatenate([[set1, set2]], axis=1)
-        >>> pred = esn_prediction(X_in.T, params)
+            >>> X_in = np.concatenate([[set1, set2]], axis=1)
+            >>> pred = esn_prediction(X_in.T, params)
 
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
+
         Required parameters are:
             * "n_reservoir" : int, the reservoir size
             * "sparsity" : float, the sparsity of the reservoir
@@ -202,8 +206,8 @@ def esn_scenario(data, params):
     the specified time range. Currently, only n_inputs=n_outputs
     is supported.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     data : numpy array
         This is the dataset that the ESN should train and predict.
         If the training length plus the future total exceed the
@@ -211,26 +215,27 @@ def esn_scenario(data, params):
         **The shape of the transpose of the data will determine
         the number of inputs and outputs.**
 
-        E.g. Two datasets trained together
+            E.g. Two datasets trained together
 
-        >>> X_in = np.concatenate([[set1, set2]], axis=1)
-        >>> pred = esn_prediction(X_in.T, params)
+            >>> X_in = np.concatenate([[set1, set2]], axis=1)
+            >>> pred = esn_prediction(X_in.T, params)
 
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
-        Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
 
-    Return:
-    -------
+        Required parameters are:
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
+
+    Return
+    ------
     prediction : numpy array
         The prediction generated by the ESN. Should have the
         same second dimension as data.

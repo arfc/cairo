@@ -155,7 +155,7 @@ For a period of two years, the function equation_of_time behaves as
 
 
 :py:func:`sunrise.local_meridian`
--------------------------
+---------------------------------
 
 Example:
 Calculating the Local Meridian for Urbana, IL
