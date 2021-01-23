@@ -26,16 +26,16 @@ params = {'n_reservoir': 600,
 
 
 def test_MSE_1():
-    '''
+    """
     Case 1: MSE returns float
-    '''
+    """
     assert(isinstance(MSE(smooth_cos, noisy_cos), np.float64))
 
 
 def test_MSE_equal():
-    '''
+    """
     MSE is zero for two equally sized arrays
-    '''
+    """
     yhat = np.random.randint(100, size=(5))
     y = yhat
 
@@ -45,10 +45,10 @@ def test_MSE_equal():
 
 
 def test_MSE_sldiff():
-    '''
+    """
     MSE is a known float when all but one
     entry are the same.
-    '''
+    """
     y = np.array([[1,2,3]])
     yhat = np.array([[1,1,3]])
 
@@ -58,10 +58,10 @@ def test_MSE_sldiff():
 
 
 def test_MSE_comdiff():
-    '''
+    """
     The MSE should be one when every entry
     is one unit off of its predicted value.
-    '''
+    """
     y = np.array([[1,2,3]])
     yhat = np.array([[0,1,2]])
 
@@ -72,10 +72,10 @@ def test_MSE_comdiff():
 
 @pytest.mark.xfail(reason="The two arrays should be the same size")
 def test_MSE_diffsize():
-    '''
+    """
     Different sized arrays should not work for
     MSE.
-    '''
+    """
     yhat = np.array([[1,2,3]])
     y = np.array([[1,2]])
 
@@ -85,9 +85,9 @@ def test_MSE_diffsize():
 
 
 def test_MAE_equal():
-    '''
+    """
     MAE is zero for two equally sized arrays
-    '''
+    """
     yhat = np.random.randint(100, size=(5))
     y = yhat
 
@@ -97,11 +97,11 @@ def test_MAE_equal():
 
 
 def test_MAE_sldiff():
-    '''
+    """
     MAE is 1/3 for two arrays that are the
     same but for one entry which differs by one
     unit
-    '''
+    """
     yhat = np.array([[1,2,3]])
     y = np.array([[1,1,3]])
 
@@ -111,12 +111,12 @@ def test_MAE_sldiff():
 
 
 def test_MAE_comdiff():
-    '''
+    """
     MAE is a float for two completely different arrays
     where the target vector is the same size as the
     predicted vector but all of the entries are
     three units apart from the corresponding one.
-    '''
+    """
     yhat = np.array([[1,2,3]])
     y = np.array([[4,5,6]])
 
@@ -127,16 +127,24 @@ def test_MAE_comdiff():
 
 @pytest.mark.xfail(reason="The two arrays should be the same size")
 def test_MAE_diffsize():
-    '''
+    """
     Different sized arrays should not work for
     MAE.
-    '''
+    """
     yhat = np.array([[1,2,3]])
     y = np.array([[1,2]])
 
     MAE(yhat,y)
 
     return
+
+
+def test_param_string():
+    """
+    Verifies that param_string returns string.
+    """
+    pstring = param_string(params)
+    assert(isinstance(pstring, str))
 
 
 def test_optimal_values_1():
@@ -167,7 +175,7 @@ def test_esn_prediction_1():
     return
 
 
-def test_esn_prediction_1():
+def test_esn_prediction_2():
     """
     Case 2: The window size is not a multiple of the total future.
     """
@@ -178,9 +186,3 @@ def test_esn_prediction_1():
     return
 
 
-def test_param_string():
-    """
-    Verifies that param_string returns string.
-    """
-    pstring = param_string(params)
-    assert(isinstance(pstring, str))
