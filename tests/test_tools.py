@@ -36,8 +36,8 @@ def test_MAE_equal():
     '''
     MAE is zero for two equal arrays
     '''
-    yhat = np.array([[1,2,3]])
-    y = np.array([[1,2,3]])
+    yhat = np.random.randint(100, size=(5))
+    y = yhat
 
     obs_i = MAE(yhat, y)
     exp_i = 0
