@@ -32,9 +32,61 @@ def test_MSE_1():
     assert(isinstance(MSE(smooth_cos, noisy_cos), np.float64))
 
 
+def test_MSE_equal():
+    '''
+    MSE is zero for two equally sized arrays
+    '''
+    yhat = np.random.randint(100, size=(5))
+    y = yhat
+
+    obs_i = MSE(yhat, y)
+    exp_i = 0
+    assert obs_i == exp_i
+
+
+def test_MSE_sldiff():
+    '''
+    MSE is a known float when all but one
+    entry are the same.
+    '''
+    y = np.array([[1,2,3]])
+    yhat = np.array([[1,1,3]])
+
+    obs = MSE(yhat,y)
+    exp = 0.5773502691896257
+    assert obs == approx(exp, 0.01)
+
+
+def test_MSE_comdiff():
+    '''
+    The MSE should be one when every entry
+    is one unit off of its predicted value.
+    '''
+    y = np.array([[1,2,3]])
+    yhat = np.array([[0,1,2]])
+
+    obs = MSE(yhat,y)
+    exp = 1
+    assert obs == exp
+
+
+@pytest.mark.xfail(reason="The two arrays should be the same size")
+def test_MSE_diffsize():
+    '''
+    Different sized arrays should not work for
+    MSE.
+    '''
+    yhat = np.array([[1,2,3]])
+    y = np.array([[1,2]])
+
+    MSE(yhat,y)
+
+    return
+
+
 def test_MAE_equal():
     '''
-    MAE is zero for two equal arrays
+    MAE is zero for two equally sized arrays
     '''
     yhat = np.random.randint(100, size=(5))
     y = yhat
@@ -46,17 +98,19 @@ def test_MAE_equal():
 
 def test_MAE_sldiff():
     '''
-    MAE is zero for two slightly different arrays
+    MAE is 1/3 for two arrays that are the
+    same but for one entry which differs by one
+    unit
     '''
     yhat = np.array([[1,2,3]])
     y = np.array([[1,1,3]])
 
     obs_i = MAE(yhat, y)
     exp_i = 1/3
-    assert approx(obs_i) == exp_i
+    assert approx(obs_i, 0.01) == exp_i
 
 
-def test_MAE_sldiff():
+def test_MAE_comdiff():
     '''
     MAE is a float for two completely different arrays
     where the target vector is the same size as the
