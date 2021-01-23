@@ -1,7 +1,8 @@
 import pytest
 import numpy as np
 import numpy.random as rd
-from tools import MSE, optimal_values, esn_prediction, param_string
+from tools import *
+from pytest import approx
 
 # =========================================================
 # Set up code
@@ -26,9 +27,62 @@ params = {'n_reservoir': 600,
 
 def test_MSE_1():
     '''
-    Case 1: mse returns float
+    Case 1: MSE returns float
     '''
     assert(isinstance(MSE(smooth_cos, noisy_cos), np.float64))
+
+
+def test_MAE_equal():
+    '''
+    MAE is zero for two equal arrays
+    '''
+    yhat = np.array([[1,2,3]])
+    y = np.array([[1,2,3]])
+
+    obs_i = MAE(yhat, y)
+    exp_i = 0
+    assert obs_i == exp_i
+
+
+def test_MAE_sldiff():
+    '''
+    MAE is zero for two slightly different arrays
+    '''
+    yhat = np.array([[1,2,3]])
+    y = np.array([[1,1,3]])
+
+    obs_i = MAE(yhat, y)
+    exp_i = 1/3
+    assert approx(obs_i) == exp_i
+
+
+def test_MAE_sldiff():
+    '''
+    MAE is a float for two completely different arrays
+    where the target vector is the same size as the
+    predicted vector but all of the entries are
+    three units apart from the corresponding one.
+    '''
+    yhat = np.array([[1,2,3]])
+    y = np.array([[4,5,6]])
+
+    obs_i = MAE(yhat, y)
+    exp_i = 3.0
+    assert obs_i == exp_i
+
+
+@pytest.mark.xfail(reason="The two arrays should be the same size")
+def test_MAE_diffsize():
+    '''
+    Different sized arrays should not work for
+    MAE.
+    '''
+    yhat = np.array([[1,2,3]])
+    y = np.array([[1,2]])
+
+    MAE(yhat,y)
+
+    return
 
 
 def test_optimal_values_1():
