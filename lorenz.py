@@ -11,18 +11,20 @@ def lorenz96(x, t, N=5, F=8):
     Here the differential equation is described for
     use with the ``odeint`` function.
 
-    Parameters:
-    -----------
-    x : The independent variable
-    t : The time of the simulation
+    Parameters
+    ----------
+    x : numpy array or list
+        The independent variable
+    t : numpy array or list
+        The time of the simulation
     N : integer
         The number of variables in the system
         N >=4
     F : integer or float
         The forcing constant
 
-    Returns:
-    --------
+    Returns
+    -------
     dxdt : The function
     """
 
@@ -39,9 +41,9 @@ def generate_L96(t, P=0.01, N=5, F=8):
     This function generates data for the Lorenz-96
     model.
 
-    Parameters:
-    -----------
-    t : numpy array
+    Parameters
+    ----------
+    t : numpy array or list
         The array of time steps.
     P : integer or float
         The initial perturbation on the system.
@@ -51,8 +53,8 @@ def generate_L96(t, P=0.01, N=5, F=8):
     F : integer or float
         The forcing constant.
 
-    Returns:
-    --------
+    Returns
+    -------
     data : The time series data for Lorenz-96.
     """
 
@@ -72,8 +74,31 @@ def lorenz63(x, t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
 
     This function describes the differential equation
     for use with the ``odeint`` function from scipy.
-    """
 
+    Parameters
+    ----------
+    x : numpy array or list
+        The independent variable
+    t : numpy array or list
+        The array of time steps.
+    rho : integer or float
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+        For rho < 1 there is one equilibrium point
+        at the origin. There is a bifurcation when
+        rho = 1, and when rho > 1 there are two
+        more critical.
+    sigma : integer or float
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+    beta : integer or float
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+
+    Returns
+    -------
+    dxdt : The function
+    """
     N = 3
 
     dxdt = np.ones(N)
@@ -93,6 +118,28 @@ def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
     """
     This function generates data for the Lorenz-63
     model.
+
+    Parameters
+    ----------
+    t: numpy array or list
+        The array of time steps
+    rho : integer or float
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+        For rho < 1 there is one equilibrium point
+        at the origin. There is a bifurcation when
+        rho = 1, and when rho > 1 there are two
+        more critical.
+    sigma : integer or float
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+    beta : integer or float
+        Dimensionless quantity related to the Prandtl
+        and Rayleigh numbers.
+
+    Returns
+    -------
+    data : The time series data for Lorenz-63.
     """
     N = 3
     x0 = np.ones(N)
@@ -104,9 +151,9 @@ def generate_L63(t, rho=28.0, sigma=10.0, beta=(8.0 / 3.0)):
 
 if __name__ == "__main__":
 
-#==================================================================
-# Lorenz 96 : Three Dimensional Plot
-#==================================================================
+    # ==================================================================
+    # Lorenz 96 : Three Dimensional Plot
+    # ==================================================================
 
     # t = np.arange(0, 40.0, 0.01)
     # x = generate_L96(t)
@@ -119,9 +166,9 @@ if __name__ == "__main__":
     # ax.set_zlabel("$x_3$")
     # plt.show()
 
-#==================================================================
-# Lorenz 63 : Three Dimensional Plot
-#==================================================================
+    # ==================================================================
+    # Lorenz 63 : Three Dimensional Plot
+    # ==================================================================
     # t = np.arange(0, 40.0, 0.01)
     # x = generate_L63(t, rho=1.2, sigma=0.1, beta=0)
 
@@ -133,9 +180,9 @@ if __name__ == "__main__":
     # ax.set_zlabel("$x_3$")
     # plt.show()
 
-#==================================================================
-# Lorenz 96 : One Dimensional Plots
-#==================================================================
+    # ==================================================================
+    # Lorenz 96 : One Dimensional Plots
+    # ==================================================================
     t = np.arange(0, 40.0, 0.01)
     x = generate_L63(t, rho=1.2, sigma=0.1, beta=0)
 

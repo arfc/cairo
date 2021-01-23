@@ -27,8 +27,8 @@ def grid_optimizer(
     range of values. The optimal values are determined by minimizing
     the mean squared error. Those optimal values are returned.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     data : numpy array
         This is the dataset that the ESN should train and predict.
         If the training length plus the future total exceed the
@@ -38,15 +38,16 @@ def grid_optimizer(
     params : dictionary
         A dictionary containing all of the parameters required to
         initialize an ESN.
+
         Required parameters are:
-            "n_reservoir" : int, the reservoir size
-            "sparsity" : float, the sparsity of the reservoir
-            "rand_seed" : int or None, specifies the initial seed
-            "rho" : float, the spectral radius
-            "noise" : the noise used for regularization
-            "trainlen" : int, the training length
-            "future" : int, the total prediction length
-            "window" : int or None, the window size
+            * "n_reservoir" : int, the reservoir size
+            * "sparsity" : float, the sparsity of the reservoir
+            * "rand_seed" : int or None, specifies the initial seed
+            * "rho" : float, the spectral radius
+            * "noise" : the noise used for regularization
+            * "trainlen" : int, the training length
+            * "future" : int, the total prediction length
+            * "window" : int or None, the window size
     args : list or tuple
         The list of variables you want to optimize. Must be less
         than or equal to two.
@@ -64,8 +65,8 @@ def grid_optimizer(
     save_path : string
         Specifies where the data should be saved. Default is None.
 
-    Returns:
-    --------
+    Returns
+    -------
     loss : numpy array
         The array or matrix of loss values.
     """
@@ -145,9 +146,13 @@ def grid_optimizer(
         fig = plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
         ax = plt.axes(projection='3d')
 
-        X = xset
-        Y = yset
+        X = np.array(xset)
+        Y = np.array(yset)
         Z = np.array(loss).T
+
+        print(f"Shape X {X.shape}")
+        print(f"Shape Y {Y.shape}")
+        print(f"Shape Z {Z.shape}")
 
         mappable = plt.cm.ScalarMappable()
         mappable.set_array(Z)
@@ -165,16 +170,18 @@ def grid_optimizer(
                      rotation=-90,
                      labelpad=25)
         fig.tight_layout()
+
+        plt.show()
     # =======================================================================
     # Save data
     # =======================================================================
 
     if save_path is not None:
         if yset is not None:
-            fname = f"{xvar}_{yvar}_loss"
-            np.save(save_path + fname, loss)
+            fname = f"_{xvar}_{yvar}_loss"
+            np.save('./data/' + save_path + fname, loss)
         else:
-            fname = f"{xvar}_loss"
-            np.save(save_path + fname, loss)
+            fname = f"_{xvar}_loss"
+            np.save('./data/' + save_path + fname, loss)
 
     return loss

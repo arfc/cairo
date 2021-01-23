@@ -175,6 +175,7 @@ def local_meridian(utc=utc):
     LSTM. The LSTM is a reference meridian for given time zones.
     LSTM is calculated according to the equation:
         LSTM = 360/24*UTC
+
     UTC < 0 gives the answer in degrees West.
     UTC > 0 gives the answer in degrees East.
 
@@ -375,9 +376,9 @@ if __name__ == "__main__":
     print(f"The elevation angle is: {elangle}")
 
     rise = 12 - (180 / np.pi) * (1 / 15) * np.arccos(-np.sin(
-    lat * np.pi / 180) * np.sin(
+        lat * np.pi / 180) * np.sin(
         dec * np.pi / 180) / (np.cos(lat * np.pi / 180) * np.cos(
-        dec * np.pi / 180))) - tc / 60
+            dec * np.pi / 180))) - tc / 60
     print(rise)
 
     dates = pd.date_range(start='1/1/2015', end='7/1/2019', freq='h')[:-2]
