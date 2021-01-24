@@ -31,6 +31,8 @@ def test_MSE_1():
     """
     assert(isinstance(MSE(smooth_cos, noisy_cos), np.float64))
 
+    return
+
 
 def test_MSE_equal():
     """
@@ -42,6 +44,8 @@ def test_MSE_equal():
     obs_i = MSE(yhat, y)
     exp_i = 0
     assert obs_i == exp_i
+
+    return
 
 
 def test_MSE_sldiff():
@@ -56,6 +60,8 @@ def test_MSE_sldiff():
     exp = 0.5773502691896257
     assert obs == approx(exp, 0.01)
 
+    return
+
 
 def test_MSE_comdiff():
     """
@@ -68,6 +74,8 @@ def test_MSE_comdiff():
     obs = MSE(yhat,y)
     exp = 1
     assert obs == exp
+
+    return
 
 
 @pytest.mark.xfail(reason="The two arrays should be the same size")
@@ -86,7 +94,7 @@ def test_MSE_diffsize():
 
 def test_MAE_equal():
     """
-    MAE is zero for two equally sized arrays
+    MAE is zero for two equally sized arrays.
     """
     yhat = np.random.randint(100, size=(5))
     y = yhat
@@ -95,12 +103,14 @@ def test_MAE_equal():
     exp_i = 0
     assert obs_i == exp_i
 
+    return
+
 
 def test_MAE_sldiff():
     """
     MAE is 1/3 for two arrays that are the
     same but for one entry which differs by one
-    unit
+    unit.
     """
     yhat = np.array([[1,2,3]])
     y = np.array([[1,1,3]])
@@ -108,6 +118,8 @@ def test_MAE_sldiff():
     obs_i = MAE(yhat, y)
     exp_i = 1/3
     assert approx(obs_i, 0.01) == exp_i
+
+    return
 
 
 def test_MAE_comdiff():
@@ -123,6 +135,8 @@ def test_MAE_comdiff():
     obs_i = MAE(yhat, y)
     exp_i = 3.0
     assert obs_i == exp_i
+
+    return
 
 
 @pytest.mark.xfail(reason="The two arrays should be the same size")
@@ -146,12 +160,15 @@ def test_param_string():
     pstring = param_string(params)
     assert(isinstance(pstring, str))
 
+    return
 
-def test_optimal_values_1():
-    """
-    Case 1: optimal_values returns the correct set.
-    """
 
+def test_optimal_values_pmone():
+    """
+    Optimal_values returns the correct set
+    when the output should clearly be plus
+    or minus one.
+    """
     x = np.array([-1, 0, 0])
     y = np.array([1, 0, 0])
     b = np.outer(x, y)
@@ -163,26 +180,39 @@ def test_optimal_values_1():
     return
 
 
-def test_esn_prediction_1():
+def test_optimal_values_equal():
     """
-    Case 1: The ESN does not train because of mismatched
-    input shapes.
+    Optimal_values returns
     """
+    return
 
+def test_esn_prediction_diffsize():
+    """
+    The ESN does not train because of
+    mismatched input shapes.
+    """
     with pytest.raises(IndexError):
         pred = esn_prediction(X_in, params)
 
     return
 
 
-def test_esn_prediction_2():
+def test_esn_prediction_multiple():
     """
-    Case 2: The window size is not a multiple of the total future.
+    The window size is not a multiple of the
+    total future.
     """
-
     with pytest.raises(AssertionError):
         pred = esn_prediction(X_in, params)
 
     return
 
 
+def test_esn_save():
+    """
+    The esn function has the ability to save
+    predictions to the data folder.
+    """
+    esn_prediction(X_in,params, 1)
+
+    return
