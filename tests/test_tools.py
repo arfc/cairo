@@ -1,8 +1,10 @@
 import pytest
+from lorenz import generate_L96
 import numpy as np
 import numpy.random as rd
 from tools import *
 from pytest import approx
+import os
 
 # =========================================================
 # Set up code
@@ -13,7 +15,7 @@ noisy_cos = np.cos(t) + (2 * rd.random(N) - 1) / 10
 smooth_cos = np.cos(t)
 X_in = np.concatenate([[noisy_cos, smooth_cos]], axis=1)
 
-params = {'n_reservoir': 600,
+params_ws = {'n_reservoir': 600,
           'sparsity': 0.1,
           'rand_seed': 85,
           'rho': 0.7,
@@ -21,6 +23,17 @@ params = {'n_reservoir': 600,
           'future': 20,
           'window': 3,
           'trainlen': 500}
+
+q = np.arange(0,30.0, 0.01)
+x = generate_L96(q)
+params_save = {'n_reservoir':600,
+          'sparsity':0.03,
+          'rand_seed':85,
+          'rho':1.5,
+          'noise':0.01,
+          'future':72,
+          'window':72,
+          'trainlen':1200}
 # =========================================================
 # =========================================================
 
@@ -157,7 +170,7 @@ def test_param_string():
     """
     Verifies that param_string returns string.
     """
-    pstring = param_string(params)
+    pstring = param_string(params_ws)
     assert(isinstance(pstring, str))
 
     return
@@ -191,8 +204,8 @@ def test_esn_prediction_diffsize():
     The ESN does not train because of
     mismatched input shapes.
     """
-    with pytest.raises(IndexError):
-        pred = esn_prediction(X_in, params)
+    with pytest.raises(AssertionError):
+        pred = esn_prediction(X_in, params_ws)
 
     return
 
@@ -203,7 +216,7 @@ def test_esn_prediction_multiple():
     total future.
     """
     with pytest.raises(AssertionError):
-        pred = esn_prediction(X_in, params)
+        pred = esn_prediction(X_in, params_ws)
 
     return
 
@@ -211,8 +224,15 @@ def test_esn_prediction_multiple():
 def test_esn_save():
     """
     The esn function has the ability to save
-    predictions to the data folder.
+    predictions to the data folder. This test
+    generates a sample data set based off of
+    the params_save values, with the domain
+    of q values and x function defined by
+    generate_L96 from the Lorenz module.
     """
-    esn_prediction(X_in,params, 1)
-
+    esn_prediction(x,params_save, 'test_save')
+    assert os.path.exists('./data/test_save_prediction.npy')
+    if os.path.exists('./data/test_save_prediction.npy'):
+        os.remove('./data/test_save_prediction.npy')
+    
     return
