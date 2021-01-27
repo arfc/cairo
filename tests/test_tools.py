@@ -91,7 +91,6 @@ def test_MSE_comdiff():
     return
 
 
-@pytest.mark.xfail(reason="The two arrays should be the same size")
 def test_MSE_diffsize():
     """
     Different sized arrays should not work for
@@ -99,8 +98,8 @@ def test_MSE_diffsize():
     """
     yhat = np.array([[1,2,3]])
     y = np.array([[1,2]])
-
-    MSE(yhat,y)
+    with pytest.raises(ValueError):
+        MSE(yhat,y)
 
     return
 
@@ -160,7 +159,6 @@ def test_MAE_comdiff():
     return
 
 
-@pytest.mark.xfail(reason="The two arrays should be the same size")
 def test_MAE_diffsize():
     """
     Different sized arrays should not work for
@@ -168,8 +166,8 @@ def test_MAE_diffsize():
     """
     yhat = np.array([[1,2,3]])
     y = np.array([[1,2]])
-
-    MAE(yhat,y)
+    with pytest.raises(ValueError):
+        MAE(yhat,y)
 
     return
 
