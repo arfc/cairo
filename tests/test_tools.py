@@ -15,7 +15,7 @@ noisy_cos = np.cos(t) + (2 * rd.random(N) - 1) / 10
 smooth_cos = np.cos(t)
 X_in = np.concatenate([[noisy_cos, smooth_cos]], axis=1)
 
-params_ws = {'n_reservoir': 600,
+params_broke = {'n_reservoir': 600,
           'sparsity': 0.1,
           'rand_seed': 85,
           'rho': 0.7,
@@ -26,7 +26,7 @@ params_ws = {'n_reservoir': 600,
 
 q = np.arange(0,30.0, 0.01)
 x = generate_L96(q)
-params_save = {'n_reservoir':600,
+params_work = {'n_reservoir':600,
           'sparsity':0.03,
           'rand_seed':85,
           'rho':1.5,
@@ -170,7 +170,7 @@ def test_param_string():
     """
     Verifies that param_string returns string.
     """
-    pstring = param_string(params_ws)
+    pstring = param_string(params_broke)
     assert(isinstance(pstring, str))
 
     return
@@ -195,17 +195,28 @@ def test_optimal_values_pmone():
 
 def test_optimal_values_equal():
     """
-    Optimal_values returns
+    Optimal_values returns the correct
+    set for two arrays with the same
+    values
     """
+    x = np.array([1, 0, 0])
+    y = np.array([1, 0, 0])
+    b = np.outer(x, y)
+    min_set = (1, 0)
+
+    opt_set = optimal_values(b, x, y)
+    assert(min_set == opt_set)
+
     return
+
 
 def test_esn_prediction_diffsize():
     """
     The ESN does not train because of
     mismatched input shapes.
     """
-    with pytest.raises(AssertionError):
-        pred = esn_prediction(X_in, params_ws)
+    with pytest.raises(IndexError):
+        pred = esn_prediction(X_in, params_work)
 
     return
 
@@ -216,23 +227,55 @@ def test_esn_prediction_multiple():
     total future.
     """
     with pytest.raises(AssertionError):
-        pred = esn_prediction(X_in, params_ws)
+        pred = esn_prediction(X_in, params_broke)
 
     return
 
 
 def test_esn_save():
     """
-    The esn function has the ability to save
-    predictions to the data folder. This test
-    generates a sample data set based off of
-    the params_save values, with the domain
+    The esn_prediction function has the
+    ability to save predictions to the
+    data folder. This test generates a
+    sample data set based off of the
+    params_save values, with the domain
     of q values and x function defined by
-    generate_L96 from the Lorenz module.
+    generate_L96 from the Lorenz module. It
+    makes a test file and then removes it.
+    As such, there should not be a test data
+    file after the test has been completed.
     """
-    esn_prediction(x,params_save, 'test_save')
+    esn_prediction(x,params_work, 'test_save')
     assert os.path.exists('./data/test_save_prediction.npy')
     if os.path.exists('./data/test_save_prediction.npy'):
         os.remove('./data/test_save_prediction.npy')
+    else:
+        pass
     
+    return
+
+
+def test_esn_scenario_diffsize():
+    """
+    The ESN does not train because of
+    mismatched input shapes.
+    Not quite sure how but this works
+    with the wrong data set.
+    """
+    with pytest.raises(IndexError):
+        pred = esn_scenario(X_in, params_broke)
+
+    return
+
+
+def test_esn_scenario_multiple():
+    """
+    The window size is not a multiple of the
+    total future.
+    Not quite sure how but this works
+    with the wrong data set.
+    """
+    with pytest.raises(AssertionError):
+        pred = esn_scenario(X_in, params_broke)
+
     return

@@ -109,8 +109,8 @@ def optimal_values(loss, xset, yset):
 
     minLoss = np.min(loss)
     index_min = np.where(loss == minLoss)
-    x_optimal = xset[int(index_min[0])]
-    y_optimal = yset[int(index_min[1])]
+    x_optimal = xset[int(index_min[0][0])]
+    y_optimal = yset[int(index_min[1][0])]
 
     return x_optimal, y_optimal
 
@@ -256,7 +256,7 @@ def esn_scenario(data, params):
               spectral_radius=params['rho'],
               noise=params['noise'])
 
-#     trainlen = params['trainlen']
+#    trainlen = params['trainlen']
     trainlen = len(data)
     futureTotal = params['future']
     pred_tot = np.ones((futureTotal, n_vars))
