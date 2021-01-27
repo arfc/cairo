@@ -38,9 +38,9 @@ params_work = {'n_reservoir':600,
 # =========================================================
 
 
-def test_MSE_1():
+def test_MSE_float():
     """
-    Case 1: MSE returns float
+    MSE returns float
     """
     assert(isinstance(MSE(smooth_cos, noisy_cos), np.float64))
 
@@ -101,6 +101,14 @@ def test_MSE_diffsize():
     y = np.array([[1,2]])
 
     MSE(yhat,y)
+
+    return
+
+def test_MAE_float():
+    """
+    MAE returns float
+    """
+    assert(isinstance(MAE(smooth_cos, noisy_cos), np.float64))
 
     return
 
@@ -276,6 +284,6 @@ def test_esn_scenario_multiple():
     with the wrong data set.
     """
     with pytest.raises(AssertionError):
-        pred = esn_scenario(X_in, params_broke)
+        pred = esn_scenario(X_in, params_work)
 
     return
