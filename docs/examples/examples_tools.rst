@@ -5,7 +5,7 @@ Tools Examples
 
 The Tools module contains a variety of
 functions that aide in the error
-assessment.
+assessment, and ESN applications.
 
 :py:func:`tools.MSE`
 --------------------
@@ -84,3 +84,59 @@ Example:
        [197.72993036],
        [198.63995168]
     ])
+
+:py:func:`esn_scenario`
+-----------------------
+
+Example:
+
+>>> data = np.arange(0,200,1)
+>>> params = {'n_reservoir': 600,
+              'sparsity': 0.1,
+              'rand_seed': 85,
+              'rho': 0.7,
+              'noise': 0.000,
+              'future': 20,
+              'window': 4,
+              'trainlen': 120}
+>>> esn_scen = esn_scenario(data,params)
+    (array([[199.90028468],
+        [200.75821551],
+        [201.60046524],
+        [202.43699788],
+        [203.27151745],
+        [204.10539996],
+        [204.93915767],
+        [205.77298275],
+        [206.6069489 ],
+        [207.44108604],
+        [208.27540786],
+        [209.10992208],
+        [209.94463419],
+        [210.77954885],
+        [211.61467034],
+        [212.45000285],
+        [213.28555042],
+        [214.12131705],
+        [214.95730668],
+        [215.79352317]]),
+   <pyESN.pyESN.ESN at 0x7fa46138a250>)
+
+Plots:
+
+>>> x = []
+>>> for i in esn_scen:
+>>>     if type(i) is numpy.ndarray:
+>>>         for subset in i:
+>>>             for subsubset in subset:
+>>>                 x.append(subsubset)
+>>>     else:
+>>>         pass
+>>> t = np.arange(199,219,1)
+>>> line = plt.plot(data,data)
+>>> scenario = plt.plot(t,x)
+>>> plt.title('ESN Scenario Applied to a Line')
+>>> plt.show(line, scenario)
+
+.. image:: ../examples/plots/tools_plots/esnscen.png
+    :align: center
