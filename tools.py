@@ -109,8 +109,8 @@ def optimal_values(loss, xset, yset):
 
     minLoss = np.min(loss)
     index_min = np.where(loss == minLoss)
-    x_optimal = xset[int(index_min[0][0])]
-    y_optimal = yset[int(index_min[1][0])]
+    x_optimal = xset[int(index_min[0])]
+    y_optimal = yset[int(index_min[1])]
 
     return x_optimal, y_optimal
 

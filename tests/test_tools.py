@@ -14,7 +14,6 @@ t = np.linspace(0, 6 * np.pi, N)
 noisy_cos = np.cos(t) + (2 * rd.random(N) - 1) / 10
 smooth_cos = np.cos(t)
 X_in = np.concatenate([[noisy_cos, smooth_cos]], axis=1)
-
 params_broke = {'n_reservoir': 600,
           'sparsity': 0.1,
           'rand_seed': 85,
@@ -190,7 +189,7 @@ def test_optimal_values_pmone():
     """
     x = np.array([-1, 0, 0])
     y = np.array([1, 0, 0])
-    b = np.outer(x, y)
+    b = np.outer(3, 3)
     min_set = (-1, 1)
 
     opt_set = optimal_values(b, x, y)
@@ -199,19 +198,41 @@ def test_optimal_values_pmone():
     return
 
 
-def test_optimal_values_equal():
+def test_optimal_values_equal_arrays():
     """
     Optimal_values returns the correct
     set for two arrays with the same
-    values
+    values.
     """
     x = np.array([1, 0, 0])
     y = np.array([1, 0, 0])
-    b = np.outer(x, y)
-    min_set = (1, 0)
+    b = np.array([[0.80, 0.28, 0.46],
+       [0.12, 0.49, 0.93],
+       [0.38, 0.50, 0.66]])
+    min_set = (0, 1)
 
     opt_set = optimal_values(b, x, y)
-    assert(min_set == opt_set)
+    assert (min_set == opt_set)
+
+    return
+
+
+@pytest.mark.skip(reason="A separate issue has been made to address this")
+def test_optimal_values_equal_loss_entries():
+    """
+    Optimal_values returns the correct
+    set for a loss array with two
+    zeros.
+    """
+    x = np.array([1, 0, 0])
+    y = np.array([1, 0, 0])
+    b = np.array([[0.80, 0, 0.46],
+       [0.12, 0.49, 0.93],
+       [0, 0.50, 0.66]])
+    min_set = (0, 1)
+
+    opt_set = optimal_values(b, x, y)
+    assert (min_set == opt_set)
 
     return
 
@@ -261,7 +282,7 @@ def test_esn_save():
     return
 
 
-def test_esn_scenario_diffsize():
+def test_esn_scenario_entry_diffsize():
     """
     The ESN does not train because of
     mismatched input shapes.
@@ -274,7 +295,7 @@ def test_esn_scenario_diffsize():
     return
 
 
-def test_esn_scenario_multiple():
+def test_esn_scenario_window_multiple():
     """
     The window size is not a multiple of the
     total future.
@@ -283,5 +304,34 @@ def test_esn_scenario_multiple():
     """
     with pytest.raises(AssertionError):
         pred = esn_scenario(X_in, params_work)
+
+    return
+
+
+def test_esn_scenario_output_size():
+    """
+    The output size of esn_scenario
+    should contain an array of the same
+    size as the data parameter that
+    is input.
+    """
+    zeros = np.zeros([3,3])
+    params_work['future'] = 1
+    params_work['window'] = 1
+    output = esn_scenario(zeros,params_work)
+    outlen = len(output[0][0])
+    exp = 3
+    assert outlen == exp
+
+    return
+
+
+def test_esn_scenario_output_type():
+    """
+    The output of esn_scenario
+    should contain a numpy array.
+    """
+    output = esn_scenario(x,params_work)
+    assert type(output[0][0]) is np.ndarray
 
     return
