@@ -282,32 +282,6 @@ def test_esn_save():
     return
 
 
-def test_esn_scenario_entry_diffsize():
-    """
-    The ESN does not train because of
-    mismatched input shapes.
-    Not quite sure how but this works
-    with the wrong data set.
-    """
-    with pytest.raises(IndexError):
-        pred = esn_scenario(X_in, params_broke)
-
-    return
-
-
-def test_esn_scenario_window_multiple():
-    """
-    The window size is not a multiple of the
-    total future.
-    Not quite sure how but this works
-    with the wrong data set.
-    """
-    with pytest.raises(AssertionError):
-        pred = esn_scenario(X_in, params_work)
-
-    return
-
-
 def test_esn_scenario_output_size():
     """
     The output size of esn_scenario
