@@ -14,25 +14,29 @@ t = np.linspace(0, 6 * np.pi, N)
 noisy_cos = np.cos(t) + (2 * rd.random(N) - 1) / 10
 smooth_cos = np.cos(t)
 X_in = np.concatenate([[noisy_cos, smooth_cos]], axis=1)
-params_broke = {'n_reservoir': 600,
-          'sparsity': 0.1,
-          'rand_seed': 85,
-          'rho': 0.7,
-          'noise': 0.001,
-          'future': 20,
-          'window': 3,
-          'trainlen': 500}
+params_broke = {
+    'n_reservoir': 600,
+    'sparsity': 0.1,
+    'rand_seed': 85,
+    'rho': 0.7,
+    'noise': 0.001,
+    'future': 20,
+    'window': 3,
+    'trainlen': 500
+}
 
 q = np.arange(0, 30.0, 0.01)
 x = generate_L96(q)
-params_work = {'n_reservoir': 600,
-          'sparsity': 0.03,
-          'rand_seed': 85,
-          'rho': 1.5,
-          'noise': 0.01,
-          'future': 72,
-          'window': 72,
-          'trainlen': 1200}
+params_work = {
+    'n_reservoir': 600,
+    'sparsity': 0.03,
+    'rand_seed': 85,
+    'rho': 1.5,
+    'noise': 0.01,
+    'future': 72,
+    'window': 72,
+    'trainlen': 1200
+}
 # =========================================================
 # =========================================================
 
