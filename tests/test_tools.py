@@ -23,16 +23,16 @@ params_broke = {'n_reservoir': 600,
           'window': 3,
           'trainlen': 500}
 
-q = np.arange(0,30.0, 0.01)
+q = np.arange(0, 30.0, 0.01)
 x = generate_L96(q)
-params_work = {'n_reservoir':600,
-          'sparsity':0.03,
-          'rand_seed':85,
-          'rho':1.5,
-          'noise':0.01,
-          'future':72,
-          'window':72,
-          'trainlen':1200}
+params_work = {'n_reservoir': 600,
+          'sparsity': 0.03,
+          'rand_seed': 85,
+          'rho': 1.5,
+          'noise': 0.01,
+          'future': 72,
+          'window': 72,
+          'trainlen': 1200}
 # =========================================================
 # =========================================================
 
@@ -65,10 +65,10 @@ def test_MSE_sldiff():
     MSE is a known float when all but one
     entry are the same.
     """
-    y = np.array([[1,2,3]])
-    yhat = np.array([[1,1,3]])
+    y = np.array([[1, 2, 3]])
+    yhat = np.array([[1, 1, 3]])
 
-    obs = MSE(yhat,y)
+    obs = MSE(yhat, y)
     exp = 0.5773502691896257
     assert obs == approx(exp, 0.01)
 
@@ -80,10 +80,10 @@ def test_MSE_comdiff():
     The MSE should be one when every entry
     is one unit off of its predicted value.
     """
-    y = np.array([[1,2,3]])
-    yhat = np.array([[0,1,2]])
+    y = np.array([[1, 2, 3]])
+    yhat = np.array([[0, 1, 2]])
 
-    obs = MSE(yhat,y)
+    obs = MSE(yhat, y)
     exp = 1
     assert obs == exp
 
@@ -95,10 +95,10 @@ def test_MSE_diffsize():
     Different sized arrays should not work for
     MSE.
     """
-    yhat = np.array([[1,2,3]])
-    y = np.array([[1,2]])
+    yhat = np.array([[1, 2, 3]])
+    y = np.array([[1, 2]])
     with pytest.raises(ValueError):
-        MSE(yhat,y)
+        MSE(yhat, y)
 
     return
 
@@ -106,7 +106,7 @@ def test_MAE_float():
     """
     MAE returns float
     """
-    assert(isinstance(MAE(smooth_cos, noisy_cos), np.float64))
+    assert(isinstance(MAE(smooth_cos, noisy_cos),  np.float64))
 
     return
 
@@ -131,8 +131,8 @@ def test_MAE_sldiff():
     same but for one entry which differs by one
     unit.
     """
-    yhat = np.array([[1,2,3]])
-    y = np.array([[1,1,3]])
+    yhat = np.array([[1, 2, 3]])
+    y = np.array([[1, 1, 3]])
 
     obs_i = MAE(yhat, y)
     exp_i = 1/3
@@ -148,8 +148,8 @@ def test_MAE_comdiff():
     predicted vector but all of the entries are
     three units apart from the corresponding one.
     """
-    yhat = np.array([[1,2,3]])
-    y = np.array([[4,5,6]])
+    yhat = np.array([[1, 2, 3]])
+    y = np.array([[4, 5, 6]])
 
     obs_i = MAE(yhat, y)
     exp_i = 3.0
@@ -163,10 +163,10 @@ def test_MAE_diffsize():
     Different sized arrays should not work for
     MAE.
     """
-    yhat = np.array([[1,2,3]])
-    y = np.array([[1,2]])
+    yhat = np.array([[1, 2, 3]])
+    y = np.array([[1, 2]])
     with pytest.raises(ValueError):
-        MAE(yhat,y)
+        MAE(yhat, y)
 
     return
 
@@ -289,10 +289,10 @@ def test_esn_scenario_output_size():
     size as the data parameter that
     is input.
     """
-    zeros = np.zeros([3,3])
+    zeros = np.zeros([3, 3])
     params_work['future'] = 1
     params_work['window'] = 1
-    output = esn_scenario(zeros,params_work)
+    output = esn_scenario(zeros, params_work)
     outlen = len(output[0][0])
     exp = 3
     assert outlen == exp
@@ -305,7 +305,7 @@ def test_esn_scenario_output_type():
     The output of esn_scenario
     should contain a numpy array.
     """
-    output = esn_scenario(x,params_work)
+    output = esn_scenario(x, params_work)
     assert type(output[0][0]) is np.ndarray
 
     return
