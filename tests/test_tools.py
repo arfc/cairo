@@ -102,6 +102,7 @@ def test_MSE_diffsize():
 
     return
 
+
 def test_MAE_float():
     """
     MAE returns float
@@ -206,9 +207,11 @@ def test_optimal_values_equal_arrays():
     """
     x = np.array([1, 0, 0])
     y = np.array([1, 0, 0])
-    b = np.array([[0.80, 0.28, 0.46],
-       [0.12, 0.49, 0.93],
-       [0.38, 0.50, 0.66]])
+    b = np.array([
+        [0.80, 0.28, 0.46],
+        [0.12, 0.49, 0.93],
+        [0.38, 0.50, 0.66]
+    ])
     min_set = (0, 1)
 
     opt_set = optimal_values(b, x, y)
@@ -226,9 +229,11 @@ def test_optimal_values_equal_loss_entries():
     """
     x = np.array([1, 0, 0])
     y = np.array([1, 0, 0])
-    b = np.array([[0.80, 0, 0.46],
-       [0.12, 0.49, 0.93],
-       [0, 0.50, 0.66]])
+    b = np.array([
+        [0.80, 0, 0.46],
+        [0.12, 0.49, 0.93],
+        [0, 0.50, 0.66]
+    ])
     min_set = (0, 1)
 
     opt_set = optimal_values(b, x, y)
@@ -272,13 +277,13 @@ def test_esn_save():
     As such, there should not be a test data
     file after the test has been completed.
     """
-    esn_prediction(x,params_work, 'test_save')
+    esn_prediction(x, params_work, 'test_save')
     assert os.path.exists('./data/test_save_prediction.npy')
     if os.path.exists('./data/test_save_prediction.npy'):
         os.remove('./data/test_save_prediction.npy')
     else:
         pass
-    
+
     return
 
 
