@@ -40,6 +40,7 @@ def test_grid_optimize_1():
                               xset=trainingLengths,
                               verbose=False,
                               visualize=False)
+
     return
 
 
@@ -54,6 +55,7 @@ def test_grid_optimize_2():
                               xset=trainingLengths,
                               verbose=False,
                               visualize=False)
+
     return
 
 
@@ -68,6 +70,7 @@ def test_grid_optimize_3():
                               xset=reservoir_set,
                               verbose=False,
                               visualize=False)
+
     return
 
 
@@ -83,6 +86,7 @@ def test_grid_optimize_4():
                               yset=sparsity_set,
                               verbose=False,
                               visualize=False)
+
     return
 
 
@@ -98,6 +102,7 @@ def test_grid_optimize_5():
                               yset=None,
                               verbose=False,
                               visualize=False)
+
     return
 
 
@@ -109,6 +114,7 @@ def test_grid_optimize_6():
         loss = grid_optimizer(X_in,
                               params,
                               args=['n_reservoir'])
+
     return
 
 
@@ -121,4 +127,5 @@ def test_grid_optimize_7():
                               params,
                               args=['n_reservoir'],
                               yset=reservoir_set)
+
     return

@@ -14,6 +14,8 @@ def test_lorenz96_constant():
     exp_i = lorenz96(np.array([0, 0, 0, 0, 0]), np.arange(0, 4, 1))
     assert (obs_i == exp_i).all()
 
+    return
+
 
 def test_lorenz96_linear_distribution():
     """
@@ -22,6 +24,8 @@ def test_lorenz96_linear_distribution():
     obs_i = np.array([0., 7., 9., 11., -2.])
     exp_i = lorenz96(np.array([0, 1, 2, 3, 4]), np.arange(0, 4, 0.1))
     assert (obs_i == exp_i).all()
+
+    return
 
 
 def test_generate_L96_zero():
@@ -39,6 +43,8 @@ def test_generate_L96_zero():
     exp_i = generate_L96(np.zeros(4), 0, 4, 0)
     assert (obs_i == exp_i).all()
 
+    return
+
 
 def test_generate_L96_constant():
     """
@@ -54,6 +60,8 @@ def test_generate_L96_constant():
     ])
     exp_i = generate_L96(np.ones(5), 0, 5, 8)
     assert (obs_i == exp_i).all()
+
+    return
 
 
 def test_generate_L96_perturbed():
@@ -71,6 +79,8 @@ def test_generate_L96_perturbed():
     exp_i = generate_L96(np.ones(5), 1, 5, 8)
     assert (obs_i == exp_i).all()
 
+    return
+
 
 def test_lorenz63_constant():
     """
@@ -81,6 +91,8 @@ def test_lorenz63_constant():
     exp_i = lorenz63(np.array([0, 0, 0, 0, 0]), np.arange(0, 4, 0.1))
     assert (obs_i == exp_i).all()
 
+    return
+
 
 def test_lorenz63_linear_distribution():
     """
@@ -90,6 +102,8 @@ def test_lorenz63_linear_distribution():
     obs_i = np.array([10., -1., -16/3])
     exp_i = lorenz63(np.array([0, 1, 2, 3, 4]), np.arange(0, 4, 0.1))
     assert (obs_i == exp_i).all()
+
+    return
 
 
 def test_generate_L63_rho_leq1():
@@ -106,6 +120,8 @@ def test_generate_L63_rho_leq1():
     exp_i = generate_L63(np.arange(0, 4, 1), 0.5)
     assert obs_i == approx(exp_i)
 
+    return
+
 
 def test_generate_L63_rho_geq1():
     """
@@ -120,6 +136,8 @@ def test_generate_L63_rho_geq1():
     ])
     exp_i = generate_L63(np.arange(0, 4, 1))
     assert obs_i == approx(exp_i)
+
+    return
 
 
 def test_generate_L63_rho_eq1():
@@ -136,6 +154,8 @@ def test_generate_L63_rho_eq1():
     exp_i = generate_L63(np.arange(0, 4, 1), 1)
     assert obs_i == approx(exp_i)
 
+    return
+
 
 def test_generate_L63_zeros():
     """
@@ -149,3 +169,5 @@ def test_generate_L63_zeros():
     ])
     exp_i = generate_L63(np.zeros(4))
     assert (obs_i == exp_i).all()
+
+    return
