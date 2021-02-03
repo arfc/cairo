@@ -1,4 +1,4 @@
-\subsection{Data Selection}
+\subsection{Data Selection and Processing}
 
 All data predicting demand, wind energy, and solar energy on the \gls{uiuc}
 campus are from the \gls{uiuc} Solar Farm 1.0 dashboard \cite{alsoenergy_university_2019} and proprietary data shared with us courtesy
@@ -26,3 +26,9 @@ The solar elevation angle, $\alpha$, was also calculated \cite{us_department_of_
   \phi &\text{ is the latitude of interest}\\\nonumber
   \omega &\text{ is the hour angle}\\\nonumber
 \end{align}
+Finally, we normalized all of the data using the infinity norm
+\begin{align}
+  \norm{\mathbf{x}}_\infty \equiv \text{max}\left|x_i\right|.
+\end{align}
+This is useful because it simplifies the comparison of our results between
+tasks whose training data have vastly different magnitudes.
