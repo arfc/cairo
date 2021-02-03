@@ -38,8 +38,6 @@ This repository contains various tests for each module, and makes use of
 [pytest](https://docs.pytest.org/en/stable/#) to run them. Upon downloading 
 CAIRO, you should make sure that all of the tests pass. See the 
 `contributing.md` document for instructions on how to run the tests.
-From here pytest will search through the repository and run all of the tests, 
-compiling all of the results in a summary for you at the end. 
 
 Checkout pytest's page on 
 [Usage and Invocations](https://docs.pytest.org/en/stable/usage.html#usage-and-invocations) 
