@@ -175,6 +175,7 @@ def local_meridian(utc=utc):
     LSTM. The LSTM is a reference meridian for given time zones.
     LSTM is calculated according to the equation:
         LSTM = 360/24*UTC
+
     UTC < 0 gives the answer in degrees West.
     UTC > 0 gives the answer in degrees East.
 
