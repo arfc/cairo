@@ -14,7 +14,7 @@
   \label{fig:reservoir_graph}
 \end{figure}
 
-An \gls{esn}, sometimes called ``reservoir computing,'' is a type of recurrent
+An \gls{esn}, sometimes called a ``reservoir computer,''\cite{pathak_using_2017, pathak_model-free_2018, vlachas_backpropagation_2020} is a type of recurrent
 neural network that replaces the many hidden layers of a conventional feed-
 forward neural network with a reservoir that is
 \begin{enumerate}
@@ -30,16 +30,80 @@ $K$ units is mapped onto the reservoir by an input matrix,
  \begin{align}
    x(t) &= \tanh \left(W^{in}\cdot U(t) + \mathbf{W}x(t-1)\right)
  \end{align}
- Where $x(t)$ is the collection of reservoir activations.
+ Where $x(t)$ is the collection of reservoir activations \cite{shi_energy_2016, pathak_model-free_2018, lukosevicius_practical_2012}.
  The output is read by an output weight matrix,
  $W^{out}$.
  \begin{align}
    y(t) &= \left(W^{out}\right)^T\cdot x(t)
  \end{align}
- This output matrix functions like a single layer feed-forward
- neural network. In the training phase, the output, $U(t+\Delta t)$, is
+ In the training phase, the output, $U(t+\Delta t)$, is
  discarded and the next training input passed to the network. During the
  prediction phase, the output is kept and used as the next input. This behavior
  is shown in Figure \ref{fig:reservoir_graph}. The speed of \glspl{esn} is owed
  to this structure; only $W^{out}$ has tunable weights. Everything else is
- fixed.
+ fixed. In this work, we adapted the open source Python package \texttt{pyESN} \cite{korndorfer_pyesn_2015} to construct and train the network.
+
+ \subsection{Hyper-parameter Optimization}
+
+ \glspl{esn} are fast because the hidden layer in a conventional feed-forward neural network is replaced by a large reservoir that does not require training.
+ The trade off is that \glspl{esn} are sensitive to various hyper-parameters
+ that need to be optimized \cite{lukosevicius_practical_2012}. These hyper-parameters are summarized in Table \ref{tab:parameters}. The spectral radius ($\rho$) should satisfy the ``echo state property'' which means that
+ previous reservoir activations have a decaying influence on future states. This
+ is usually guaranteed for $\rho < 1$, but this is not a requirement
+ \cite{lukosevicius_practical_2012}.
+ \begin{table*}[ht]
+   \centering
+   \caption{Description of Model Hyper-parameters}
+   \label{tab:parameters}
+   \begin{tabular}{c|c|c}
+     \hline
+     Hyper-parameter & Purpose & Tested Values\\
+     \hline
+     \texttt{noise} & Neuron regularization & [0.0001, 0.0003, 0.0007, 0.001, \\
+     &&0.003, 0.005, 0.007, 0.01]\\
+     $\rho$ & Spectral radius & [0.5, 0.7, 0.9, 1, 1.1, \\
+     &&1.2, 1.3, 1.5]\\
+     $N$ & Size of reservoir, \textbf{W} & [600, 800, 1000, 1500, 2000, \\
+     &&2500, 3000, 4000]\\
+     \texttt{sparsity} & The density of connections in \textbf{W}& [0.005, 0.01, 0.03, 0.05, \\
+     &&0.1, 0.12, 0.15, 0.2]\\
+     Training Length & Size of the training set before prediction & $L \in$ [5000, 25000], step size = 300
+   \end{tabular}
+ \end{table*}
+
+ The hyper-parameters are optimized by performing a grid search over the test values specified in Table \ref{tab:parameters}. The following steps were taken for each prediction task:
+ \begin{enumerate}
+   \item Select a hyper-parameter or pair of parameters.
+   \item Generate \gls{esn} prediction with the specified parameters.
+   \item Calculate and record the RMSE.
+   \item Continue until last entry in the parameter set is reached.
+   \item Set the network parameters to hyper-parameter value that minimizes the RMSE.
+ \end{enumerate}
+ This algorithm generates an error surface where the coordinates of the absolute
+ minimum correspond to the indices of values in the hyper-parameter test sets that minimized the RMSE.
+
+ \subsection{Prediction Tasks}
+
+We first performed a benchmarking task by making a prediction for the Lorenz
+1963 model \cite{lorenz_deterministic_1963}. Then we optimized predictions for univariate time-series
+representing total demand, solar energy, and wind energy 4-hours ahead and 48-
+hours ahead. Finally, those same six tasks are repeated with an additional predictor. The tasks are summarized in Table \ref{tab:tasks}.
+
+\begin{table*}[ht]
+  \centering
+  \caption{Summary of Prediction Tasks}
+  \label{tab:tasks}
+  \begin{tabular}{c|c|c}
+    \hline
+    Target & Future & Additional Predictor\\
+    \hline
+    && None \\
+    Total Demand && Solar Elevation\\
+    &4 hours ahead& Humidity\\
+    Solar Energy && Pressure\\
+    &48 hours ahead& Wet Bulb Temp.\\
+    Wind Energy && Dry Bulb Temp.\\
+    && Wind Speed\\
+  \end{tabular}\\[-1.4pt]%
+
+\end{table*}
