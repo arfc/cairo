@@ -1,20 +1,41 @@
 \section{Introduction}
+\subsection{Motivation}
 Reducing carbon emissions has become a priority for many countries in response
 to the rising threat of climate change. The goal set by the 2015 Paris
 Agreement is to prevent the global temperature from rising more than 1.5
 $^\circ$C above pre-industrial levels \cite{noauthor_paris_nodate}. Virtually
 all current plans to reduce carbon emissions depend on increasing the share of
-energy production by
-renewable and clean energy sources, especially solar and wind energy \cite{cany_nuclear_2018, chilvers_realising_2017}. While solar and wind are low-carbon sources, these
+energy production by renewable and clean energy sources, especially solar and
+wind energy \cite{cany_nuclear_2018, chilvers_realising_2017,99th_general_assembly_illinois_2016,isee_illinois_2015}.
+ While solar and wind are low-carbon sources, these
 forms of electricity generation are variable and unpredictable. This variability
 is found to be major cause of blackouts and power system failures
 \cite{haes_alhelou_survey_2019}. Further, even modest penetrations of renewable
 energy negatively affect the economics of other types of clean energy, such as
-nuclear power \cite{cany_nuclear_2018, keppler_carbon_2011}. There has been
+nuclear power
+\cite{cany_nuclear_2018,keppler_carbon_2011,illinois_commerce_commision_icc_potential_2015}. This may force nuclear plants to shutdown prematurely, at the
+precise moment clean sources of energy are most needed. There has been
 some work done to quantify the economic benefit of improving forecasts of
 renewable energy \cite{wang_quantifying_2016, mc_garrigle_quantifying_2015, brancucci_martinez-anido_value_2016}. Some of the benefits of improving
 forecasts are: 1) It is often cheaper than building storage devices
 \cite{wang_quantifying_2016}. 2) Would reduce curtailment and allow for
-efficient
-use of non-renewable sources \cite{mc_garrigle_quantifying_2015}. 3) Enable a
-slight, but important, amount of load-following from nuclear and bio-mass generators which are not designed for rapid load following \cite{brancucci_martinez-anido_value_2016}.
+efficient use of non-renewable sources \cite{mc_garrigle_quantifying_2015}.
+3) Enable a slight, but important, amount of load-following from nuclear and
+bio-mass generators which are not designed for rapid load following
+\cite{brancucci_martinez-anido_value_2016}. Most proposed forecasting
+improvements involve new algorithms or machine learning techniques. However,
+one of the simplest approaches to improving forecasts is to improve the
+training data for such algorithms. There is a veritable zoo of weather
+parameters that can supplement target training data and we don't know \textit{a
+priori} which of these parameters will be helpful or detrimental to model
+performance. In this paper, we evaluate several of these parameters for use
+in renewable energy forecasting with \glspl{esn}.
+\subsection{Why Echo State Networks}
+\glspl{esn} have several appealing features. They are simple, consisting only
+of a large sparse reservoir and a single output layer
+\cite{lukosevicius_practical_2012}; flexible, \glspl{esn} are generalizable
+where other network architectures require significant fine tuning
+\cite{noauthor_deterministic_2019}; fast, due to their simple structure and very few trainable weights relative to other neural networks.
+
+Classical \glspl{esn} have previously been used to forecast demand, wind energy, and solar energy \cite{deihimi_application_2012,}.
+\subsection{Review of Forecasting Techniques}
