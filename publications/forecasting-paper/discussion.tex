@@ -2,21 +2,23 @@
 
 The forecast accuracy of our \gls{esn} for the Lorenz model does not persist
 for quite as long as in other works \cite{pathak_using_2017}. However, our
-model does replicate the environment that produces the Lorenz Attractor.
-Further, optimal parameters may be unique for each randomly instantiated
-reservoir. It is impossible to replicate the exact conditions of other works
-without information about a seed for the random state. We have included this information for future work to compare with our results.
+model successfully replicates the environment that produces the Lorenz
+Attractor. Further, optimal parameters may be unique for each randomly
+instantiated reservoir. It is impossible to replicate the exact conditions of
+other works without information about a seed for the random state. We have
+included this information for future work to compare with our results.
 
-For each target variable, demand, wind, or solar, we found that air pressure was
+For each target variable, demand, wind, and solar, we found that air pressure was
 the only meteorological factor that improved the forecast error in every case.
-Solar elevation angle also decreased the error in every case with one exception,
+Solar elevation angle also decreased the error in most cases with one exception,
 48-hour ahead solar production. One possible reason for the improved performance
 from adding air pressure is that the data may contain implicit information about
 weather dynamics. For example, air pressure typically changes throughout the
 day due to solar heating and has close relationship to air temperature
 \cite{aguilar_seasonal_2001}, thus
 it contains implicit information about both the amount of solar energy reaching
-the ground and the ambient temperature which influences electricity demand.
+the ground and the ambient temperature which influences electricity demand
+and solar energy generation.
 Similarly, the height of the sun in the sky has a strong influence on
 ambient weather and thus on  demand and the production of renewable energy.
 Elevation angle lacks information about how much solar energy reaches the
@@ -25,8 +27,15 @@ Using the solar angle to improve forecasting has a couple of important
 advantages over measured weather data. First, it can be calculated accurately
 within a minute time-resolution \cite{us_department_of_commerce_esrl_nodate}.
 Second, because solar angle can be calculated deterministically, it reduces the
-amount of data processing required.
+amount of data processing required. Based on this, we recommend using solar
+elevation as a simple first attempt at improving forecasts.
 
 The forecast lengths were decided based on the requirements for improved
 economics and planning mentioned in the literature
- \cite{wang_quantifying_2016,mc_garrigle_quantifying_2015,brancucci_martinez-anido_value_2016}.
+ \cite{wang_quantifying_2016,mc_garrigle_quantifying_2015,brancucci_martinez-anido_value_2016}. The \gls{esn} model performed reasonably well at predicting
+ four hours ahead but is not an improvement over the state-of-the-art
+ \cite{wang_quantifying_2016,powers_weather_2017}. The model did not perform
+ well at the 48-hour ahead forecasts. This could be due to the lack of higher
+ resolution data. \glspl{esn} are known for their ability to predict highly non-
+ linear systems \cite{jaeger_harnessing_2004,lukosevicius_reservoir_2009} yet
+ using hourly data could add superfluous complexity \cite{garland_model-free_2014} that confounds the model.

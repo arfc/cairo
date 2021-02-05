@@ -28,14 +28,39 @@ one of the simplest approaches to improving forecasts is to improve the
 training data for such algorithms. There is a veritable zoo of weather
 parameters that can supplement target training data and we don't know \textit{a
 priori} which of these parameters will be helpful or detrimental to model
-performance. In this paper, we evaluate several of these parameters for use
+performance. In this paper, we evaluate several common parameters for use
 in renewable energy forecasting with \glspl{esn}.
 \subsection{Why Echo State Networks}
 \glspl{esn} have several appealing features. They are simple, consisting only
 of a large sparse reservoir and a single output layer
-\cite{lukosevicius_practical_2012}; flexible, \glspl{esn} are generalizable
+\cite{lukosevicius_practical_2012}; flexible and generalizable
 where other network architectures require significant fine tuning
-\cite{noauthor_deterministic_2019}; fast, due to their simple structure and very few trainable weights relative to other neural networks.
+\cite{noauthor_deterministic_2019}; and fast, due to their simple structure and
+very few trainable weights relative to other neural networks. Additionally,
+\glspl{esn} have been shown to outperform other prediction techniques
+\cite{jayawardene_comparison_2014,jayawardene_comparison_2015,shi_energy_2016,chitsazan_wind_2019, hu_forecasting_2020}.
 
-Classical \glspl{esn} have previously been used to forecast demand, wind energy, and solar energy \cite{deihimi_application_2012,}.
-\subsection{Review of Forecasting Techniques}
+Classical \glspl{esn} have previously been used to forecast demand, wind energy, and solar energy \cite{deihimi_application_2012,jayawardene_comparison_2015,hu_forecasting_2020}.
+\glspl{esn} are typically used to make very short term predictions, on the
+order of seconds or minutes
+\cite{chen_novel_2019,wang_echo_2019,chitsazan_wind_2019}, one-hour ahead
+\cite{shi_energy_2016}, up to a single day ahead
+\cite{deihimi_application_2012}. Forecasts need to be multiple-hours to a
+couple of days ahead to aid unit commitment and grid-scale energy economy
+\cite{wang_quantifying_2016,mc_garrigle_quantifying_2015,brancucci_martinez-anido_value_2016}. In this work we use a classic \gls{esn} architecture to
+forecast total demand, wind production, and solar production, 4-hours and 48-hours ahead.
+
+There has been a lot of work to improve the forecasting capability of
+the basic \gls{esn}. Approaches include adding multiple reservoirs
+\cite{hu_forecasting_2020,gallicchio_deep_2019,yao_novel_2019,li_multi-reservoir_2020}; including non-linear units \cite{holzmann_echo_2008, chitsazan_wind_2019}; combining with other network architecture
+\cite{chen_novel_2019, lopez_wind_2018}; and using a particle swarm approach \cite{chouikhi_pso-based_2017,wang_echo_2019}. Some works mention that
+including weather parameters may be useful for renewable energy forecasting
+\cite{li_echo_2019,chitsazan_wind_2019} but none have demonstrated the effect
+each parameter has on model performance. The primary goal of this work
+is to fill that gap.
+
+% \subsection{Review of Forecasting Techniques}
+% I'm not sure that reviewing all forecasting techniques is helpful for this
+% paper
+
+\subsection{Contributions}

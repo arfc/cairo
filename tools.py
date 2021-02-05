@@ -24,6 +24,30 @@ def MSE(yhat, y):
     return mse
 
 
+def NRMSE(yhat, y):
+    '''
+    This function calculates the normalized root mean squared error
+    between a predicted and target vector.
+
+    Parameters
+    ----------
+    yhat : numpy array
+        The predicted, approximated, or calculated vector
+    y : numpy array
+        The target vector
+
+    Returns
+    -------
+    mse : float
+        The mean squared error between yhat and y.
+    '''
+    mse = MSE(yhat, y)
+    sigma = np.std(y.flatten())
+    nrmse = mse/sigma
+
+    return nrmse
+
+
 def MAE(yhat, y):
     '''
     This function calculates the mean absolute error between
