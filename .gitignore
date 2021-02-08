@@ -26,4 +26,4 @@ arfc-pres.ist
 *.swp
 .snakemake
 .DS_Store
-
+hidden_images/
