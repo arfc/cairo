@@ -6,7 +6,7 @@ import getopt
 import os
 import time
 
-from tools import esn_prediction, optimal_values, param_string, MSE, MAE
+from tools import esn_prediction, optimal_values, param_string, MSE, MAE, NRMSE
 from optimizers import grid_optimizer
 from sunrise import generate_elevation_series
 
@@ -283,7 +283,7 @@ if __name__ == "__main__":
 
     rmse = MSE(init_pred, X_in.T[-futureTotal:])
     mae = MAE(init_pred, X_in.T[-futureTotal:])
-
+    nrmse = NRMSE(init_pred, X_in.T[-futureTotal:])
 
 # =============================================================================
 # Plot Prediction
@@ -328,4 +328,5 @@ if __name__ == "__main__":
         file.write(f"Optimized prediction took: {prediction_time} seconds\n")
         file.write(f"Mean Absolute Error: {mae}\n")
         file.write(f"Root Mean Squared Error: {rmse}\n")
+        file.write(f"Normalized RMSE: {nrmse}\n")
         file.write("\n")

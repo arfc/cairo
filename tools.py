@@ -43,7 +43,7 @@ def NRMSE(yhat, y):
     '''
     mse = MSE(yhat, y)
     sigma = np.std(y.flatten())
-    nrmse = mse/sigma
+    nrmse = mse/sigma*100
 
     return nrmse
 

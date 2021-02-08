@@ -27,3 +27,4 @@ arfc-pres.ist
 .snakemake
 .DS_Store
 hidden_images/
+./publications/forecasting-paper/main.ist

@@ -64,3 +64,22 @@ is to fill that gap.
 % paper
 
 \subsection{Contributions}
+In this work, we use \glspl{esn} for three main prediction tasks: Total
+electricity demand, wind energy production, and solar energy production. We
+split these tasks into further sub tasks; predicting four hours ahead, and 48-
+hours ahead. These predictions are useful for scheduling and grid planning
+because current market rules put renewable energy on the grid first, forcing
+conventional power generators to work around this variability
+\cite{wang_quantifying_2016}. Using \glspl{esn} to make predictions two-days
+ahead is unique this paper since the longest predictions by \glspl{esn} in the
+literature is only one-day ahead \cite{deihimi_application_2012}. Finally, we
+repeat these tasks with several commonly used weather parameters and evaluate
+their effect on model performance. The need to consider exogenous meteorological
+inputs has been noted previously. Suprisingly, using sun elevation as a
+correlated quantity for energy demand and wind power is absent from the
+literature.
+
+The structure of the paper is as follows. In section 2, we discuss how data
+was selected, processed, and review \glspl{esn}. Section 3 shows a benchmarking
+exercise for our \gls{esn} implementation and presents the results. We discuss
+the results and future implications in section 4.
