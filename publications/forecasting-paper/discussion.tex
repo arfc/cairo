@@ -22,13 +22,22 @@ and solar energy generation.
 Similarly, the height of the sun in the sky has a strong influence on
 ambient weather and thus on  demand and the production of renewable energy.
 Elevation angle lacks information about how much solar energy reaches the
-ground, which is perhaps why air pressure performed better in some cases.
+ground, which could explain why air pressure performed better in some cases.
 Using the solar angle to improve forecasting has a couple of important
 advantages over measured weather data. First, it can be calculated accurately
 within a minute time-resolution \cite{us_department_of_commerce_esrl_nodate}.
 Second, because solar angle can be calculated deterministically, it reduces the
 amount of data processing required. Based on this, we recommend using solar
 elevation as a simple first attempt at improving forecasts.
+
+The results also show that some meteorological factors are detrimental to
+model performance. In particular, Table \ref{tab:demand04} and
+\ref{tab:demand48} show that temperature increased both the MAE and RMSE for
+the model. This is counter to conventional wisdom that air temperature
+influences electricity demand. Additionally, we recommend that researchers
+forecast demand, solar, and wind energy separately, rather than packaged
+together as a net demand, because they each possess unique and potentially
+interfering dynamics.
 
 The forecast lengths were decided based on the requirements for improved
 economics and planning mentioned in the literature
@@ -38,4 +47,17 @@ economics and planning mentioned in the literature
  well at the 48-hour ahead forecasts. This could be due to the lack of higher
  resolution data. \glspl{esn} are known for their ability to predict highly non-
  linear systems \cite{jaeger_harnessing_2004,lukosevicius_reservoir_2009} yet
- using hourly data could add superfluous complexity \cite{garland_model-free_2014} that confounds the model.
+ using hourly data could add superfluous complexity that confounds the model
+ \cite{garland_model-free_2014}
+
+\subsection{Future Work}
+One appealing avenue of continued work is to leverage \glspl{esn} to generate
+synthetic data that respects real dynamics. Sythetic data is often useful for
+other machine learning or optimization algorithms. Typically, these data are
+produced by sampling from an Auto-regressive Moving Average (ARMA) model \cite{baker_optimal_2018, garcia_dynamic_2016}, which tacitly assumes the
+training data can be made stationary. \glspl{esn} have been shown to replicate
+the environment of a dynamical system, although it remains to be seen how far
+in the future this behavior persists \cite{pathak_using_2017,pathak_model-free_2018}.
+Future work will also explore the effect of data resolution on model
+performance, as well as evaluate some of the improvements to the \gls{esn}
+algorithm.

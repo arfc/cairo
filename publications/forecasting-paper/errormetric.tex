@@ -1,8 +1,12 @@
 \subsection{Error Metric}
 We measure the accuracy of the model using two error metrics:
-Mean absolute error and root mean squared error.
+Mean absolute error (MAE) and root mean squared error (RMSE).
 These are defined as
 \begin{align}
   \text{MAE} &= \frac{1}{N}\sum_{i=1}^N\left|y_i - \hat{y}_i\right|\\
   \text{RMSE} &= \sqrt{\frac{1}{N}\sum_{i=1}^N\left(y_i - \hat{y}_i\right)^2}
 \end{align}
+The MAE measures the expected error throughout the forecast horizon. The RMSE
+indicates the presence of large but infrequent errors. Since the data were
+normalized by system capacity \cite{wang_quantifying_2016}, the error metrics
+are easily interpretable.
