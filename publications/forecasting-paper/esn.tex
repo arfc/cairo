@@ -16,11 +16,11 @@
 
 An \gls{esn}, sometimes called a ``reservoir computer,''\cite{pathak_using_2017, pathak_model-free_2018, vlachas_backpropagation_2020} is a type of recurrent
 neural network that replaces the many hidden layers of a conventional feed-
-forward neural network with a reservoir that is
+forward neural network with a reservoir that is:
 \begin{enumerate}
-  \item sparse.
-  \item connected by uniformly random weights, centered at zero.
-  \item large (i.e. has many neurons).
+  \item sparse,
+  \item connected by uniformly random weights, centered at zero,
+  \item and large (i.e. has many neurons).
 \end{enumerate}
 
 The reservoir is therefore a randomly instantiated adjacency matrix,
@@ -38,9 +38,8 @@ $K$ units is mapped onto the reservoir by an input matrix,
  \end{align}
  In the training phase, the output, $U(t+\Delta t)$, is
  discarded and the next training input passed to the network. During the
- prediction phase, the output is kept and used as the next input. This behavior
- is shown in Figure \ref{fig:reservoir_graph}. The speed of \glspl{esn} is owed
- to this structure; only $W^{out}$ has tunable weights. Everything else is
+ prediction phase, the output is kept and used as the next input. Figure \ref{fig:reservoir_graph} illustrates this behavior. The speed of \glspl{esn} is owed
+ to this structure--- only $W^{out}$ has tunable weights. Everything else is
  fixed. In this work, we adapted the open source Python package \texttt{pyESN} \cite{korndorfer_pyesn_2015} to construct and train the network.
 
  \subsection{Hyper-parameter Optimization}

@@ -1,51 +1,54 @@
 \section{Introduction}
 \subsection{Motivation}
-Reducing carbon emissions has become a priority for many countries in response
-to the rising threat of climate change. The goal set by the 2015 Paris
+In response to the rising threat of climate change many countries have prioritized reducing carbon emissions. The goal set by the 2015 Paris
 Agreement is to prevent the global temperature from rising more than 1.5
 $^\circ$C above pre-industrial levels \cite{noauthor_paris_nodate}. Virtually
 all current plans to reduce carbon emissions depend on increasing the share of
 energy production by renewable and clean energy sources, especially solar and
-wind energy \cite{cany_nuclear_2018, chilvers_realising_2017,99th_general_assembly_illinois_2016,isee_illinois_2015}.
+wind \cite{cany_nuclear_2018, chilvers_realising_2017,99th_general_assembly_illinois_2016,isee_illinois_2015}.
  While solar and wind are low-carbon sources, these
-forms of electricity generation are variable and unpredictable. This variability
-is found to be major cause of blackouts and power system failures
+forms of electricity generation increase variability, which can lead to
+blackouts and power system failures
 \cite{haes_alhelou_survey_2019}. Further, even modest penetrations of renewable
 energy negatively affect the economics of other types of clean energy, such as
 nuclear power
-\cite{cany_nuclear_2018,keppler_carbon_2011,illinois_commerce_commision_icc_potential_2015}. This may force nuclear plants to shutdown prematurely, at the
-precise moment clean sources of energy are most needed. There has been
+\cite{cany_nuclear_2018,keppler_carbon_2011,illinois_commerce_commision_icc_potential_2015}. This may force nuclear plants to shut down prematurely, at the
+precise moment all clean sources of energy are most needed. There has been
 some work done to quantify the economic benefit of improving forecasts of
-renewable energy \cite{wang_quantifying_2016, mc_garrigle_quantifying_2015, brancucci_martinez-anido_value_2016}. Some of the benefits of improving
-forecasts are: 1) It is often cheaper than building storage devices
-\cite{wang_quantifying_2016}. 2) Would reduce curtailment and allow for
-efficient use of non-renewable sources \cite{mc_garrigle_quantifying_2015}.
-3) Enable a slight, but important, amount of load-following from nuclear and
-bio-mass generators which are not designed for rapid load following
+renewable energy \cite{wang_quantifying_2016, mc_garrigle_quantifying_2015, brancucci_martinez-anido_value_2016}. Improving renewable energy forecasts can
+mitigate some of the negative side effects of variability. The economic
+benefits of better  forecasts include: reduced costs compared to building
+storage devices \cite{wang_quantifying_2016}; curtailment reduction and more
+efficient use of non-renewable sources \cite{mc_garrigle_quantifying_2015}; and
+a slight, but important, amount of load-following from nuclear and biomass
+generators, which are unable to follow rapid changes in demand
 \cite{brancucci_martinez-anido_value_2016}. Most proposed forecasting
 improvements involve new algorithms or machine learning techniques. However,
 one of the simplest approaches to improving forecasts is to improve the
 training data for such algorithms. There is a veritable zoo of weather
-parameters that can supplement target training data and we don't know \textit{a
+parameters that can supplement target training data, but we don't know \textit{a
 priori} which of these parameters will be helpful or detrimental to model
 performance. In this paper, we evaluate several common parameters for use
 in renewable energy forecasting with \glspl{esn}.
 \subsection{Why Echo State Networks}
 \glspl{esn} have several appealing features. They are simple, consisting only
-of a large sparse reservoir and a single output layer
-\cite{lukosevicius_practical_2012}; flexible and generalizable
-where other network architectures require significant fine tuning
-\cite{noauthor_deterministic_2019}; and fast, due to their simple structure and
-very few trainable weights relative to other neural networks. Additionally,
-\glspl{esn} have been shown to outperform other prediction techniques
+of a large, sparse, reservoir and a single output layer
+\cite{lukosevicius_practical_2012}; flexible and generalizable,
+while other network architectures require significant fine tuning
+\cite{liu_deterministic_2019}; and fast, due to their simple structure and
+few trainable weights relative to other neural networks. The \gls{esn} network
+architecture eliminates the need for complicated data pre-processing, such as
+feature extraction, that is required for other machine learning  and statistical
+algorithms \cite{lazos_optimisation_2014, chen_day-ahead_2017}.
+\glspl{esn} have also been shown to outperform other prediction techniques
 \cite{jayawardene_comparison_2014,jayawardene_comparison_2015,shi_energy_2016,chitsazan_wind_2019, hu_forecasting_2020}.
 
 Classical \glspl{esn} have previously been used to forecast demand, wind energy, and solar energy \cite{deihimi_application_2012,jayawardene_comparison_2015,hu_forecasting_2020}.
-\glspl{esn} are typically used to make very short term predictions, on the
+\glspl{esn} are typically used to make extreme short term predictions, on the
 order of seconds or minutes
 \cite{chen_novel_2019,wang_echo_2019,chitsazan_wind_2019}, one-hour ahead
 \cite{shi_energy_2016}, up to a single day ahead
-\cite{deihimi_application_2012}. Forecasts need to be multiple-hours to a
+\cite{deihimi_application_2012}. Forecasts must be multiple-hours to a
 couple of days ahead to aid unit commitment and grid-scale energy economy
 \cite{wang_quantifying_2016,mc_garrigle_quantifying_2015,brancucci_martinez-anido_value_2016}. In this work we use a classic \gls{esn} architecture to
 forecast total demand, wind production, and solar production, 4-hours and 48-hours ahead.
@@ -59,27 +62,23 @@ including weather parameters may be useful for renewable energy forecasting
 each parameter has on model performance. The primary goal of this work
 is to fill that gap.
 
-% \subsection{Review of Forecasting Techniques}
-% I'm not sure that reviewing all forecasting techniques is helpful for this
-% paper
-
 \subsection{Contributions}
-In this work, we use \glspl{esn} for three main prediction tasks: Total
+In this work, we use \glspl{esn} for three main prediction tasks: total
 electricity demand, wind energy production, and solar energy production. We
-split these tasks into further sub tasks; predicting four hours ahead, and 48-
-hours ahead. These predictions are useful for scheduling and grid planning
+split these tasks into further sub tasks; predicting 4-hours ahead and 48-
+hours ahead. These predictions facilitate scheduling and grid planning
 because current market rules put renewable energy on the grid first, forcing
 conventional power generators to work around this variability
 \cite{wang_quantifying_2016}. Using \glspl{esn} to make predictions two-days
-ahead is unique this paper since the longest predictions by \glspl{esn} in the
-literature is only one-day ahead \cite{deihimi_application_2012}. Finally, we
+ahead is unique to this paper since the longest predictions by \glspl{esn} in the
+literature only reach one-day ahead \cite{deihimi_application_2012}. Finally, we
 repeat these tasks with several commonly used weather parameters and evaluate
 their effect on model performance. The need to consider exogenous meteorological
-inputs has been noted previously. Suprisingly, using sun elevation as a
-correlated quantity for energy demand and wind power is absent from the
-literature.
+inputs has been noted previously. Suprisingly, sun elevation is seldom used as a
+correlated quantity for energy demand and wind power.
 
-The structure of the paper is as follows. In section 2, we discuss how data
-was selected, processed, and review \glspl{esn}. Section 3 shows a benchmarking
+The structure of the paper is as follows. In Section 2, we discuss how data
+were selected and processed, and we review \glspl{esn}. Section 3 shows a
+benchmarking
 exercise for our \gls{esn} implementation and presents the results. We discuss
-the results and future implications in section 4.
+the results and future implications in Section 4.
