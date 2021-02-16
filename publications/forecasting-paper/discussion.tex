@@ -8,36 +8,75 @@ instantiated reservoir. It is impossible to replicate the exact conditions of
 other works without information about a seed for the random state. We have
 included this information for future work to compare with our results.
 
-For each target variable, demand, wind, and solar, we found that air pressure was
-the only meteorological factor that improved the forecast error in every case.
-Solar elevation angle also decreased the error in most cases with one exception,
-48-hour ahead solar production. One possible reason for the improved performance
-from adding air pressure is that the data may contain implicit information about
-weather dynamics. For example, air pressure typically changes throughout the
-day due to solar heating and has close relationship to air temperature
-\cite{aguilar_seasonal_2001}, thus
-it contains implicit information about both the amount of solar energy reaching
-the ground and the ambient temperature which influences electricity demand
-and solar energy generation.
-Similarly, the height of the sun in the sky has a strong influence on
-ambient weather and thus on  demand and the production of renewable energy.
-Elevation angle lacks information about how much solar energy reaches the
-ground, which could explain why air pressure performed better in some cases.
-Using the solar angle to improve forecasting has a couple of important
-advantages over measured weather data. First, it can be calculated accurately
-within a minute time-resolution \cite{us_department_of_commerce_esrl_nodate}.
-Second, because solar angle can be calculated deterministically, it reduces the
-amount of data processing required. Based on this, we recommend using solar
-elevation as a simple first attempt at improving forecasts.
+For each target variable -- demand, wind, and solar -- we found that air
+pressure was the only meteorological factor that improved the forecast error in
+every case. Solar elevation angle also decreased the error in most cases with
+one exception, 48-hour ahead solar production. Table \ref{tab:demand04} and
+Table \ref{tab:demand48} show that adding humidity, air temperature, or wind
+speed as a model input weakened the forecast for electricity demand. Yet,
+adding air temperature as a model input improves the forecast for solar and
+wind energy, as shown in Table
+\ref{tab:solar04}, Table \ref{tab:solar48}, Table \ref{tab:wind04}, and Table
+\ref{tab:wind48}, respectively. This behavior is caused by relative complexity
+between model inputs. Electricity demand, for example, is quite ``predictable,"
+and therefore has low complexity. Air temperature and other weather related
+variables are less predictable. Thus, adding air temperature as a model input
+increases the total complexity of the system and weakens performance.
+ Conversely, solar and wind energy are both nonlinear functions of many weather
+ variables and consequently have greater complexity than air temperature,
+ humidity, or air pressure. This means that adding any of those variabes as a
+ model input will decrease the total complexity of the system and improve the
+ forecast. Including wind speed only improved the wind energy forecasts, likely
+ because it has greater complexity than solar energy and less than wind energy.
+ Quantifying the predictability and complexity of these systems is in progress.
+ A good measure for this type of complexity is the \textit{weighted permutation entropy}
+ \cite{fadlallah_weighted-permutation_2013,garland_model-free_2014, pennekamp_intrinsic_2019}.
 
-The results also show that some meteorological factors are detrimental to
-model performance. In particular, Table \ref{tab:demand04} and
-\ref{tab:demand48} show that temperature increased both the MAE and RMSE for
-the model. This is counter to conventional wisdom that air temperature
-influences electricity demand. Additionally, we recommend that researchers
-forecast demand, solar, and wind energy separately, rather than packaged
-together as a net demand, because they each possess unique and potentially
-interfering dynamics.
+Relative complexity also explains why adding solar elevation angle as a model
+input generally improved the forecast. Solar angle is deterministic and
+periodic which makes it perfectly predictable. Adding solar angle to any of the
+models decreases the total complexity of the system. One notable exception to
+this is shown in Table \ref{tab:solar48}, where solar angle weakened the
+forecast for solar energy. This is possibly due to \glspl{esn} inability to
+properly handle the zero values at night. Even the best solar energy forecast
+from this model, shown in Figure \ref{fig:solar48}, shows that the model
+struggles have zero energy production at night. Air pressure likely improved
+forecasts, not because it is a correlated quantity, but because it has slightly
+lower complexity than each of the target variables and because it has very
+small fluctuations around a mean value.
+
+These results point to an important disadvantage of using \glspl{esn} to
+forecast renewable energy. This network architecture is simple and fast, but
+remains a black box. We assume that there exists some underlying dynamics that
+can be ``learned'' but cannot observe the learning process nor extract important
+features from \glspl{esn}.
+% \sout{One possible reason for the improved performance from adding air pressure
+% is that the data may contain implicit information about weather dynamics. For
+% example, air pressure typically changes throughout the
+% day due to solar heating and has close relationship to air temperature
+% \cite{aguilar_seasonal_2001}, thus
+% it contains implicit information about both the amount of solar energy reaching
+% the ground and the ambient temperature which influences electricity demand
+% and solar energy generation.
+% Similarly, the height of the sun in the sky has a strong influence on
+% ambient weather and thus on  demand and the production of renewable energy.
+% Elevation angle lacks information about how much solar energy reaches the
+% ground, which could explain why air pressure performed better in some cases.
+% Using the solar angle to improve forecasting has a couple of important
+% advantages over measured weather data. First, it can be calculated accurately
+% within a minute time-resolution \cite{us_department_of_commerce_esrl_nodate}.
+% Second, because solar angle can be calculated deterministically, it reduces the
+% amount of data processing required. Based on this, we recommend using solar
+% elevation as a simple first attempt at improving forecasts.}
+
+% The results also show that some meteorological factors are detrimental to
+% model performance. In particular, Table \ref{tab:demand04} and Table
+% \ref{tab:demand48} show that temperature increased both the MAE and RMSE for
+% the model. This is counter to conventional wisdom that air temperature
+% influences electricity demand. Additionally, we recommend that researchers
+% forecast demand, solar, and wind energy separately, rather than packaged
+% together as a net demand, because they each possess unique and potentially
+% interfering dynamics.
 
 The forecast lengths were decided based on the requirements for improved
 economics and planning mentioned in the literature
@@ -47,7 +86,7 @@ economics and planning mentioned in the literature
  well at the 48-hour ahead forecasts. This could be due to the lack of higher
  resolution data. \glspl{esn} are known for their ability to predict highly non-
  linear systems \cite{jaeger_harnessing_2004,lukosevicius_reservoir_2009} yet
- using hourly data could add superfluous complexity that confounds the model
+ using hourly data could add spurious complexity that confounds the model
  \cite{garland_model-free_2014}
 
 \subsection{Future Work}
