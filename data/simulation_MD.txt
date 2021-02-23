@@ -341,3 +341,59 @@ Random state: 85
 Optimized prediction took: 10.202659797039814 seconds
 Mean Absolute Error: 4.399233333379642
 Root Mean Squared Error: 7.488660042508307
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 2600, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 0.8146997320000082 seconds
+Mean Absolute Error: 10.726665382932595
+Root Mean Squared Error: 0.013772917107043993
+
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 2600, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 0.7790032740012975 seconds
+Mean Absolute Error: 10.726665382932595
+Root Mean Squared Error: 0.013772917107043993
+
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 3500, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 1.0081835779983521 seconds
+Mean Absolute Error: 10.039709415696402
+Root Mean Squared Error: 0.038548227845917875
+
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 3500, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 0.8915336130012292 seconds
+Mean Absolute Error: 10.039709415696402
+Root Mean Squared Error: 0.038548227845917875
+
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 3500, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 0.9786819860000833 seconds
+Mean Absolute Error: 10.039709415696402
+Root Mean Squared Error: 0.038548227845917875
+
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 3500, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 0.9784132470012992 seconds
+Mean Absolute Error: 10.039709415696402
+Root Mean Squared Error: 0.038548227845917875
+
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 3500, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 1.1672524719997455 seconds
+Mean Absolute Error: 10.039709415696402
+Root Mean Squared Error: 0.038548227845917875
+

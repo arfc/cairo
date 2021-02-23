@@ -1,23 +1,26 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.use("pgf")
 import sys
 import getopt
 import os
 import time
 
-from tools import esn_prediction, optimal_values, param_string, MSE, MAE
+from tools import esn_prediction, optimal_values, param_string, MSE, MAE, NRMSE
 from optimizers import grid_optimizer
 from lorenz import generate_L63
 
 # Plot Parameters
-plt.rcParams['figure.figsize'] = (16, 9)
 plt.rcParams['figure.edgecolor'] = 'k'
 plt.rcParams['figure.facecolor'] = 'w'
+plt.rcParams['pgf.texsystem'] = 'pdflatex'
 plt.rcParams['savefig.dpi'] = 400
 plt.rcParams['savefig.bbox'] = 'tight'
 plt.rcParams['text.usetex'] = True
 plt.rcParams['font.family'] = "serif"
+plt.rcParams['pgf.rcfonts'] = False
 
 # Optimization Sets
 radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
@@ -94,6 +97,11 @@ if __name__ == "__main__":
 # =============================================================================
 # ESN Optimization
 # =============================================================================
+    data_folder = "./data/"
+
+    if not os.path.isdir(data_folder):
+        os.mkdir(data_folder)
+
     MAX_TRAINLEN = int(len(X_in) - params['future'])
     print(f"Maximum training length is {MAX_TRAINLEN}")
 
@@ -104,6 +112,7 @@ if __name__ == "__main__":
                                        args=['rho', 'noise'],
                                        xset=radius_set,
                                        yset=noise_set,
+                                       ntargets=3,
                                        verbose=True,
                                        save_path=save_prefix)
 
@@ -125,6 +134,7 @@ if __name__ == "__main__":
                                         args=['n_reservoir', 'sparsity'],
                                         xset=reservoir_set,
                                         yset=sparsity_set,
+                                        ntargets=3,
                                         verbose=True,
                                         save_path=save_prefix)
 
@@ -147,6 +157,7 @@ if __name__ == "__main__":
                                    params,
                                    args=['trainlen'],
                                    xset=trainingLengths,
+                                   ntargets=3,
                                    verbose=True,
                                    save_path=save_prefix)
     toc = time.perf_counter()
@@ -166,7 +177,7 @@ if __name__ == "__main__":
     plt.title(f'MSE as a Function of Training Length', fontsize=20)
     plt.xlabel(f'Training Length', fontsize=18)
     plt.ylabel('MSE', fontsize=18)
-    plt.savefig("./figures/" + save_prefix + "_trainlen_loss.png")
+    plt.savefig("./images/" + save_prefix + "_trainlen_loss.pgf")
     plt.close()
 # =============================================================================
 # ESN Prediction
@@ -184,43 +195,46 @@ if __name__ == "__main__":
 
     futureTotal = params['future']
 
-    rmse = MSE(init_pred, X_in[-futureTotal:])
-    mae = MAE(init_pred, X_in[-futureTotal:])
+    rmse = MSE(init_pred.T, X_in[-futureTotal:].T)
+    mae = MAE(init_pred.T, X_in[-futureTotal:].T)
+    nrmse = NRMSE(init_pred.T, X_in[-futureTotal:].T)
 
 # =============================================================================
 # Plot Prediction
 # =============================================================================
     assert(save_prefix is not None), "No output filename given by user."
-    target_folder = "./figures/"
+    target_folder = "./images/"
 
     if not os.path.isdir(target_folder):
         os.mkdir(target_folder)
 
     plt.suptitle(f"Lorenz-63 Model Prediction with ESN", fontsize=21)
     plt.title(param_string(params))
-    plt.figure(figsize=(16, 9))
+    colwidth = 3.07242*2
+    height = 0.9*colwidth
+    fig = plt.figure(figsize=(colwidth, height))
     futureTotal = params['future']
     ax1 = plt.subplot(311)
-    plt.plot(t[-2 * futureTotal:], X_in[-2 *
+    ax1.plot(t[-2 * futureTotal:], X_in[-2 *
                                         futureTotal:, 0], label='Ground Truth')
-    plt.plot(t[-futureTotal:], init_pred[:, 0], label='Prediction')
+    ax1.plot(t[-futureTotal:], init_pred[:, 0], label='Prediction')
     ax2 = plt.subplot(312, sharex=ax1)
-    plt.plot(t[-2 * futureTotal:], X_in[-2 *
+    ax2.plot(t[-2 * futureTotal:], X_in[-2 *
                                         futureTotal:, 1], label='Ground Truth')
-    plt.plot(t[-futureTotal:], init_pred[:, 1], label='Prediction')
+    ax2.plot(t[-futureTotal:], init_pred[:, 1], label='Prediction')
     ax3 = plt.subplot(313, sharex=ax1)
-    plt.plot(t[-2 * futureTotal:], X_in[-2 *
+    ax3.plot(t[-2 * futureTotal:], X_in[-2 *
                                         futureTotal:, 2], label='Ground Truth')
-    plt.plot(t[-futureTotal:], init_pred[:, 2], label='Prediction')
+    ax3.plot(t[-futureTotal:], init_pred[:, 2], label='Prediction')
 
     ax3.set_xlabel("t", fontsize=16)
     ax1.set_ylabel("x", fontsize=16)
     ax2.set_ylabel("y", fontsize=16)
     ax3.set_ylabel("z", fontsize=16)
-    plt.legend(fontsize=16)
+    ax1.legend(loc="upper right")
 
     # save prefix should be something like "04_wind_elevation"
-    plt.savefig(target_folder + save_prefix + '_prediction.png')
+    plt.savefig(target_folder + save_prefix + '_prediction.pgf')
     plt.close()
 
 # =============================================================================

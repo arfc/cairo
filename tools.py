@@ -2,7 +2,7 @@ import numpy as np
 from pyESN.pyESN import ESN
 
 
-def MSE(yhat, y):
+def MSE(yhat, y, ntargets = 1):
     '''
     This function calculates the root mean squared error between
     a predicted and target vector.
@@ -19,12 +19,15 @@ def MSE(yhat, y):
     mse : float
         The mean squared error between yhat and y.
     '''
-    mse = np.sqrt(np.mean((y.flatten() - yhat.flatten())**2))
+    if y.shape[1] > 1 and ntargets == 1:
+        mse = np.sqrt(np.mean((y.T[0] - yhat.T[0])**2))
+    else:
+        mse = np.sqrt(np.mean((y.flatten() - yhat.flatten())**2))
 
     return mse
 
 
-def NRMSE(yhat, y):
+def NRMSE(yhat, y, ntargets = 1):
     '''
     This function calculates the normalized root mean squared error
     between a predicted and target vector.
@@ -41,9 +44,13 @@ def NRMSE(yhat, y):
     mse : float
         The mean squared error between yhat and y.
     '''
+
     mse = MSE(yhat, y)
-    sigma = np.std(y.flatten())
-    nrmse = mse/sigma*100
+    if y.shape[0] > 1 and ntargets == 1:
+        sigma = np.std(y[0])
+    else:
+        sigma = np.std(y.flatten())
+    nrmse = mse/sigma
 
     return nrmse
 
@@ -65,7 +72,11 @@ def MAE(yhat, y):
     mae : float
         The mean squared error between yhat and y.
     '''
-    mae = np.mean(np.abs(y.flatten() - yhat.flatten()))
+
+    if y.shape[1] > 1 and ntargets == 1:
+        mae = np.mean(np.abs(y.flatten() - yhat.flatten()))
+    else:
+        mae = np.mean(np.abs(y.flatten() - yhat.flatten()))
 
     return mae
 
