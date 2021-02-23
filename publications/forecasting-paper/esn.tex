@@ -10,13 +10,14 @@
   \subfloat[Predicting Flow]{
     \includegraphics[clip, width=0.85\columnwidth]{reservoir_predicting.png}
   }
-  \caption{Reservoir behavior in the training and predicting phases.}
+  \caption{(a) Shows the behavior of an \gls{esn} during the training phase. (b) Shows \gls{esn} behavior during the predicting phase. The output $u(t+\Delta t)$ is used as the next input value. }
   \label{fig:reservoir_graph}
 \end{figure}
 
-An \gls{esn}, sometimes called a ``reservoir computer,''\cite{pathak_using_2017, pathak_model-free_2018, vlachas_backpropagation_2020} is a type of recurrent
-neural network that replaces the many hidden layers of a conventional feed-
-forward neural network with a reservoir that is:
+An \gls{esn}, sometimes called a ``reservoir
+computer,''\cite{pathak_using_2017, pathak_model-free_2018, vlachas_backpropagation_2020} is a type of recurrent
+neural network that replaces the many hidden layers of a conventional feed-forward
+neural network with a reservoir that is:
 \begin{enumerate}
   \item sparse,
   \item connected by uniformly random weights, centered at zero,
@@ -37,7 +38,7 @@ $K$ units is mapped onto the reservoir by an input matrix,
    U(t+\Delta t) &= \left(W^{out}\right)^T\cdot x(t)
  \end{align}
  In the training phase, the output, $U(t+\Delta t)$, is
- discarded and the next training input passed to the network. During the
+ discarded and the next training input is passed to the network. During the
  prediction phase, the output is kept and used as the next input. Figure \ref{fig:reservoir_graph} illustrates this behavior. The speed of \glspl{esn} is owed
  to this structure--- only $W^{out}$ has tunable weights. Everything else is
  fixed. In this work, we adapted the open source Python package \texttt{pyESN} \cite{korndorfer_pyesn_2015} to construct and train the network.
@@ -52,7 +53,7 @@ $K$ units is mapped onto the reservoir by an input matrix,
  \cite{lukosevicius_practical_2012}.
  \begin{table*}[ht]
    \centering
-   \caption{Description of Model Hyper-parameters}
+   \caption{Description of Model Hyper-Parameters}
    \label{tab:parameters}
    \begin{tabular}{c|c|c}
      \hline
@@ -74,7 +75,7 @@ $K$ units is mapped onto the reservoir by an input matrix,
  \begin{enumerate}
    \item Select a hyper-parameter or pair of parameters.
    \item Generate \gls{esn} prediction with the specified parameters.
-   \item Calculate and record the RMSE.
+   \item Calculate and record the root mean squared error (RMSE).
    \item Continue until last entry in the parameter set is reached.
    \item Set the network parameters to hyper-parameter value that minimizes the RMSE.
  \end{enumerate}
@@ -84,9 +85,11 @@ $K$ units is mapped onto the reservoir by an input matrix,
  \subsection{Prediction Tasks}
 
 We first performed a benchmarking task by making a prediction for the Lorenz
-1963 model \cite{lorenz_deterministic_1963}. Then we optimized predictions for univariate time-series
-representing total demand, solar energy, and wind energy 4-hours ahead and 48-
-hours ahead. Finally, those same six tasks are repeated with an additional predictor. The tasks are summarized in Table \ref{tab:tasks}.
+1963 model \cite{lorenz_deterministic_1963}. Then we optimized predictions for
+univariate time-series
+representing total demand, solar energy, and wind energy 4-hours ahead and
+48-hours ahead. Finally, those same six tasks were repeated with an additional
+predictor. The tasks are summarized in Table \ref{tab:tasks}.
 
 \begin{table*}[ht]
   \centering

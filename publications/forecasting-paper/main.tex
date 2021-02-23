@@ -53,6 +53,7 @@
 % after hyperref %
 \usepackage{cleveref}
 \usepackage{datatool}
+\usepackage{layouts}
 \usepackage[acronym,toc]{glossaries}
 \include{acros}
 
@@ -86,6 +87,7 @@ spent nuclear fuel
 %% Shows line numbers
 \linenumbers
 
+\printinunitsof{in}\prntlen{\columnwidth}
 \input{introduction}
 \input{methods}
 \input{model}
