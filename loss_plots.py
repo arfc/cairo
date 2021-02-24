@@ -20,17 +20,17 @@ plt.rcParams['pgf.rcfonts'] = False
 
 
 # Optimization Sets
-radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
-noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
+# radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
+# noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
 
-# radius_set = [0.1, 0.5, 1]
-# noise_set = [0.001, 0.0007, 0.003]
+radius_set = [0.1, 0.5, 1]
+noise_set = [0.001, 0.0007, 0.003]
 
-reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
-sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
+# reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
+# sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
 
-# reservoir_set = [600, 800, 1000]
-# sparsity_set = [0.005, 0.01, 0.2]
+reservoir_set = [600, 800, 1000]
+sparsity_set = [0.005, 0.01, 0.2]
 
 parameter_sets = {"reservoir": reservoir_set,
                   "sparsity": sparsity_set,
@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
     print(len(loss_files))
 
-    target_folder = "./figures/"
+    target_folder = "./images/"
 
     if not os.path.isdir(target_folder):
         os.mkdir(target_folder)
@@ -152,13 +152,12 @@ if __name__ == "__main__":
             ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
                             cmap=mappable.cmap,
                             norm=mappable.norm)
-            ax.set_xlabel(f'{variables[xvar]}', fontsize=18)
-            ax.set_ylabel(f'{variables[yvar]}', fontsize=18)
-            ax.set_zlabel('MSE', fontsize=18)
+            ax.set_xlabel(f'{variables[xvar]}')
+            ax.set_ylabel(f'{variables[yvar]}')
+            ax.set_zlabel('MSE')
 
             cb = plt.colorbar(mappable)
             cb.set_label(label="Mean Squared Error",
-                         fontsize=16,
                          rotation=-90,
                          labelpad=25)
             fig.tight_layout()
@@ -167,6 +166,6 @@ if __name__ == "__main__":
         elif (xset is not None) and (yset is None):
             plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
             plt.plot(xset, loss, '-ok', alpha=0.6)
-            plt.title(f'MSE as a Function of {variables[xvar]}', fontsize=20)
-            plt.xlabel(f'{variables[xvar]}', fontsize=18)
-            plt.ylabel('MSE', fontsize=18)
+            plt.title(f'MSE as a Function of {variables[xvar]}')
+            plt.xlabel(f'{variables[xvar]}')
+            plt.ylabel('MSE')

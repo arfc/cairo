@@ -1,36 +1,41 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.use("pgf")
 import sys
 import getopt
 import os
 import time
 
-from tools import esn_prediction, optimal_values, param_string, MSE, MAE, NRMSE
+from tools import esn_prediction, optimal_values, param_string
+from tools import MSE, MAE, NRMSE, MASE
 from optimizers import grid_optimizer
 from sunrise import generate_elevation_series
 
 # Plot Parameters
-plt.rcParams['figure.figsize'] = (16, 9)
+# plt.rcParams['figure.figsize'] = (16, 9)
 plt.rcParams['figure.edgecolor'] = 'k'
 plt.rcParams['figure.facecolor'] = 'w'
+plt.rcParams['pgf.texsystem'] = 'pdflatex'
 plt.rcParams['savefig.dpi'] = 400
 plt.rcParams['savefig.bbox'] = 'tight'
 plt.rcParams['text.usetex'] = True
 plt.rcParams['font.family'] = "serif"
+plt.rcParams['pgf.rcfonts'] = False
 
 # Optimization Sets
-radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
-noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
+# radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
+# noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
 
-# radius_set = [0.1, 0.5, 1]
-# noise_set = [0.001, 0.0007, 0.003]
+radius_set = [0.1, 0.5, 1]
+noise_set = [0.001, 0.0007, 0.003]
 
-reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
-sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
+# reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
+# sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
 
-# reservoir_set = [600, 800, 1000]
-# sparsity_set = [0.005, 0.01, 0.2]
+reservoir_set = [600, 800, 1000]
+sparsity_set = [0.005, 0.01, 0.2]
 
 # This must change depending on the length of available data
 trainingLengths = np.arange(5000, 25000, 300)
@@ -235,7 +240,7 @@ if __name__ == "__main__":
     params['n_reservoir'] = opt_size
     params['sparsity'] = opt_sparsity
 
-    trainingLengths = np.arange(5000, MAX_TRAINLEN, 300)
+    trainingLengths = np.arange(5000, MAX_TRAINLEN, 3000)
 
     print('Optimizing training length')
     tic = time.perf_counter()
@@ -260,10 +265,10 @@ if __name__ == "__main__":
 # =============================================================================
 
     plt.plot(trainingLengths, trainlen_loss, '-ok', alpha=0.6)
-    plt.title(f'MSE as a Function of Training Length', fontsize=20)
-    plt.xlabel(f'Training Length', fontsize=18)
-    plt.ylabel('MSE', fontsize=18)
-    plt.savefig("./figures/" + save_prefix + "_trainlen_loss.png")
+    plt.title(f'MSE as a Function of Training Length')
+    plt.xlabel(f'Training Length')
+    plt.ylabel('MSE')
+    plt.savefig("./images/" + save_prefix + "_trainlen_loss.pgf")
     plt.close()
 # =============================================================================
 # ESN Prediction
@@ -285,35 +290,45 @@ if __name__ == "__main__":
     mae = MAE(init_pred, X_in.T[-futureTotal:])
     nrmse = NRMSE(init_pred, X_in.T[-futureTotal:])
 
+    startTrain = params['trainlen']
+    endTrain = futureTotal
+    trainset = X_in.T[-startTrain:-endTrain]
+    mase = MASE(init_pred, X_in.T[-futureTotal:],
+                ntargets=1,
+                training=trainset,
+                nsteps=params['window'])
 # =============================================================================
 # Plot Prediction
 # =============================================================================
     assert(save_prefix is not None), "No output filename given by user."
-    target_folder = "./figures/"
+    target_folder = "./images/"
 
     if not os.path.isdir(target_folder):
         os.mkdir(target_folder)
 
     var = get_variable_name(datafile_name)
-
-    plt.suptitle(f"{VARIABLES[var]} Prediction with ESN", fontsize=21)
-    plt.title(param_string(params))
-    plt.ylabel("Energy [kWh]", fontsize=16)
-    plt.xlabel(f"Hours since {df.index[0]}", fontsize=16)
+    colwidth = 3.07242*2
+    height = 0.5*colwidth
+    plt.figure(figsize=(colwidth, height))
+    plt.title(f"{VARIABLES[var]} Prediction with an ESN")
+    # plt.title(param_string(params))
+    plt.ylabel("Energy [kWh]")
+    plt.xlabel(f"Hours since {df.index[0]}")
     # plot the truth
-    plt.plot(xdf.index[-2 * futureTotal:], xdf.kw[-2 * futureTotal:],
+    hours = np.arange(0, len(xdf.index), 1)
+    plt.plot(hours[-2 * futureTotal:], xdf.kw[-2 * futureTotal:],
              'b', label=f"True {VARIABLES[var]}",
              alpha=0.7,
              color='tab:blue')
     # # plot the prediction
-    plt.plot(xdf.index[-futureTotal:], power_norm * init_pred.T[0], alpha=0.8,
+    plt.plot(hours[-futureTotal:], power_norm * init_pred.T[0], alpha=0.8,
              label='ESN Prediction',
              color='tab:red',
              linestyle='-')
     plt.legend()
 
     # save prefix should be something like "04_wind_elevation"
-    plt.savefig(target_folder + save_prefix + '_prediction.png')
+    plt.savefig(target_folder + save_prefix + '_prediction.pgf')
     plt.close()
 
 # =============================================================================
@@ -329,4 +344,5 @@ if __name__ == "__main__":
         file.write(f"Mean Absolute Error: {mae}\n")
         file.write(f"Root Mean Squared Error: {rmse}\n")
         file.write(f"Normalized RMSE: {nrmse}\n")
+        file.write(f"Mean Absolute Scaled Error: {mase}\n")
         file.write("\n")

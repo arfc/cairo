@@ -1,5 +1,5 @@
-SCENARIOS = ["lorenz63"]#,
-             # "48_demand",
+SCENARIOS = ["lorenz63",
+             "48_demand",
              # "48_wind",
              # "48_solar",
              # "48_wind_elevation",
@@ -20,7 +20,7 @@ SCENARIOS = ["lorenz63"]#,
              # "48_wind_windspeed",
              # "48_solar_windspeed",
              # "48_demand_windspeed",
-             # "04_demand",
+             "04_demand"]#,
              # "04_wind",
              # "04_solar",
              # "04_wind_elevation",
@@ -64,26 +64,26 @@ rule optimize_lorenz_63:
         "images/lorenz63_prediction.pgf",
     shell:
         "python ../../lorenz_driver.py -L -S lorenz63"
-#
-# # ============================================================================
-# # Standard predictions
-# # ============================================================================
-#
-# rule optimize_demand_48:
-#     input: "data/uiuc_demand_data.csv"
-#     output:
-#         "data/48_demand_rho_noise_loss.npy",
-#         "data/48_demand_n_reservoir_sparsity_loss.npy",
-#         "data/48_demand_trainlen_loss.npy",
-#         "data/48_demand_prediction.npy",
-#         "images/48_demand_prediction.pgf",
-#         "images/48_demand_trainlen_loss.pgf",
-#
-#     shell:
-#         "python ../../driver.py -i {input} -H 48 -S 48_demand"
+
+# ============================================================================
+# Standard predictions
+# ============================================================================
+
+rule optimize_demand_48:
+    input: "../../data/uiuc_demand_data.csv"
+    output:
+        "data/48_demand_rho_noise_loss.npy",
+        "data/48_demand_n_reservoir_sparsity_loss.npy",
+        "data/48_demand_trainlen_loss.npy",
+        "data/48_demand_prediction.npy",
+        "images/48_demand_prediction.pgf",
+        "images/48_demand_trainlen_loss.pgf",
+
+    shell:
+        "python ../../driver.py -i {input} -H 48 -S 48_demand"
 #
 # rule optimize_wind_48:
-#     input: "data/railsplitter_data.csv"
+#     input: "../../data/railsplitter_data.csv"
 #     output:
 #         "data/48_wind_rho_noise_loss.npy",
 #         "data/48_wind_n_reservoir_sparsity_loss.npy",
@@ -95,7 +95,7 @@ rule optimize_lorenz_63:
 #         "python ../../driver.py -i {input} -H 48 -S 48_wind"
 #
 # rule optimize_solar_48:
-#     input: "data/solarfarm_data.csv"
+#     input: "../../../../../../data/railsplitterdata.csv"
 #     output:
 #         "data/48_solar_rho_noise_loss.npy",
 #         "data/48_solar_n_reservoir_sparsity_loss.npy",
@@ -106,20 +106,20 @@ rule optimize_lorenz_63:
 #     shell:
 #         "python ../../driver.py -i {input} -H 48 -S 48_solar"
 #
-# rule optimize_demand_04:
-#     input: "data/uiuc_demand_data.csv"
-#     output:
-#         "data/04_demand_rho_noise_loss.npy",
-#         "data/04_demand_n_reservoir_sparsity_loss.npy",
-#         "data/04_demand_trainlen_loss.npy",
-#         "data/04_demand_prediction.npy",
-#         "images/04_demand_prediction.pgf",
-#         "images/04_demand_trainlen_loss.pgf",
-#     shell:
-#         "python ../../driver.py -i {input} -H 4 -S 04_demand"
-#
+rule optimize_demand_04:
+    input: "../../data/uiuc_demand_data.csv"
+    output:
+        "data/04_demand_rho_noise_loss.npy",
+        "data/04_demand_n_reservoir_sparsity_loss.npy",
+        "data/04_demand_trainlen_loss.npy",
+        "data/04_demand_prediction.npy",
+        "images/04_demand_prediction.pgf",
+        "images/04_demand_trainlen_loss.pgf",
+    shell:
+        "python ../../driver.py -i {input} -H 4 -S 04_demand"
+
 # rule optimize_wind_04:
-#     input: "data/railsplitter_data.csv"
+#     input: "../../data/railsplitter_data.csv"
 #     output:
 #         "data/04_wind_rho_noise_loss.npy",
 #         "data/04_wind_n_reservoir_sparsity_loss.npy",
@@ -131,7 +131,7 @@ rule optimize_lorenz_63:
 #         "python ../../driver.py -i {input} -H 4 -S 04_wind"
 #
 # rule optimize_solar_04:
-#     input: "data/solarfarm_data.csv"
+#     input: "../../data/solarfarm_data.csv"
 #     output:
 #         "data/04_solar_rho_noise_loss.npy",
 #         "data/04_solar_n_reservoir_sparsity_loss.npy",
@@ -147,7 +147,7 @@ rule optimize_lorenz_63:
 # # Predictions with Solar Elevation
 # # ============================================================================
 # rule optimize_demand_elevation_48:
-#     input: "data/uiuc_demand_data.csv"
+#     input: "../../data/uiuc_demand_data.csv"
 #     output:
 #         "data/48_demand_elevation_rho_noise_loss.npy",
 #         "data/48_demand_elevation_n_reservoir_sparsity_loss.npy",
@@ -159,7 +159,7 @@ rule optimize_lorenz_63:
 #         "python ../../driver.py -i {input} -e -H 48 -S 48_demand_elevation"
 #
 # rule optimize_wind_elevation_48:
-#     input: "data/railsplitter_data.csv"
+#     input: "../../data/railsplitter_data.csv"
 #     output:
 #         "data/48_wind_elevation_rho_noise_loss.npy",
 #         "data/48_wind_elevation_n_reservoir_sparsity_loss.npy",
@@ -171,7 +171,7 @@ rule optimize_lorenz_63:
 #         "python ../../driver.py -i {input} -e -H 48 -S 48_wind_elevation"
 #
 # rule optimize_solar_elevation_48:
-#     input: "data/solarfarm_data.csv"
+#     input: "../../data/solarfarm_data.csv"
 #     output:
 #         "data/48_solar_elevation_rho_noise_loss.npy",
 #         "data/48_solar_elevation_n_reservoir_sparsity_loss.npy",
@@ -187,8 +187,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_drytemp_48:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_demand_drytemp_rho_noise_loss.npy",
 #         "data/48_demand_drytemp_n_reservoir_sparsity_loss.npy",
@@ -201,8 +201,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_drytemp_48:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/48_wind_drytemp_rho_noise_loss.npy",
 #         "data/48_wind_drytemp_n_reservoir_sparsity_loss.npy",
@@ -215,8 +215,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_drytemp_48:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_solar_drytemp_rho_noise_loss.npy",
 #         "data/48_solar_drytemp_n_reservoir_sparsity_loss.npy",
@@ -232,8 +232,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_wettemp_48:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_demand_wettemp_rho_noise_loss.npy",
 #         "data/48_demand_wettemp_n_reservoir_sparsity_loss.npy",
@@ -246,8 +246,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_wettemp_48:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/48_wind_wettemp_rho_noise_loss.npy",
 #         "data/48_wind_wettemp_n_reservoir_sparsity_loss.npy",
@@ -260,8 +260,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_wettemp_48:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_solar_wettemp_rho_noise_loss.npy",
 #         "data/48_solar_wettemp_n_reservoir_sparsity_loss.npy",
@@ -277,8 +277,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_pressure_48:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_demand_pressure_rho_noise_loss.npy",
 #         "data/48_demand_pressure_n_reservoir_sparsity_loss.npy",
@@ -291,8 +291,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_pressure_48:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/48_wind_pressure_rho_noise_loss.npy",
 #         "data/48_wind_pressure_n_reservoir_sparsity_loss.npy",
@@ -305,8 +305,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_pressure_48:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_solar_pressure_rho_noise_loss.npy",
 #         "data/48_solar_pressure_n_reservoir_sparsity_loss.npy",
@@ -322,8 +322,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_humidity_48:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_demand_humidity_rho_noise_loss.npy",
 #         "data/48_demand_humidity_n_reservoir_sparsity_loss.npy",
@@ -336,8 +336,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_humidity_48:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/48_wind_humidity_rho_noise_loss.npy",
 #         "data/48_wind_humidity_n_reservoir_sparsity_loss.npy",
@@ -350,8 +350,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_humidity_48:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_solar_humidity_rho_noise_loss.npy",
 #         "data/48_solar_humidity_n_reservoir_sparsity_loss.npy",
@@ -367,8 +367,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_windspeed_48:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_demand_windspeed_rho_noise_loss.npy",
 #         "data/48_demand_windspeed_n_reservoir_sparsity_loss.npy",
@@ -381,8 +381,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_windspeed_48:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/48_wind_windspeed_rho_noise_loss.npy",
 #         "data/48_wind_windspeed_n_reservoir_sparsity_loss.npy",
@@ -395,8 +395,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_windspeed_48:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/48_solar_windspeed_rho_noise_loss.npy",
 #         "data/48_solar_windspeed_n_reservoir_sparsity_loss.npy",
@@ -412,7 +412,7 @@ rule optimize_lorenz_63:
 # # Predictions with Solar Elevation
 # # ============================================================================
 # rule optimize_demand_elevation_04:
-#     input: "data/uiuc_demand_data.csv"
+#     input: "../../data/uiuc_demand_data.csv"
 #     output:
 #         "data/04_demand_elevation_rho_noise_loss.npy",
 #         "data/04_demand_elevation_n_reservoir_sparsity_loss.npy",
@@ -424,7 +424,7 @@ rule optimize_lorenz_63:
 #         "python ../../driver.py -i {input} -e -H 4 -S 04_demand_elevation"
 #
 # rule optimize_wind_elevation_04:
-#     input: "data/railsplitter_data.csv"
+#     input: "../../data/railsplitter_data.csv"
 #     output:
 #         "data/04_wind_elevation_rho_noise_loss.npy",
 #         "data/04_wind_elevation_n_reservoir_sparsity_loss.npy",
@@ -436,7 +436,7 @@ rule optimize_lorenz_63:
 #         "python ../../driver.py -i {input} -e -H 4 -S 04_wind_elevation"
 #
 # rule optimize_solar_elevation_04:
-#     input: "data/solarfarm_data.csv"
+#     input: "../../data/solarfarm_data.csv"
 #     output:
 #         "data/04_solar_elevation_rho_noise_loss.npy",
 #         "data/04_solar_elevation_n_reservoir_sparsity_loss.npy",
@@ -452,8 +452,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_drytemp_04:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_demand_drytemp_rho_noise_loss.npy",
 #         "data/04_demand_drytemp_n_reservoir_sparsity_loss.npy",
@@ -466,8 +466,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_drytemp_04:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/04_wind_drytemp_rho_noise_loss.npy",
 #         "data/04_wind_drytemp_n_reservoir_sparsity_loss.npy",
@@ -480,8 +480,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_drytemp_04:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_solar_drytemp_rho_noise_loss.npy",
 #         "data/04_solar_drytemp_n_reservoir_sparsity_loss.npy",
@@ -497,8 +497,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_wettemp_04:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_demand_wettemp_rho_noise_loss.npy",
 #         "data/04_demand_wettemp_n_reservoir_sparsity_loss.npy",
@@ -511,8 +511,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_wettemp_04:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/04_wind_wettemp_rho_noise_loss.npy",
 #         "data/04_wind_wettemp_n_reservoir_sparsity_loss.npy",
@@ -525,8 +525,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_wettemp_04:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_solar_wettemp_rho_noise_loss.npy",
 #         "data/04_solar_wettemp_n_reservoir_sparsity_loss.npy",
@@ -542,8 +542,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_pressure_04:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_demand_pressure_rho_noise_loss.npy",
 #         "data/04_demand_pressure_n_reservoir_sparsity_loss.npy",
@@ -556,8 +556,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_pressure_04:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/04_wind_pressure_rho_noise_loss.npy",
 #         "data/04_wind_pressure_n_reservoir_sparsity_loss.npy",
@@ -570,8 +570,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_pressure_04:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_solar_pressure_rho_noise_loss.npy",
 #         "data/04_solar_pressure_n_reservoir_sparsity_loss.npy",
@@ -587,8 +587,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_humidity_04:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_demand_humidity_rho_noise_loss.npy",
 #         "data/04_demand_humidity_n_reservoir_sparsity_loss.npy",
@@ -601,8 +601,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_humidity_04:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/04_wind_humidity_rho_noise_loss.npy",
 #         "data/04_wind_humidity_n_reservoir_sparsity_loss.npy",
@@ -615,8 +615,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_humidity_04:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_solar_humidity_rho_noise_loss.npy",
 #         "data/04_solar_humidity_n_reservoir_sparsity_loss.npy",
@@ -632,8 +632,8 @@ rule optimize_lorenz_63:
 # # ============================================================================
 # rule optimize_demand_windspeed_04:
 #     input:
-#         demand = "data/uiuc_demand_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         demand = "../../data/uiuc_demand_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_demand_windspeed_rho_noise_loss.npy",
 #         "data/04_demand_windspeed_n_reservoir_sparsity_loss.npy",
@@ -646,8 +646,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_wind_windspeed_04:
 #     input:
-#         wind = "data/railsplitter_data.csv",
-#         weather = "data/lincoln_weatherdata.csv"
+#         wind = "../../data/railsplitter_data.csv",
+#         weather = "../../data/lincoln_weatherdata.csv"
 #     output:
 #         "data/04_wind_windspeed_rho_noise_loss.npy",
 #         "data/04_wind_windspeed_n_reservoir_sparsity_loss.npy",
@@ -660,8 +660,8 @@ rule optimize_lorenz_63:
 #
 # rule optimize_solar_windspeed_04:
 #     input:
-#         solar = "data/solarfarm_data.csv",
-#         weather = "data/champaign_weatherdata.csv"
+#         solar = "../../data/solarfarm_data.csv",
+#         weather = "../../data/champaign_weatherdata.csv"
 #     output:
 #         "data/04_solar_windspeed_rho_noise_loss.npy",
 #         "data/04_solar_windspeed_n_reservoir_sparsity_loss.npy",
