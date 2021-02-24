@@ -157,7 +157,7 @@ if __name__ == "__main__":
             ax.set_zlabel('MSE')
 
             cb = plt.colorbar(mappable)
-            cb.set_label(label="Mean Squared Error",
+            cb.set_label(label=" Root Mean Squared Error",
                          rotation=-90,
                          labelpad=25)
             fig.tight_layout()
@@ -168,4 +168,4 @@ if __name__ == "__main__":
             plt.plot(xset, loss, '-ok', alpha=0.6)
             plt.title(f'MSE as a Function of {variables[xvar]}')
             plt.xlabel(f'{variables[xvar]}')
-            plt.ylabel('MSE')
+            plt.ylabel('RMSE')

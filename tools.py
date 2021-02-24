@@ -93,7 +93,7 @@ def MASE(yhat, y, training, ntargets=1, nsteps=1):
         # print(training.T.shape)
         # print(training.T[0, nsteps:].shape)
         rdwalk = np.sum(np.abs(training.T[0, nsteps:] - training.T[0, :-nsteps]))
-        qt = (n-1)*(et)/(rdwalk)
+        qt = (n-nsteps)*(et)/(rdwalk)
         mase = np.mean(abs(qt))
     else:
         # print("Flattening...")
@@ -103,7 +103,7 @@ def MASE(yhat, y, training, ntargets=1, nsteps=1):
         et = y - yhat
         print(f'training shape {training.shape}')
         rdwalk = np.sum(np.abs(training.flatten()[nsteps:] - training.flatten()[:-nsteps]))
-        qt = (n-1)*(et)/(rdwalk)
+        qt = (n-nsteps)*(et)/(rdwalk)
         mase = np.mean(abs(qt))
 
     return mase
