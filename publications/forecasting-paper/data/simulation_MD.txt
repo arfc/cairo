@@ -27,3 +27,13 @@ Optimized prediction took: 13.931683579998207 seconds
 Mean Absolute Error: 4.399233333379642
 Root Mean Squared Error: 8.811912797922048
 
+==========================================
+Metadata for [48_demand_elevation]
+Reservoir Size:600, Sparsity: 0.01, Spectral Radius: 0.5, Noise: 0.003, Training Length: 23000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 2.552139678999083 seconds
+Mean Absolute Error: 0.02556940773516564
+Root Mean Squared Error: 0.033775679103321715
+Normalized RMSE: 1.073177436686412
+Mean Absolute Scaled Error: 0.473103537105803
+

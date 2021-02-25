@@ -3,7 +3,7 @@ SCENARIOS = ["lorenz63",
              # "48_wind",
              # "48_solar",
              # "48_wind_elevation",
-             # "48_demand_elevation",
+             "48_demand_elevation"]#,
              # "48_solar_elevation",
              # "48_wind_wettemp",
              # "48_solar_wettemp",
@@ -20,7 +20,7 @@ SCENARIOS = ["lorenz63",
              # "48_wind_windspeed",
              # "48_solar_windspeed",
              # "48_demand_windspeed",
-             "04_demand"]#,
+             # "04_demand"]#,
              # "04_wind",
              # "04_solar",
              # "04_wind_elevation",
@@ -146,18 +146,18 @@ rule optimize_demand_04:
 # # ============================================================================
 # # Predictions with Solar Elevation
 # # ============================================================================
-# rule optimize_demand_elevation_48:
-#     input: "../../data/uiuc_demand_data.csv"
-#     output:
-#         "data/48_demand_elevation_rho_noise_loss.npy",
-#         "data/48_demand_elevation_n_reservoir_sparsity_loss.npy",
-#         "data/48_demand_elevation_trainlen_loss.npy",
-#         "images/48_demand_elevation_trainlen_loss.pgf",
-#         "data/48_demand_elevation_prediction.npy",
-#         "images/48_demand_elevation_prediction.pgf",
-#     shell:
-#         "python ../../driver.py -i {input} -e -H 48 -S 48_demand_elevation"
-#
+rule optimize_demand_elevation_48:
+    input: "../../data/uiuc_demand_data.csv"
+    output:
+        "data/48_demand_elevation_rho_noise_loss.npy",
+        "data/48_demand_elevation_n_reservoir_sparsity_loss.npy",
+        "data/48_demand_elevation_trainlen_loss.npy",
+        "images/48_demand_elevation_trainlen_loss.pgf",
+        "data/48_demand_elevation_prediction.npy",
+        "images/48_demand_elevation_prediction.pgf",
+    shell:
+        "python ../../driver.py -i {input} -e -H 48 -S 48_demand_elevation"
+
 # rule optimize_wind_elevation_48:
 #     input: "../../data/railsplitter_data.csv"
 #     output:
