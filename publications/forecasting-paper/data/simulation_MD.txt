@@ -1,39 +1,20 @@
 ==========================================
-Metadata for [lorenz63]
-Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.003, Training Length: 2600, Prediction Window: 500
+Metadata for [04_wind_wettemp]
+Reservoir Size:600, Sparsity: 0.12, Spectral Radius: 0.7, Noise: 0.0007, Training Length: 19400, Prediction Window: 4
 Random state: 85
-Optimized prediction took: 0.8723546149994945 seconds
-Mean Absolute Error: 10.726665382932595
-Root Mean Squared Error: 0.013772917107043993
+Optimized prediction took: 21.60087335901335 seconds
+Mean Absolute Error: 0.07307731599577823
+Root Mean Squared Error: 0.10702268910125246
+Normalized RMSE: 0.7620270532386623
+Mean Absolute Scaled Error: 0.49100264125176624
 
 ==========================================
-Metadata for [lorenz63]
-Reservoir Size:4000, Sparsity: 0.2, Spectral Radius: 1.3, Noise: 0.007, Training Length: 4400, Prediction Window: 500
+Metadata for [04_wind_pressure]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.7, Noise: 0.0001, Training Length: 16400, Prediction Window: 4
 Random state: 85
-Optimized prediction took: 143.019779536 seconds
-==========================================
-Metadata for [lorenz63]
-Reservoir Size:1500, Sparsity: 0.12, Spectral Radius: 1.3, Noise: 0.007, Training Length: 2600, Prediction Window: 500
-Random state: 85
-Optimized prediction took: 5.271490126000572 seconds
-Mean Absolute Error: 5.502864228521313
-Root Mean Squared Error: 7.174676085310396
-
-==========================================
-Metadata for [lorenz63]
-Reservoir Size:2000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.001, Training Length: 3200, Prediction Window: 500
-Random state: 85
-Optimized prediction took: 13.931683579998207 seconds
-Mean Absolute Error: 4.399233333379642
-Root Mean Squared Error: 8.811912797922048
-
-==========================================
-Metadata for [48_demand_elevation]
-Reservoir Size:600, Sparsity: 0.01, Spectral Radius: 0.5, Noise: 0.003, Training Length: 23000, Prediction Window: 48
-Random state: 85
-Optimized prediction took: 2.552139678999083 seconds
-Mean Absolute Error: 0.02556940773516564
-Root Mean Squared Error: 0.033775679103321715
-Normalized RMSE: 1.073177436686412
-Mean Absolute Scaled Error: 0.473103537105803
+Optimized prediction took: 47.30342010500317 seconds
+Mean Absolute Error: 0.08664695896868953
+Root Mean Squared Error: 0.12441555724301809
+Normalized RMSE: 0.8858684196698405
+Mean Absolute Scaled Error: 0.5812916686922741
 

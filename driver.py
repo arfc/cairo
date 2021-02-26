@@ -25,17 +25,17 @@ plt.rcParams['font.family'] = "serif"
 plt.rcParams['pgf.rcfonts'] = False
 
 # Optimization Sets
-# radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
-# noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
+radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
+noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
 
-radius_set = [0.1, 0.5, 1]
-noise_set = [0.001, 0.0007, 0.003]
+# radius_set = [0.1, 0.5, 1]
+# noise_set = [0.001, 0.0007, 0.003]
 
-# reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
-# sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
+reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
+sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
 
-reservoir_set = [600, 800, 1000]
-sparsity_set = [0.005, 0.01, 0.2]
+# reservoir_set = [600, 800, 1000]
+# sparsity_set = [0.005, 0.01, 0.2]
 
 # This must change depending on the length of available data
 trainingLengths = np.arange(5000, 25000, 300)
@@ -240,7 +240,7 @@ if __name__ == "__main__":
     params['n_reservoir'] = opt_size
     params['sparsity'] = opt_sparsity
 
-    trainingLengths = np.arange(5000, MAX_TRAINLEN, 3000)
+    trainingLengths = np.arange(5000, MAX_TRAINLEN, 300)
 
     print('Optimizing training length')
     tic = time.perf_counter()
@@ -265,7 +265,7 @@ if __name__ == "__main__":
 # =============================================================================
 
     plt.plot(trainingLengths, trainlen_loss, '-ok', alpha=0.6)
-    plt.title(f'MSE as a Function of Training Length')
+    plt.title(f'RMSE as a Function of Training Length')
     plt.xlabel(f'Training Length')
     plt.ylabel('MSE')
     plt.savefig("./images/" + save_prefix + "_trainlen_loss.pgf")
@@ -325,7 +325,17 @@ if __name__ == "__main__":
              label='ESN Prediction',
              color='tab:red',
              linestyle='-')
-    plt.legend()
+    plt.legend(loc='upper left')
+    if any(init_pred.T[0] < 0):
+        x=hours[-futureTotal:]
+        y1 = 0
+        y2 = power_norm*init_pred.T[0]
+        plt.axhline(y=y1)
+        plt.fill_between(x, y1, y2,
+                         where=(y2 <= y1),
+                         linestyle='-',
+                         color='gray',
+                         alpha=0.6)
 
     # save prefix should be something like "04_wind_elevation"
     plt.savefig(target_folder + save_prefix + '_prediction.pgf')

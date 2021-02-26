@@ -23,17 +23,17 @@ plt.rcParams['font.family'] = "serif"
 plt.rcParams['pgf.rcfonts'] = False
 
 # Optimization Sets
-# radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
-# noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
+radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
+noise_set = [0.0001, 0.0003, 0.0007, 0.001, 0.003, 0.005, 0.007, 0.01]
 
-radius_set = [0.1, 0.5, 1]
-noise_set = [0.001, 0.0007, 0.003]
+# radius_set = [0.1, 0.5, 1]
+# noise_set = [0.001, 0.0007, 0.003]
 
-# reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
-# sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
+reservoir_set = [600, 800, 1000, 1500, 2000, 2500, 3000, 4000]
+sparsity_set = [0.005, 0.01, 0.03, 0.05, 0.1, 0.12, 0.15, 0.2]
 
-reservoir_set = [600, 800, 1000]
-sparsity_set = [0.005, 0.01, 0.2]
+# reservoir_set = [600, 800, 1000]
+# sparsity_set = [0.005, 0.01, 0.2]
 
 # This must change depending on the length of available data
 trainingLengths = np.arange(5000, 25000, 300)
