@@ -192,9 +192,9 @@ if __name__ == "__main__":
             print(f"saving file to {path}")
             plt.savefig(path)
 """
-        elif (xset is not None) and (yset is None):
-            plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
-            plt.plot(xset, loss, '-ok', alpha=0.6)
-            plt.title(f'MSE as a Function of {variables[xvar]}')
-            plt.xlabel(f'{variables[xvar]}')
-            plt.ylabel('RMSE')
+            # elif (xset is not None) and (yset is None):
+            #     plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
+            #     plt.plot(xset, loss, '-ok', alpha=0.6)
+            #     plt.title(f'MSE as a Function of {variables[xvar]}')
+            #     plt.xlabel(f'{variables[xvar]}')
+            #     plt.ylabel('RMSE')
