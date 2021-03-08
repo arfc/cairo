@@ -1,6 +1,7 @@
 \begin{figure*}[!ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{04_wind_wettemp_prediction.png}
+  % \includegraphics[width=0.8\textwidth]{04_wind_wettemp_prediction.png}
+  \input{./images/04_wind_windspeed_prediction.pgf}
   \caption{The optimized 4 hour ahead wind energy prediction with wet bulb
   temperature as a meteorological predictor.}
   \label{fig:wind04}
@@ -10,17 +11,17 @@
     \centering
     \caption{Tabulated error for 4-hour ahead wind forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting wind energy alone.}
     \label{tab:wind04}
-    \begin{tabular}{l|c|c|c|c}
+    \begin{tabular}{l|r|r|r|r}
       &  & & Improvement & Improvement \\
       Scenario  & MAE & RMSE & MAE (\%) & RMSE (\%)\\
       \hline
-      Wind Energy & 0.090266 & 0.124303 & [-] & [-] \\
-      Wind + Sun Elevation & 0.039248 & 0.083134 & -56.52& -33.12\\
-      Wind + Humidity & 0.064131 & 0.096310 & -28.95& -22.52\\
-      Wind + Pressure & 0.043739 & 0.087981 & -51.54& -29.22\\
-      Wind + Wet Bulb Temp. & 0.044447 & 0.077770 & -50.76& -37.44\\
-      Wind + Dry Bulb Temp. & 0.050536 & 0.083151 & -44.01 & -33.11\\
-      Wind + Wind Speed & 0.063456 & 0.088157 & -29.70 & -29.07\\
+      Wind Energy & 0.0903 & 0.1243 & [-] & [-] \\
+      Wind + Sun Elevation & 0.0705 & 0.1171 & & \\
+      Wind + Humidity & 0.0813 & 0.1201 & & \\
+      Wind + Pressure & 0.0866 & & 0.1244 & \\
+      Wind + Wet Bulb Temp. & 0.0731 & 0.1070 & & \\
+      Wind + Dry Bulb Temp. & 0.0747 & 0.1123 &  & \\
+      Wind + Wind Speed & 0.0571 & &  0.0837 & \\
     \end{tabular}
   \end{table*}
 % \end{center}

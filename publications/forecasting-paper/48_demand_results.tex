@@ -1,6 +1,7 @@
 \begin{figure*}[!ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{48_demand_pressure_prediction.png}
+  % \includegraphics[width=0.8\textwidth]{48_demand_pressure_prediction.png}
+  \input{./images/48_demand_humidity_prediction.pgf}
   \caption{The optimized 48-hour ahead demand prediction with pressure as a  meteorological
   predictor.}
   \label{fig:48demand}
@@ -11,17 +12,17 @@
     \centering
     \caption{Tabulated error for 48-hour ahead total electricity demand forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting electricity demand alone.}
     \label{tab:demand48}
-    \begin{tabular}{l|c|c|c|c}
+    \begin{tabular}{l|r|r|r|r}
       &  & & Improvement & Improvement \\
       Scenario  & MAE & RMSE & MAE (\%) & RMSE (\%)\\
       \hline
-      Total Demand & 0.018892 & 0.024137 & [-] & [-] \\
-      Demand + Sun Elevation & 0.013375 & 0.022893 & -29.20& -5.15 \\
-      Demand + Humidity & 0.048357 & 0.063544 & +155.96 & +163.26 \\
-      Demand + Pressure & 0.009329 & 0.017334 & -50.62 & -28.18\\
-      Demand + Wet Bulb Temp. & 0.033473 & 0.039922 & +77.18 & +65.40\\
-      Demand + Dry Bulb Temp. & 0.031866 & 0.040409 & +66.67 & +67.42\\
-      Demand + Wind Speed & 0.051045 & 0.074966 & +170.19 & +210.58\\
+      Total Demand & 0.0189 & 0.0241 & [-] & [-] \\
+      Demand + Sun Elevation & 0.0191 & 0.0240 & &  \\
+      Demand + Humidity & 0.0180 & 0.0223 &  & \\
+      Demand + Pressure & 0.0176 & 0.0245 &  & \\
+      Demand + Wet Bulb Temp. & 0.0241 & 0.0314 & & \\
+      Demand + Dry Bulb Temp. & 0.0218 & 0.0273 &  & \\
+      Demand + Wind Speed & 0.0197 & 0.0245 &  & \\
     \end{tabular}
   \end{table*}
 % \end{center}

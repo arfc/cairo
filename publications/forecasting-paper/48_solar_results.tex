@@ -1,6 +1,7 @@
 \begin{figure*}[!ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{48_solar_humidity_prediction.png}
+  % \includegraphics[width=0.8\textwidth]{48_solar_humidity_prediction.png}
+  \input{./images/48_solar_humidity_prediction.pgf}
   \caption{The optimized 48-hour ahead solar energy prediction with humidity as a  meteorological
   predictor.}
   \label{fig:solar48}
@@ -10,17 +11,17 @@
     \centering
     \caption{Tabulated error for 48-hour ahead solar energy forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting solar energy alone.}
     \label{tab:solar48}
-    \begin{tabular}{l|c|c|c|c}
+    \begin{tabular}{l|r|r|r|r}
       &  & & Improvement & Improvement \\
       Scenario  & MAE & RMSE & MAE (\%) & RMSE (\%)\\
       \hline
-      Solar Energy & 0.143276 & 0.206162 & [-] & [-] \\
-      Solar + Sun Elevation & 0.200627 & 0.292516 & +40.02 & +41.88\\
-      Solar + Humidity & 0.086920 & 0.111476 & -39.33& -45.93\\
-      Solar + Pressure & 0.098554 & 0.152672 &-31.21& -25.94\\
-      Solar + Wet Bulb Temp. & 0.114157 & 0.167503 & -20.32& -18.75\\
-      Solar + Dry Bulb Temp. & 0.079036 & 0.123783 & -44.84& -39.96\\
-      Solar + Wind Speed & 0.147270 & 0.191722 & +2.788& -7.004\\
+      Solar Energy & 0.1433 &0.2062 & [-] & [-] \\
+      Solar + Sun Elevation & 0.0957 & 0.1375 &  -33.2170 & -33.3172 \\
+      Solar + Humidity & 0.1001 & 0.1297 & -30.1465 & -37.1000 \\
+      Solar + Pressure & 0.1910 & 0.2158 & +33.2868 & +4.6557 \\
+      Solar + Wet Bulb Temp. & 0.1519 & 0.1884 & +6.0014 & -8.6324 \\
+      Solar + Dry Bulb Temp. & 0.1080 & 0.1512 & -24.6336 & -26.6731 \\
+      Solar + Wind Speed & 0.2136 & 0.2500 & +49.0579 & +21.2415 \\
     \end{tabular}
   \end{table*}
 % \end{center}

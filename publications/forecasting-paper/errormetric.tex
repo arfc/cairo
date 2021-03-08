@@ -10,3 +10,12 @@ The MAE measures the expected error throughout the forecast horizon. The RMSE
 indicates the presence of large but infrequent errors. Since the data were
 normalized by system capacity \cite{wang_quantifying_2016}, the error metrics
 are easily interpretable.
+In order to compare how each individual weather input either improved or
+worsened the forecast we calculated a ``percent improvement'' over the
+univariate case (i.e. a demand prediction based only on historical demand data).
+This percent improvement is calculated by
+\begin{align}
+  \text{\% Improvement} &= \frac{\hat{e} - e}{e}\times 100, \text{ [-]}
+\end{align}
+where $e$ is the univariate error and $\hat{e}$ is the duovariate error. The
+sign indicates the direction of change in error.

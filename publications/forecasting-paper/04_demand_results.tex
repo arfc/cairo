@@ -1,6 +1,7 @@
 \begin{figure*}[!ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{04_demand_elevation_prediction.png}
+  % \includegraphics[width=0.8\textwidth]{04_demand_elevation_prediction.png}
+  \input{./images/04_demand_elevation_prediction.pgf}
   \caption{The optimized 4 hour ahead demand prediction with solar angle as an additional predictor.}
   \label{fig:demand04}
 \end{figure*}
@@ -9,17 +10,17 @@
     \centering
     \caption{Tabulated error for 4-hour ahead electricity demand forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting solar energy alone.}
     \label{tab:demand04}
-    \begin{tabular}{l|c|c|c|c}
+    \begin{tabular}{l|r|r|r|r}
       &  & & Improvement & Improvement \\
       Scenario  & MAE & RMSE & MAE (\%) & RMSE (\%)\\
       \hline
-      Total Demand & 0.019343 & 0.026322 & [-] & [-] \\
-      Demand + Sun Elevation & 0.009869 & 0.016928 & -48.98 & -35.69\\
-      Demand + Humidity & 0.054772 & 0.073056 & +183.16& +177.54\\
-      Demand + Pressure & 0.009754 & 0.019314 & -49.57& -26.62\\
-      Demand + Wet Bulb Temp. & 0.020932 & 0.026979 & +8.21& +2.50\\
-      Demand + Dry Bulb Temp. & 0.026577 & 0.039963 & +37.40&+51.82\\
-      Demand + Wind Speed & 0.042534 & 0.067427 &+119.89 &+156.16\\
+      Total Demand & 0.0193 & 0.0263 & [-] & [-] \\
+      Demand + Sun Elevation & 0.0183 & 0.0239 & -5.1831 & -9.1255 \\
+      Demand + Humidity & 0.0219 & 0.0290 & +13.4715 & +10.2662 \\
+      Demand + Pressure & 0.0186 & 0.0273 & -3.6269 & +3.8023 \\
+      Demand + Wet Bulb Temp. & 0.0196 & 0.0253 & +1.5544 & -3.8023 \\
+      Demand + Dry Bulb Temp. & 0.0208 & 0.0270 & +7.7720 & +2.6616 \\
+      Demand + Wind Speed & 0.0201 & 0.0268 & +4.1451 & +1.9011 \\
     \end{tabular}
   \end{table*}
 % \end{center}

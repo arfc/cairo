@@ -2,11 +2,12 @@
 
 We first verified that our choice of implementation for \glspl{esn}
 produces similar results to those found in the literature \cite{pathak_using_2017}.
-\begin{figure}[ht]
-  \includegraphics[width=\columnwidth]{lorenz63_prediction.png}
+\begin{figure*}[t]
+  % \includegraphics[width=\columnwidth]{lorenz63_prediction.png}
+  \input{./images/lorenz63_prediction.pgf}
   \caption{Using an \gls{esn} to replicate the climate of the Lorenz Attractor.}
   \label{fig:lorenz63}
-\end{figure}
+\end{figure*}
 The hyper-parameters that minimized the RMSE of the model can be found in Table
 \ref{tab:lorenzparam}. Our optimized values are somewhat different from the literature, but our \gls{esn} implementation succesfully
 replicated the climate of the Lorenz Attractor similar to Pathak et. al 2017.
