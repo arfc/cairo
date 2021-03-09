@@ -630,6 +630,7 @@
 \pgfsetlinewidth{1.505625pt}%
 \definecolor{currentstroke}{rgb}{0.121569,0.466667,0.705882}%
 \pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{0.777470in}{1.409786in}}%
 \pgfpathlineto{\pgfqpoint{5.539721in}{1.409786in}}%
@@ -697,10 +698,10 @@
 \pgfsetstrokeopacity{0.800000}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{0.874693in}{2.366998in}}%
-\pgfpathlineto{\pgfqpoint{2.675428in}{2.366998in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{2.703206in}{2.366998in}}{\pgfqpoint{2.703206in}{2.394776in}}%
-\pgfpathlineto{\pgfqpoint{2.703206in}{2.768232in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{2.703206in}{2.796010in}}{\pgfqpoint{2.675428in}{2.796010in}}%
+\pgfpathlineto{\pgfqpoint{2.268599in}{2.366998in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{2.296377in}{2.366998in}}{\pgfqpoint{2.296377in}{2.394776in}}%
+\pgfpathlineto{\pgfqpoint{2.296377in}{2.768232in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{2.296377in}{2.796010in}}{\pgfqpoint{2.268599in}{2.796010in}}%
 \pgfpathlineto{\pgfqpoint{0.874693in}{2.796010in}}%
 \pgfpathquadraticcurveto{\pgfqpoint{0.846915in}{2.796010in}}{\pgfqpoint{0.846915in}{2.768232in}}%
 \pgfpathlineto{\pgfqpoint{0.846915in}{2.394776in}}%
@@ -724,7 +725,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.291359in,y=2.643232in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont True Solar Generation}%
+\pgftext[x=1.291359in,y=2.643232in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont True Demand}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetrectcap%
