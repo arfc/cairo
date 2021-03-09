@@ -1,12 +1,12 @@
-\begin{figure*}[!ht]
+\begin{figure*}[h]
   \centering
   % \includegraphics[width=0.8\textwidth]{48_wind_elevation_prediction.png}
   \input{./images/48_wind_elevation_prediction.pgf}
-  \caption{The optimized 48-hour ahead wind energy prediction with solar angle as an additional predictor.}
+  \caption{The optimized 48-hour ahead wind energy prediction. The inputs for this forecast were wind energy and solar elevation angle. \textit{Hyperparameters}: Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.0001, Training Length: 19100, Prediction Window: 48, Random state: 85}
   \label{fig:wind48}
 \end{figure*}
 % \begin{center}
-  \begin{table*}[!ht]
+  \begin{table*}[h]
     \centering
     \caption{Tabulated error for 48-hour ahead wind forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting wind energy alone.}
     \label{tab:wind48}
@@ -15,12 +15,12 @@
       Scenario  & MAE & RMSE & MAE (\%) & RMSE (\%)\\
       \hline
       Wind Energy & 0.1035 & 0.1308 & [-] & [-] \\
-      Wind + Sun Elevation & 0.0857 & 0.1141 & -17.1981 &\\
-      Wind + Humidity & 0.0952 & 0.1193 & & \\
-      Wind + Pressure & 0.1076 & 0.1381 & & \\
-      Wind + Wet Bulb Temp. & 0.0886 & 0.1184 & & \\
-      Wind + Dry Bulb Temp. & 0.0815 & & 0.1213 & \\
-      Wind + Wind Speed & 0.0763 & 0.1182 & & \\
+      Wind + Sun Elevation & 0.0857 & 0.1141 & -17.1981 & -12.7676 \\
+      Wind + Humidity & 0.0952 & 0.1193 & -8.0193 & -8.7620 \\
+      Wind + Pressure & 0.1076 & 0.1381 & +3.9614 & +5.5810 \\
+      Wind + Wet Bulb Temp. & 0.0886 & 0.1184 & -14.3961 & -9.4801 \\
+      Wind + Dry Bulb Temp. & 0.0815 & 0.1213 & -21.2560 & -7.2630 \\
+      Wind + Wind Speed & 0.0763 & 0.1182 & -26.2802 & -9.6330 \\
     \end{tabular}
   \end{table*}
 % \end{center}

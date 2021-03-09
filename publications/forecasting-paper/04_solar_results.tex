@@ -1,13 +1,12 @@
-\begin{figure*}[!ht]
+\begin{figure*}[h]
   \centering
   % \includegraphics[width=0.8\textwidth]{04_solar_wettemp_prediction.png}
   \input{./images/04_solar_wettemp_prediction.pgf}
-  \caption{The optimized 4 hour ahead solar energy prediction with wet bulb
-  temperature as a meteorological predictor.}
+  \caption{The optimized 4 hour ahead solar energy prediction. The inputs for this forecast were solar energy and hourly wet bulb temperature. \textit{Hyperparameters}: Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 0.9, Noise: 0.0001, Training Length: 5000, Prediction Window: 4, Random state: 85}
   \label{fig:solar04}
 \end{figure*}
 % \begin{center}
-  \begin{table*}[!ht]
+  \begin{table*}[h]
     \centering
     \caption{Tabulated error for 4-hour ahead solar energy forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting solar energy alone.}
     \label{tab:solar04}
