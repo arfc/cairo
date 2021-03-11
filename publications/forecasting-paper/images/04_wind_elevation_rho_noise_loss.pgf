@@ -57,7 +57,7 @@
 \pgfpathrectangle{\pgfqpoint{0.762038in}{0.499691in}}{\pgfqpoint{3.696000in}{3.696000in}}%
 \pgfusepath{clip}%
 \pgfsys@transformshift{0.762038in}{0.499691in}%
-\pgftext[left,bottom]{\pgfimage[interpolate=true,width=3.697500in,height=3.697500in]{04_wind_elevation_rho_noise_loss-img0.png}}%
+\pgftext[left,bottom]{\pgfimage[interpolate=true,width=3.697500in,height=3.697500in]{"04_wind_elevation_rho_noise_loss-img0.png"}}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
