@@ -5,6 +5,9 @@ These are defined as
 \begin{align}
   \text{MAE} &= \frac{1}{N}\sum_{i=1}^N\left|y_i - \hat{y}_i\right|\\
   \text{RMSE} &= \sqrt{\frac{1}{N}\sum_{i=1}^N\left(y_i - \hat{y}_i\right)^2}
+  \intertext{where}
+  \hat{y_i} & \text{ is the predicted output}\nonumber\\
+  y_i & \text{ is the true value}\nonumber
 \end{align}
 The MAE measures the expected error throughout the forecast horizon. The RMSE
 indicates the presence of large but infrequent errors. Since the data were
@@ -17,5 +20,12 @@ This percent improvement is calculated by
 \begin{align}
   \text{\% Improvement} &= \frac{\hat{e} - e}{e}\times 100, \text{ [-]}
 \end{align}
-where $e$ is the univariate error and $\hat{e}$ is the duovariate error. The
-sign indicates the direction of change in error.
+where $e$ is the error from the univariate forecast and $\hat{e}$ is the  error
+from the duovariate forecast. The sign indicates the direction of change in
+error. Finally, in order to facilitate comparison with other work, we calculated
+the normalized root mean squared error (NRMSE) by
+\begin{align}
+  NRMSE &= \sqrt{\frac{\sum_{i=1}^N\left(y_i - \hat{y}_i\right)^2}{\sum_{i=1}^{N}\left(y_i - \tilde{y_i}\right)^2}}
+  \intertext{where}
+  \tilde{y} & \text{ is the mean of the target set}\nonumber
+\end{align}

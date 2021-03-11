@@ -8,10 +8,13 @@ instantiated reservoir. It is impossible to replicate the exact conditions of
 other works without information about a seed for the random state. We have
 included this information for future work to compare with our results.
 
-For each target variable -- demand, wind, and solar -- we found that air
-pressure was the only meteorological factor that improved the forecast error in
-every case. Solar elevation angle also decreased the error in most cases with
-one exception, 48-hour ahead solar production. Table \ref{tab:demand04} and
+Chitsazan et al. 2017 compared wind speed forecasting with a conventional
+\gls{esn} to an \gls{esn} with nonlinear readouts and achieved better results
+with the base model than we did \cite{chitsazan_wind_2017}. However, this could be attributed to the fact that
+
+For each target variable -- demand, wind, and solar -- we found that sun
+elevation angle was the only meteorological factor that improved the forecast
+error in every case. Table \ref{tab:demand04} and
 Table \ref{tab:demand48} show that adding humidity, air temperature, or wind
 speed as a model input weakened the forecast for electricity demand. Yet,
 adding air temperature as a model input improves the forecast for solar and

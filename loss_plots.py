@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
 import matplotlib as mpl
-mpl.use("pgf")
+# mpl.use("pgf")
 
 plt.rcParams['figure.edgecolor'] = 'k'
 plt.rcParams['figure.facecolor'] = 'w'
@@ -17,6 +17,8 @@ plt.rcParams['savefig.bbox'] = 'tight'
 plt.rcParams['text.usetex'] = True
 plt.rcParams['font.family'] = "serif"
 plt.rcParams['pgf.rcfonts'] = False
+
+ftype = "png"
 
 
 # Optimization Sets
@@ -100,7 +102,7 @@ def get_variable_sets(fname):
             yset = parameter_sets[st]
             yvar = st
 
-    figure_path = fname.replace('data', 'images').replace('npy', 'pgf')
+    figure_path = fname.replace('data', 'images').replace('npy', ftype)
     return xset, xvar, yset, yvar, figure_path
 
 
@@ -140,8 +142,9 @@ if __name__ == "__main__":
             Z = np.array(loss).T
 
             # plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
-            plt.title((f"Hyper-parameter Optimization over {variables[xvar]}",
-                       f"and {variables[yvar]}"))
+            title = (f"Hyper-parameter Optimization over {variables[xvar]} and {variables[yvar]}")
+            print(title)
+            plt.title(title)
             im = plt.imshow(Z,
                             vmin=abs(Z.T).min(),
                             vmax=abs(Z.T).max(),

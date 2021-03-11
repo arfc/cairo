@@ -48,8 +48,8 @@ rule all:
         expand("data/{scenario}_n_reservoir_sparsity_loss.npy", scenario=SCENARIOS),
         expand("data/{scenario}_trainlen_loss.npy", scenario=SCENARIOS),
         expand("data/{scenario}_prediction.npy", scenario=SCENARIOS),
-        expand("images/{scenario}_rho_noise_loss.pgf", scenario=SCENARIOS),
-        expand("images/{scenario}_n_reservoir_sparsity_loss.pgf", scenario=SCENARIOS),
+        expand("images/{scenario}_rho_noise_loss.png", scenario=SCENARIOS),
+        expand("images/{scenario}_n_reservoir_sparsity_loss.png", scenario=SCENARIOS),
         expand("images/{scenario}_trainlen_loss.pgf", scenario=SCENARIOS),
         expand("images/{scenario}_prediction.pgf", scenario=SCENARIOS),
 
@@ -679,7 +679,7 @@ rule make_loss_plots_01:
     input:
         data = "data/{scenario}_rho_noise_loss.npy"
     output:
-        "images/{scenario}_rho_noise_loss.pgf",
+        "images/{scenario}_rho_noise_loss.png",
     shell:
         "python ../../loss_plots.py -i {input.data}"
 
@@ -687,6 +687,6 @@ rule make_loss_plots_02:
     input:
         data = "data/{scenario}_n_reservoir_sparsity_loss.npy",
     output:
-        "images/{scenario}_n_reservoir_sparsity_loss.pgf",
+        "images/{scenario}_n_reservoir_sparsity_loss.png",
     shell:
         "python ../../loss_plots.py -i {input.data}"

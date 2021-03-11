@@ -426,3 +426,13 @@ Optimized prediction took: 10.09619523701258 seconds
 Mean Absolute Error: 0.0026033581321343777
 Root Mean Squared Error: 0.004011478952065198
 
+==========================================
+Metadata for [48_solar]
+Reservoir Size:600, Sparsity: 0.2, Spectral Radius: 1.1, Noise: 0.0007, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 0.6705122799999117 seconds
+Mean Absolute Error: 0.1432765315112096
+Root Mean Squared Error: 0.20616253367412732
+Normalized RMSE: 1.2730144991768813
+Mean Absolute Scaled Error: 1.5883211413957135
+

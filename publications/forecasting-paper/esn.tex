@@ -54,7 +54,6 @@ $K$ units is mapped onto the reservoir by an input matrix,
  \begin{table*}[ht]
    \centering
    \caption{Description of Model Hyper-Parameters}
-   \label{tab:parameters}
    \begin{tabular}{c|c|c}
      \hline
      Hyper-parameter & Purpose & Tested Values\\
@@ -69,18 +68,33 @@ $K$ units is mapped onto the reservoir by an input matrix,
      &&0.1, 0.12, 0.15, 0.2]\\
      Training Length & Size of the training set before prediction & $L \in$ [5000, 25000], step size = 300
    \end{tabular}
+   \label{tab:parameters}
  \end{table*}
 
- The hyper-parameters are optimized by performing a grid search over the test values specified in Table \ref{tab:parameters}. The following steps were taken for each prediction task:
+ The hyper-parameters are optimized by performing a grid search over the test
+ values specified in Table \ref{tab:parameters}. The following steps were taken
+ for each prediction task:
  \begin{enumerate}
    \item Select a hyper-parameter or pair of parameters.
    \item Generate \gls{esn} prediction with the specified parameters.
    \item Calculate and record the root mean squared error (RMSE).
    \item Continue until last entry in the parameter set is reached.
-   \item Set the network parameters to hyper-parameter value that minimizes the RMSE.
+   \item Set the network parameters to hyper-parameter value that minimizes the
+   RMSE.
  \end{enumerate}
  This algorithm generates an error surface where the coordinates of the absolute
- minimum correspond to the indices of values in the hyper-parameter test sets that minimized the RMSE.
+ minimum correspond to the indices of values in the hyper-parameter test sets
+ that minimized the RMSE. Figure \ref{fig:rhoxnoise-demand04} shows an example
+ heatmap that optimized the spectral radius and noise hyperparameters for the 4-
+ hour ahead demand forecast and illustrates the sensitivity of \glspl{esn} to
+ hyperparameter values.
+
+ \begin{figure}[h]
+   \includegraphics[width=\columnwidth]{./images/04_demand_rho_noise_loss.png}
+   % \input{./images/04_wind_elevation_rho_noise_loss-img0.png}
+   \caption{An example heatmap of the RMSE for 4-hour ahead demand prediction with different combinations of spectral radius, $\rho$, and noise.}
+   \label{fig:rhoxnoise-demand04}
+ \end{figure}
 
  \subsection{Prediction Tasks}
 
