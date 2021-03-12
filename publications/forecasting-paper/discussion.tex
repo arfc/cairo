@@ -13,40 +13,31 @@ Chitsazan et al. 2017 compared wind speed forecasting with a conventional
 with the base model than we did \cite{chitsazan_wind_2017}. However, this could be attributed to the fact that
 
 For each target variable -- demand, wind, and solar -- we found that sun
-elevation angle was the only meteorological factor that improved the forecast
-error in every case. Table \ref{tab:demand04} and
-Table \ref{tab:demand48} show that adding humidity, air temperature, or wind
-speed as a model input weakened the forecast for electricity demand. Yet,
-adding air temperature as a model input improves the forecast for solar and
-wind energy, as shown in Table
-\ref{tab:solar04}, Table \ref{tab:solar48}, Table \ref{tab:wind04}, and Table
-\ref{tab:wind48}, respectively. This behavior is caused by relative complexity
-between model inputs. Electricity demand, for example, is quite ``predictable,"
-and therefore has low complexity. Air temperature and other weather related
-variables are less predictable. Thus, adding air temperature as a model input
-increases the total complexity of the system and weakens performance.
- Conversely, solar and wind energy are both nonlinear functions of many weather
- variables and consequently have greater complexity than air temperature,
- humidity, or air pressure. This means that adding any of those variabes as a
- model input will decrease the total complexity of the system and improve the
- forecast. Including wind speed only improved the wind energy forecasts, likely
- because it has greater complexity than solar energy and less than wind energy.
- Quantifying the predictability and complexity of these systems is in progress.
- A good measure for this type of complexity is the \textit{weighted permutation entropy}
- \cite{fadlallah_weighted-permutation_2013,garland_model-free_2014, pennekamp_intrinsic_2019}.
-
-Relative complexity also explains why adding solar elevation angle as a model
-input generally improved the forecast. Solar angle is deterministic and
-periodic which makes it perfectly predictable. Adding solar angle to any of the
-models decreases the total complexity of the system. One notable exception to
-this is shown in Table \ref{tab:solar48}, where solar angle weakened the
-forecast for solar energy. This is possibly due to \glspl{esn} inability to
-properly handle the zero values at night. Even the best solar energy forecast
-from this model, shown in Figure \ref{fig:solar48}, shows that the model
-struggles have zero energy production at night. Air pressure likely improved
-forecasts, not because it is a correlated quantity, but because it has slightly
-lower complexity than each of the target variables and because it has very
-small fluctuations around a mean value.
+elevation angle, while not always the best, was the only meteorological factor
+that improved the forecast error in every case. We hypothesize that the effect
+of additional weather features on model performance is related to the temporal
+complexity of that feature relative to the target variable. Electricity demand,
+for example, is quite ``predictable," and therefore has low complexity. Air
+temperature and other weather related variables are less predictable. Thus,
+adding air temperature as a model input increases the total complexity of the
+system and weakens performance. Further, solar elevation angle is completely
+deterministic and perfectly predictable and was the only feature that improved,
+or had a neutral effect on, model performance. Like electricity demand, solar
+elevation angle has both diurnal and annual periodicity, but has lower
+complexity than air temperature and electricity demand itself.
+Conversely, solar and wind energy are both nonlinear functions of many weather
+variables and consequently have greater complexity than air temperature. This
+means that adding a temperature feature as a model input will likely decrease
+the total complexity of the system and improve the forecast. Including wind
+speed only improved the wind energy forecasts, likely because it has greater
+complexity than solar energy and less than wind energy. Relative humidity has
+an inconsistent and poorly understood effect on model performance. It improved
+the forecast for 48-hour ahead electricity demand but worsened it for the 4-
+hour ahead forecast, as shown in Table \ref{tab:demand48} and Table \ref{tab:demand04}. The opposite trend occurred for solar energy.
+Quantifying the predictability and complexity of these systems is in progress.
+A good measure for this type of complexity is the \textit{weighted permutation
+entropy}
+\cite{fadlallah_weighted-permutation_2013,garland_model-free_2014, pennekamp_intrinsic_2019}.
 
 These results point to an important disadvantage of using \glspl{esn} to
 forecast renewable energy. This network architecture is simple and fast, but
