@@ -71,9 +71,9 @@ $K$ units is mapped onto the reservoir by an input matrix,
    \label{tab:parameters}
  \end{table*}
 
- The hyper-parameters are optimized by performing a grid search over the test
- values specified in Table \ref{tab:parameters}. The following steps were taken
- for each prediction task:
+ We optimize the hyper-parameters by performing a grid search over the test
+ values specified in Table \ref{tab:parameters}. We took the following
+ optimization steps for each prediction task:
  \begin{enumerate}
    \item Select a hyper-parameter or pair of parameters.
    \item Generate \gls{esn} prediction with the specified parameters.
@@ -85,8 +85,8 @@ $K$ units is mapped onto the reservoir by an input matrix,
  This algorithm generates an error surface where the coordinates of the absolute
  minimum correspond to the indices of values in the hyper-parameter test sets
  that minimized the RMSE. Figure \ref{fig:rhoxnoise-demand04} shows an example
- heatmap that optimized the spectral radius and noise hyperparameters for the 4-
- hour ahead demand forecast and illustrates the sensitivity of \glspl{esn} to
+ heatmap that optimized the spectral radius and noise hyperparameters for the 4-hour
+ ahead demand forecast and illustrates the sensitivity of \glspl{esn} to
  hyperparameter values.
 
  \begin{figure}[h]
@@ -99,10 +99,10 @@ $K$ units is mapped onto the reservoir by an input matrix,
  \subsection{Prediction Tasks}
 
 We first performed a benchmarking task by making a prediction for the Lorenz
-1963 model \cite{lorenz_deterministic_1963}. Then we optimized predictions for
+1963 model \cite{lorenz_deterministic_1963}. Then, we optimized predictions for
 univariate time-series
 representing total demand, solar energy, and wind energy 4-hours ahead and
-48-hours ahead. Finally, those same six tasks were repeated with an additional
+48-hours ahead. Finally, we repeated those same six tasks with an additional
 predictor. The tasks are summarized in Table \ref{tab:tasks}.
 
 \begin{table*}[h]
@@ -115,9 +115,9 @@ predictor. The tasks are summarized in Table \ref{tab:tasks}.
     \hline
     && None \\
     Total Demand && Solar Elevation\\
-    &4 hours ahead& Humidity\\
+    &4-hours ahead& Humidity\\
     Solar Energy && Pressure\\
-    &48 hours ahead& Wet Bulb Temp.\\
+    &48-hours ahead& Wet Bulb Temp.\\
     Wind Energy && Dry Bulb Temp.\\
     && Wind Speed\\
   \end{tabular}\\[-1.4pt]%

@@ -1,5 +1,5 @@
-We used \glspl{esn} to forecast electricity demand, or electric load, both
-4 hour intervals and 48 hour intervals. Figure \ref{fig:48demand} shows the
+We used \glspl{esn} to forecast electricity demand, or electric load, at both
+4-hour intervals and 48-hour intervals. Figure \ref{fig:48demand} shows the
 48-hour ahead forecast that had the lowest RMSE. In this case, the forecast
 that used relative humidity as an additional input had the lowest error, as
 shown in Table \ref{tab:demand48}. Table \ref{tab:demand48} also shows that the
@@ -7,28 +7,29 @@ forecast was weakened by training with air temperature (both wet bulb and dry
 bulb), air pressure, and wind speed. Adding solar elevation angle performed
 about the same as the base case.
 
-The 4-hour interval forecast with the lowest
-RMSE is shown in Figure \ref{fig:demand04}. Solar elevation angle improved the
+Figure \ref{fig:demand04} shows the 4-hour interval forecast with the lowest
+RMSE. Solar elevation angle improved the
 forecast more than any other meteorological input. Table \ref{tab:demand04}
-shows that humidity, air pressure, dry bulb temperature, and wind speed made the
-forecast worse.
+shows that humidity, air pressure, dry bulb temperature, and wind speed
+worsened the forecast.
 
 The performance of this implementation is consistent with previous applications
 of \glspl{esn} to the task of predicting electric load
 \cite{deihimi_application_2012}. Further, these results indicate that
-\glspl{esn} perform better than other machine learning techniques -- long
+\glspl{esn} perform better than other machine learning techniques-- long
 short term memory (LSTM)\cite{marino_building_2016}, Sequence to Sequence (S2S)
-\cite{marino_building_2016}, and support vector regression \cite{chen_day-ahead_2017} -- for predicting energy demand.
+\cite{marino_building_2016}, and support vector regression \cite{chen_day-ahead_2017}-- for predicting energy demand.
 
 \begin{figure*}[h]
   \centering
-  % \includegraphics[width=0.8\textwidth]{48_demand_pressure_prediction.png}
   \input{./images/48_demand_humidity_prediction.pgf}
-  \caption{The optimized 48-hour ahead demand prediction. The inputs for this forecast were hourly demand and relative humidity. \textit{Hyperparameters}:  Reservoir Size:1500, Sparsity: 0.2, Spectral Radius: 1.5, Noise: 0.0007, Training Length: 5000, Prediction Window: 48, Random state: 85}
+  \caption{The optimized 48-hour ahead demand prediction. The inputs for this
+  forecast were hourly demand and relative humidity. \textit{Hyperparameters}:
+  Reservoir Size: 1500, Sparsity: 0.2, Spectral Radius: 1.5, Noise: 0.0007,
+  Training Length: 5000, Prediction Window: 48, Random state: 85}
   \label{fig:48demand}
 \end{figure*}
 
-% \begin{center}
   \begin{table*}[h]
     \centering
     \caption{Tabulated error for 48-hour ahead total electricity demand
@@ -51,4 +52,3 @@ short term memory (LSTM)\cite{marino_building_2016}, Sequence to Sequence (S2S)
       Demand + Wind Speed & 0.77958 & 0.0197 & 0.0245 & +4.2328 & +1.6600 \\
     \end{tabular}
   \end{table*}
-% \end{center}

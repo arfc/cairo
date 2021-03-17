@@ -1,23 +1,27 @@
-Finally, we performed the same prediction tasks ask before, for wind energy.
+Finally, we performed the same prediction tasks as before for wind energy.
 Figure \ref{fig:wind48} and Figure \ref{fig:wind04} show the best forecasts
 that minimized the RMSE for
-48 and 4-hours ahead, respectively. All features except air pressure improved
+48- and 4-hours ahead, respectively. All features except air pressure improved
 the forecast. Including solar elevation angle improved the 48-hour ahead
-forecast the most, while adding windspeed improved the 4-hour ahead the most.
-Those results are shown in Table \ref{tab:wind48} and \ref{tab:wind04}
+forecast the most, while adding windspeed improved the 4-hour ahead forecast
+the most. Those results are shown in Table \ref{tab:wind48} and \ref{tab:wind04}
 respectively. Qualitatively, our conventional \gls{esn} achieved results
 comparable to a more complex algorithm by simply adding a single meteorological
-predictor \cite{lopez_wind_2018}. The results for a 48-hour ahead forecast from
-a more complex algorithm are shown in Figure \ref{fig:lopez2018}.
+predictor \cite{lopez_wind_2018}. Figure \ref{fig:lopez2018} shows the results for a 48-hour ahead forecast from a complex hybrid algorithm.
+Chitsazan et al. 2017 compared wind speed forecasting with a conventional
+\gls{esn} to an \gls{esn} with nonlinear readouts and achieved better results
+with the base model than we did \cite{chitsazan_wind_2017}. However, this could
+be attributed to the fact that they used data with 10-minute resolution and
+10-minute prediction steps. Unfortunately they did not include information about
+the hyper-parameters used for each prediction task.
 
-However, the state-of-the-art Weather Research and Forecasting model
+Still, the state-of-the-art Weather Research and Forecasting model
 \cite{powers_weather_2017}, a numerical weather prediction model, far
 outperforms our best results. Thus, conventional \glspl{esn} are insufficient
 for applications in grid planning \cite{wang_quantifying_2016}.
 
 \begin{figure*}[h]
   \centering
-  % \includegraphics[width=0.8\textwidth]{48_wind_elevation_prediction.png}
   \input{./images/48_wind_elevation_prediction.pgf}
   \caption{The optimized 48-hour ahead wind energy prediction that minimized
   the RMSE. The inputs for this forecast were wind energy and solar elevation
@@ -26,7 +30,6 @@ for applications in grid planning \cite{wang_quantifying_2016}.
   Random state: 85}
   \label{fig:wind48}
 \end{figure*}
-% \begin{center}
   \begin{table*}[h]
     \centering
     \caption{Tabulated error for 48-hour ahead wind forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting wind energy alone.}
@@ -44,4 +47,3 @@ for applications in grid planning \cite{wang_quantifying_2016}.
       Wind + Wind Speed & 0.84180 & 0.0763 & 0.1182 & -26.2802 & -9.6330 \\
     \end{tabular}
   \end{table*}
-% \end{center}

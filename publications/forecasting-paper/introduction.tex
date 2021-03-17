@@ -13,8 +13,8 @@ blackouts and power system failures
 energy negatively affect the economics of other types of clean energy, such as
 nuclear power
 \cite{cany_nuclear_2018,keppler_carbon_2011,illinois_commerce_commision_icc_potential_2015}. This may force nuclear plants to shut down prematurely, at the
-precise moment all clean sources of energy are most needed. There has been
-some work done to quantify the economic benefit of improving forecasts of
+precise moment that all clean sources of energy are most needed. Some existing
+work quantified the economic benefit of improving forecasts of
 renewable energy \cite{wang_quantifying_2016, mc_garrigle_quantifying_2015, brancucci_martinez-anido_value_2016}. Improving renewable energy forecasts can
 mitigate some of the negative side effects of variability. The economic
 benefits of better  forecasts include: reduced costs compared to building
@@ -54,8 +54,8 @@ couple of days ahead to aid unit commitment and grid-scale energy economy
 forecast total demand, wind production, and solar production, 4-hours and 48-hours ahead.
 
 There has been a lot of work to improve the forecasting capability of
-the basic \gls{esn}. Approaches include adding multiple reservoirs
-\cite{hu_forecasting_2020,gallicchio_deep_2019,yao_novel_2019,li_multi-reservoir_2020}; including non-linear units \cite{holzmann_echo_2008, chitsazan_wind_2019}; combining with other network architecture
+the basic \gls{esn}. Approaches include: adding multiple reservoirs
+\cite{hu_forecasting_2020,gallicchio_deep_2019,yao_novel_2019,li_multi-reservoir_2020}, including non-linear units \cite{holzmann_echo_2008, chitsazan_wind_2019}, combining with other network architecture
 \cite{chen_novel_2019, lopez_wind_2018}; and using a particle swarm approach \cite{chouikhi_pso-based_2017,wang_echo_2019}. Some works mention that
 including weather parameters may be useful for renewable energy forecasting
 \cite{li_echo_2019,chitsazan_wind_2019}, but none have demonstrated the effect
@@ -65,7 +65,7 @@ is to fill that gap.
 \subsection{Contributions}
 In this work, we use \glspl{esn} for three main prediction tasks: total
 electricity demand, wind energy production, and solar energy production. We
-split these tasks into further sub tasks; predicting 4-hours ahead and 48-hours
+split these tasks into further sub tasks, predicting 4-hours ahead and 48-hours
 ahead. These predictions facilitate scheduling and grid planning
 because current market rules put renewable energy on the grid first, forcing
 conventional power generators to work around this variability
@@ -77,7 +77,7 @@ and evaluate their effect on model performance. The need to consider exogenous
 meteorological inputs has been noted previously. Suprisingly, sun elevation is
 seldom used as a correlated quantity for energy demand and wind power.
 
-The structure of the paper is as follows. In Section 2, we discuss how data
+The structure of the paper is as follows: In Section 2, we discuss how data
 were selected and processed, and we review \glspl{esn}. Section 3 shows a
 benchmarking
 exercise for our \gls{esn} implementation and presents the results. We discuss
