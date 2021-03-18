@@ -30,20 +30,25 @@ for applications in grid planning \cite{wang_quantifying_2016}.
   Random state: 85}
   \label{fig:wind48}
 \end{figure*}
-  \begin{table*}[h]
-    \centering
-    \caption{Tabulated error for 48-hour ahead wind forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting wind energy alone.}
-    \label{tab:wind48}
-    \begin{tabular}{l|r|r|r|r|r}
-      & & & & Improvement & Improvement \\
-      Scenario &NRMSE & MAE & RMSE & MAE (\%) & RMSE (\%)\\
-      \hline
-      Wind Energy & 0.93167 & 0.1035 & 0.1308 & [-] & [-] \\
-      Wind + Sun Elevation & 0.81220 & 0.0857 & 0.1141 & -17.1981 & -12.7676 \\
-      Wind + Humidity & 0.84950 & 0.0952 & 0.1193 & -8.0193 & -8.7620 \\
-      Wind + Pressure & 0.98345 & 0.1076 & 0.1381 & +3.9614 & +5.5810 \\
-      Wind + Wet Bulb Temp. & 0.84323 & 0.0886 & 0.1184 & -14.3961 & -9.4801 \\
-      Wind + Dry Bulb Temp. & 0.86365 & 0.0815 & 0.1213 & -21.2560 & -7.2630 \\
-      Wind + Wind Speed & 0.84180 & 0.0763 & 0.1182 & -26.2802 & -9.6330 \\
-    \end{tabular}
-  \end{table*}
+% \FloatBarrier
+
+\begin{table*}[h]
+  \centering
+  \caption{Tabulated error for 48-hour ahead wind forecasts with various coupled quantities.}
+  \label{tab:wind48}
+  \begin{tabular}{lrrrrr}
+    \hline
+    & & & & Improvement & Improvement \\
+    Scenario &NRMSE & MAE & RMSE & MAE (\%) & RMSE (\%)\\
+    \hline
+    Wind Energy & 0.93167 & 0.1035 & 0.1308 & [-] & [-] \\
+    Wind + Sun Elevation & 0.81220 & 0.0857 & 0.1141 & -17.1981 & -12.7676 \\
+    Wind + Humidity & 0.84950 & 0.0952 & 0.1193 & -8.0193 & -8.7620 \\
+    Wind + Pressure & 0.98345 & 0.1076 & 0.1381 & +3.9614 & +5.5810 \\
+    Wind + Wet Bulb Temp. & 0.84323 & 0.0886 & 0.1184 & -14.3961 & -9.4801 \\
+    Wind + Dry Bulb Temp. & 0.86365 & 0.0815 & 0.1213 & -21.2560 & -7.2630 \\
+    Wind + Wind Speed & 0.84180 & 0.0763 & 0.1182 & -26.2802 & -9.6330 \\
+    \hline
+  \end{tabular}
+\end{table*}
+\FloatBarrier

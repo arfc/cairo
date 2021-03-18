@@ -1,7 +1,7 @@
 We repeated the 4-hour and 48-hour ahead forecasts for solar energy production
 on the \gls{uiuc} campus. Figure \ref{fig:solar48} and Figure \ref{fig:solar04}
 show the best forecasts for 48-hours ahead and 4-hours ahead, respectively. The
-shaded gray regions emphasize where the predicted energy production dipped
+shaded gray regions emphasize periods when   the predicted energy production dipped
 below zero. This should never occur in reality. Table \ref{tab:solar48} shows
 that relative humidity was the best additional feature for the 48-hour ahead
 prediction, while Table \ref{tab:solar04} shows that wet bulb temperature
@@ -24,20 +24,26 @@ improving energy economics through day-ahead forecasting
   state: 85}
   \label{fig:solar48}
 \end{figure*}
-  \begin{table*}[h]
-    \centering
-    \caption{Tabulated error for 48-hour ahead solar energy forecasts with various coupled quantities. Improvement indicates the percentage improvement over the base case of forecasting solar energy alone.}
-    \label{tab:solar48}
-    \begin{tabular}{l|r|r|r|r|r}
-      & & & & Improvement & Improvement \\
-      Scenario &NRMSE & MAE & RMSE & MAE (\%) & RMSE (\%)\\
-      \hline
-      Solar Energy & 1.27301 & 0.1433 &0.2062 & [-] & [-] \\
-      Solar + Sun Elevation & 0.84908 & 0.0957 & 0.1375 &  -33.2170 & -33.3172 \\
-      Solar + Humidity & 0.80107 & 0.1001 & 0.1297 & -30.1465 & -37.1000 \\
-      Solar + Pressure & 1.33226 & 0.1910 & 0.2158 & +33.2868 & +4.6557 \\
-      Solar + Wet Bulb Temp. & 1.16352 & 0.1519 & 0.1884 & +6.0014 & -8.6324 \\
-      Solar + Dry Bulb Temp. & 0.93376 & 0.1080 & 0.1512 & -24.6336 & -26.6731 \\
-      Solar + Wind Speed & 1.54306 & 0.2136 & 0.2500 & +49.0579 & +21.2415 \\
-    \end{tabular}
-  \end{table*}
+% \FloatBarrier
+
+\begin{table*}[h]
+  \centering
+  \caption{Tabulated error for 48-hour ahead solar energy forecasts with
+  various coupled quantities.}
+  \label{tab:solar48}
+  \begin{tabular}{lrrrrr}
+    \hline
+    & & & & Improvement & Improvement \\
+    Scenario &NRMSE & MAE & RMSE & MAE (\%) & RMSE (\%)\\
+    \hline
+    Solar Energy & 1.27301 & 0.1433 &0.2062 & [-] & [-] \\
+    Solar + Sun Elevation & 0.84908 & 0.0957 & 0.1375 &  -33.2170 & -33.3172 \\
+    Solar + Humidity & 0.80107 & 0.1001 & 0.1297 & -30.1465 & -37.1000 \\
+    Solar + Pressure & 1.33226 & 0.1910 & 0.2158 & +33.2868 & +4.6557 \\
+    Solar + Wet Bulb Temp. & 1.16352 & 0.1519 & 0.1884 & +6.0014 & -8.6324 \\
+    Solar + Dry Bulb Temp. & 0.93376 & 0.1080 & 0.1512 & -24.6336 & -26.6731 \\
+    Solar + Wind Speed & 1.54306 & 0.2136 & 0.2500 & +49.0579 & +21.2415 \\
+    \hline
+  \end{tabular}
+\end{table*}
+\FloatBarrier

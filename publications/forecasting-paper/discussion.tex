@@ -1,44 +1,43 @@
 \section{Discussion}
 
 The forecast accuracy of our \gls{esn} for the Lorenz model does not persist
-for quite as long as in other works \cite{pathak_using_2017}. However, our
+for quite as long as in other work \cite{pathak_using_2017}. However, our
 model successfully replicates the environment that produces the Lorenz
 Attractor. Further, each randomly instantiated reservoir has a unique set of
 optimal hyper-parameters. It is impossible to replicate the exact conditions of
 other works without information about a seed for the random state. We have
 included this information for future work to compare with our results.
 
-For each target variable-- demand, wind, and solar-- we found that sun
-elevation angle, while not always the best, was the only meteorological factor
-that improved the forecast error in every case. We hypothesize that the effect
-of additional weather features on model performance relates to the temporal
-complexity of that feature relative to the target variable. Electricity demand,
-for example, is quite ``predictable," and therefore has low complexity. Air
+For each target variable (demand, wind, and solar) we found that sun
+elevation angle, while not always the best, improved the forecast error in
+every case. We hypothesize that additional weather features effect model
+performance due to their temporal
+complexity relative to the target variable. Electricity demand,
+for example, is quite ``predictable," and therefore has low complexity.
+Meanwhile, air
 temperature and other weather related variables are less predictable. Thus,
-adding air temperature as a model input increases the total complexity of the
-system and weakens performance. Further, solar elevation angle is completely
-deterministic, perfectly predictable, and was the only feature that improved,
-or neutrally effected, model performance. Like electricity demand, solar
-elevation angle has both diurnal and annual periodicity but has lower
-complexity than air temperature and electricity demand itself.
+adding air temperature as a model input increases the total system complexity
+and weakens performance. Further, solar elevation angle is completely
+deterministic, perfectly predictable, and either improved,
+or neutrally effected, model performance in every case. Like electricity
+demand, solar elevation angle has both diurnal and annual periodicity but has
+lower complexity than air temperature and electricity demand itself.
 Conversely, solar and wind energy are both nonlinear functions of many weather
 variables and consequently have greater complexity than air temperature. This
 means that adding a temperature feature as a model input will likely decrease
-the total complexity of the system and improve the forecast. Including wind
+the total system complexity and improve the renewable energy forecasts. Including wind
 speed only improved the wind energy forecasts, likely because it has greater
 complexity than solar energy but less than wind energy. Relative humidity has
 an inconsistent and poorly understood effect on model performance. It improved
-the forecast for 48-hour ahead electricity demand but worsened it for the 4-
-hour ahead forecast, as shown in Table \ref{tab:demand48} and Table
+the forecast for 48-hour ahead electricity demand but worsened it for the 4-hour
+ahead forecast, as shown in Table \ref{tab:demand48} and Table
 \ref{tab:demand04}. The opposite trend occurred for solar energy.
 Quantifying the predictability and complexity of these systems is in progress.
-A good measure for this type of complexity is the \textit{weighted permutation
-entropy}
-\cite{fadlallah_weighted-permutation_2013,garland_model-free_2014, pennekamp_intrinsic_2019}.
+\textit{Weighted permutation entropy} is a good measure for this type of
+complexity \cite{fadlallah_weighted-permutation_2013,garland_model-free_2014, pennekamp_intrinsic_2019}.
 
 These results point to an important disadvantage of using \glspl{esn} to
-forecast renewable energy: This network architecture is simple and fast, but
-remains a black box. We assume that there exists some underlying dynamics that
+forecast renewable energy: Although simple and fast, \glspl{esn} remain a black box. We assume that there exists some underlying dynamics that
 can be ``learned,'' but we cannot observe the learning process nor extract
 important features from \glspl{esn}.
 
@@ -48,8 +47,8 @@ economics and planning mentioned in the literature
  4-hours ahead but did not improve on the state-of-the-art
  \cite{wang_quantifying_2016,powers_weather_2017}. The model did not perform
  well at the 48-hour ahead forecasts, potentially due to the lack of higher
- resolution data. \glspl{esn} are known for their ability to predict highly non-
- linear systems \cite{jaeger_harnessing_2004,lukosevicius_reservoir_2009}, yet
+ resolution data. \glspl{esn} are able to predict highly non-linear
+  systems \cite{jaeger_harnessing_2004,lukosevicius_reservoir_2009}, yet
  using hourly data could add spurious complexity that confounds the model
  \cite{garland_model-free_2014}
 
@@ -58,9 +57,9 @@ One appealing avenue of continued work is to leverage \glspl{esn} to generate
 synthetic data that respects real dynamics. Sythetic data are often useful for
 other machine learning or optimization algorithms. Typically, these data are
 produced by sampling from an Auto-Regressive Moving Average (ARMA) model \cite{baker_optimal_2018, garcia_dynamic_2016}, which tacitly assumes the
-training data can be made stationary. \glspl{esn} have can replicate
+training data can be made stationary. \glspl{esn} can replicate
 the environment of a dynamical system, although it remains unclear how far
 in the future this behavior persists \cite{pathak_using_2017,pathak_model-free_2018}.
 Future work will also explore the effect of data resolution on model
-performance, as well as evaluate some of the improvements to the \gls{esn}
+performance, as well as evaluate improvements to the \gls{esn}
 algorithm.

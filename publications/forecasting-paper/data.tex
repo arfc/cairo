@@ -1,10 +1,10 @@
 \subsection{Data Selection and Processing}
 
-All data predicting demand, wind energy, and solar energy on the \gls{uiuc}
-campus are from the \gls{uiuc} Solar Farm 1.0 dashboard
-\cite{alsoenergy_university_2019} and proprietary data shared with us courtesy
-of the \gls{uiuc} Facilities and Services Department. All data had hourly
-resolution. Weather data were retrieved from the
+The \gls{uiuc} Solar Farm 1.0 dashboard provides data for the solar energy on
+campus \cite{alsoenergy_university_2019}. The \gls{uiuc} Facilities and
+Services Department shared proprietary data for campus electricity demand and
+wind energy with us. All data had hourly resolution. Weather data were
+retrieved from the
 \gls{noaa}\cite{national_center_for_environmental_information_find_nodate} for
 two locations: Champaign, IL, where \gls{uiuc} is located, and Lincoln, IL,
 where Railsplitter Windfarm is located. \gls{uiuc} has a power purchase
@@ -13,40 +13,39 @@ agreement with Railsplitter Windfarm \cite{breitweiser_wind_2016}.
 In the case of \gls{uiuc} solar data, significant portions were missing due to
 instrument failure. In order to fill in this missing data, we calculated the
 theoretical solar energy production based on irradiance data from OpenEI
-\cite{noauthor_national_nodate}. The solar output is given by
-\cite{garcia_nuclear_2015}
+\cite{noauthor_national_nodate, garcia_nuclear_2015} with
 \begin{align}
   P &= G_T\eta_{ref}\tau_{pv}A\left[1-\gamma\left(T-25\right)\right] \text{ } \left[W\right]\\
   \intertext{where}
-  G_T &= P_{DNI}*\cos\left(\beta+\delta-lat\right)\\
-  &+ P_{DHI}*\left(\frac{180-\beta}{180}\right) \left[\frac{W}{m^2}\right]\nonumber\\
-  \intertext{where}
-  \delta =&
+  G_T &= P_{DNI}\cos\left(\beta+\delta-lat\right)\\
+  &+ P_{DHI}\left(\frac{180-\beta}{180}\right) \left[\frac{W}{m^2}\right]\nonumber\\
+  \intertext{and}
+  \delta &=
   23.44\sin\left(\left(\frac{\pi}{180}\right)\left(\frac{360}{365}\right)(N+284)
-  \right) \left[\text{degrees} \right]\\
-  &\eta, \tau, \gamma \text{ are solar panel properties}\nonumber\\
-  P_{DNI}& \text{ is the direct normal irradiance}\nonumber\\
-  P_{DHI}& \text{ is the diffuse horizontal irradiance}\nonumber\\
-  \beta &\text{ is the tilt angle of the solar panels}\nonumber\\\nonumber
+  \right) \left[^\circ \right]\\
+  \eta, \tau, \gamma &= \text{solar panel properties}\nonumber\\
+  P_{DNI}&= \text{direct normal irradiance}\nonumber\\
+  P_{DHI}&= \text{diffuse horizontal irradiance}\nonumber\\
+  \beta &= \text{tilt angle of the solar panels.}\nonumber\\\nonumber
 \end{align}
-The solar elevation angle, $\alpha$, was also calculated
-\cite{us_department_of_commerce_esrl_nodate, meeus_astronomical_1998} using
-coordinates for the \gls{uiuc} Solar Farm 1.0.
+We also calculated the solar elevation angle, $\alpha$, using
+coordinates for the \gls{uiuc} Solar Farm 1.0
+\cite{us_department_of_commerce_esrl_nodate, meeus_astronomical_1998}.
 \begin{align}
-  \alpha &= \sin^{-1}\left[\sin(\delta)\sin(\phi)+\cos(\delta)\cos(\phi)\cos(\omega)\right]
+  \alpha &= \sin^{-1}\left[\sin(\delta)\sin(\phi)+\cos(\delta)\cos(\phi)\cos(\omega)\right] \left[^\circ \right]
   \intertext{where}\nonumber
-  \delta &\text{ is the declination angle}\\\nonumber
-  \phi &\text{ is the latitude of interest}\\\nonumber
-  \omega &\text{ is the hour angle}\\\nonumber
+  \delta &= \text{declination angle}\\\nonumber
+  \phi &= \text{latitude of interest}\\\nonumber
+  \omega &= \text{hour angle}\\\nonumber
 \end{align}
 Finally, we normalized all of the data using the infinity norm
 \begin{align}
   \norm{\mathbf{x}}_\infty \equiv \text{max}\left|x_i\right|.
 \end{align}
-The infinity norm is equivalent to normalizing by the system capacity. This is
-useful because it simplifies the comparison of our results between
+The infinity norm is equivalent to normalizing by the system capacity. This
+simplifies the comparison of our results between
 tasks whose training data have vastly different magnitudes. This normalization
-also makes it possible to compare results with other works and is consistent
+also makes it possible to compare results with other work and is consistent
 with the recommendation from Kobylinski et al. (2020) \cite{kobylinski_high-resolution_2020}. Table \ref{tab:capacity} gives the maximum value for each
 system.
 
@@ -54,12 +53,13 @@ system.
   \centering
   \caption{Description of the size of the \gls{uiuc} microgrid}
   \label{tab:capacity}
-  \begin{tabular}{c|r}
+  \begin{tabular}{l r}
     \hline
     System & Maximum Value\\
     \hline
     Electricity Load & 81.6 [MW]\\
     Solar Energy & 4.7 [MW]\\
-    Wind Energy & 8.8 [MW]
+    Wind Energy & 8.8 [MW]\\
+    \hline
   \end{tabular}
 \end{table}

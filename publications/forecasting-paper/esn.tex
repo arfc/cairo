@@ -16,7 +16,8 @@
 
 An \gls{esn}, sometimes called a ``reservoir
 computer,''\cite{pathak_using_2017, pathak_model-free_2018, vlachas_backpropagation_2020} is a type of recurrent
-neural network that replaces the many hidden layers of a conventional feed-forward
+neural network \cite{lukosevicius_reservoir_2009}
+ that replaces the many hidden layers of a conventional feed-forward
 neural network with a reservoir that is:
 \begin{enumerate}
   \item sparse,
@@ -25,36 +26,42 @@ neural network with a reservoir that is:
 \end{enumerate}
 
 The reservoir is therefore a randomly instantiated adjacency matrix,
-\textit{\textbf{W}}, of size $N \times N$. The input vector, $U(t)$, of
-$K$ units is mapped onto the reservoir by an input matrix,
- $W^{in}$ of size $N \times K$. The activation states of the reservoir are calculated by
+\textit{\textbf{W}}, of size $N \times N$. An input matrix  $W^{in}$, of size
+$N \times K$, maps the input vector, $U(t)$ with
+$K$ units, onto the reservoir. The activation states of the reservoir are
+calculated by \cite{shi_energy_2016, pathak_model-free_2018, lukosevicius_practical_2012}
  \begin{align}
    x(t) &= \tanh \left(W^{in}\cdot U(t) + \mathbf{W}x(t-1)\right)
+   \intertext{where}
+   x(t) &= \text{the collection of reservoir activations}\nonumber.
  \end{align}
- Where $x(t)$ is the collection of reservoir activations \cite{shi_energy_2016, pathak_model-free_2018, lukosevicius_practical_2012}.
  The output is read by an output weight matrix,
  $W^{out}$.
  \begin{align}
-   U(t+\Delta t) &= \left(W^{out}\right)^T\cdot x(t)
+   U(t+\Delta t) &= \left(W^{out}\right)^T\cdot x(t).
  \end{align}
- In the training phase, the output, $U(t+\Delta t)$, is
- discarded and the next training input is passed to the network. During the
- prediction phase, the output is kept and used as the next input. Figure \ref{fig:reservoir_graph} illustrates this behavior. The speed of \glspl{esn} is owed
- to this structure--- only $W^{out}$ has tunable weights. Everything else is
+ In the training phase, we
+ discard the output, $U(t+\Delta t)$,  and the next training input is passed to
+ the network. During the prediction phase, we keep the output and use it as the
+ next input. Figure \ref{fig:reservoir_graph} illustrates this behavior. The
+ speed of \glspl{esn} is owed
+ to this structure -- only $W^{out}$ has tunable weights. Everything else is
  fixed. In this work, we adapted the open source Python package \texttt{pyESN} \cite{korndorfer_pyesn_2015} to construct and train the network.
 
  \subsection{Hyper-Parameter Optimization}
 
- \glspl{esn} are fast because the hidden layer in a conventional feed-forward neural network is replaced by a large reservoir that does not require training.
+ \glspl{esn} are fast because a large reservoir, that does not require
+ training, replaces the hidden layers in a conventional feed-forward neural
+ network.
  The trade off is that \glspl{esn} are sensitive to various hyper-parameters
- that need to be optimized \cite{lukosevicius_practical_2012}. These hyper-parameters are summarized in Table \ref{tab:parameters}. The spectral radius ($\rho$) should satisfy the ``echo state property'' which means that
+ that must be optimized \cite{lukosevicius_practical_2012}. Table \ref{tab:parameters} summarizes these hyper-parameters. The spectral radius ($\rho$) should satisfy the ``echo state property'' which means that
  previous reservoir activations have a decaying influence on future states. This
  is usually guaranteed for $\rho < 1$, but is not a requirement
  \cite{lukosevicius_practical_2012}.
  \begin{table*}[h]
    \centering
    \caption{Description of Model Hyper-Parameters}
-   \begin{tabular}{c|c|c}
+   \begin{tabular}{l l l}
      \hline
      Hyper-parameter & Purpose & Tested Values\\
      \hline
@@ -66,11 +73,12 @@ $K$ units is mapped onto the reservoir by an input matrix,
      &&2500, 3000, 4000]\\
      \texttt{sparsity} & The density of connections in \textbf{W}& [0.005, 0.01, 0.03, 0.05, \\
      &&0.1, 0.12, 0.15, 0.2]\\
-     Training Length & Size of the training set before prediction & $L \in$ [5000, 25000], step size = 300
+     Training Length & Size of the training set before prediction & $L \in$ [5000, 25000], step size = 300\\
+     \hline
    \end{tabular}
    \label{tab:parameters}
  \end{table*}
-
+\FloatBarrier
  We optimize the hyper-parameters by performing a grid search over the test
  values specified in Table \ref{tab:parameters}. We took the following
  optimization steps for each prediction task:
@@ -82,10 +90,8 @@ $K$ units is mapped onto the reservoir by an input matrix,
    \item Set the network parameters to hyper-parameter value that minimizes the
    RMSE.
  \end{enumerate}
- This algorithm generates an error surface where the coordinates of the absolute
- minimum correspond to the indices of values in the hyper-parameter test sets
- that minimized the RMSE. Figure \ref{fig:rhoxnoise-demand04} shows an example
- heatmap that optimized the spectral radius and noise hyperparameters for the 4-hour
+ Figure \ref{fig:rhoxnoise-demand04} shows an example
+ heatmap that optimized the spectral radius and noise hyper-parameters for the 4-hour
  ahead demand forecast and illustrates the sensitivity of \glspl{esn} to
  hyperparameter values.
 
@@ -103,13 +109,13 @@ We first performed a benchmarking task by making a prediction for the Lorenz
 univariate time-series
 representing total demand, solar energy, and wind energy 4-hours ahead and
 48-hours ahead. Finally, we repeated those same six tasks with an additional
-predictor. The tasks are summarized in Table \ref{tab:tasks}.
+predictor. Table \ref{tab:tasks} summarizes each combination of tasks.
 
 \begin{table*}[h]
   \centering
-  \caption{Summary of Prediction Tasks}
+  \caption{Summary of prediction tasks.}
   \label{tab:tasks}
-  \begin{tabular}{c|c|c}
+  \begin{tabular}{c c c}
     \hline
     Target & Future & Additional Predictor\\
     \hline
@@ -120,6 +126,8 @@ predictor. The tasks are summarized in Table \ref{tab:tasks}.
     &48-hours ahead& Wet Bulb Temp.\\
     Wind Energy && Dry Bulb Temp.\\
     && Wind Speed\\
+    \hline
   \end{tabular}\\[-1.4pt]%
 
 \end{table*}
+\FloatBarrier
