@@ -18,16 +18,17 @@ plt.rcParams['font.family'] = "serif"
 plt.rcParams['pgf.rcfonts'] = False
 
 
-start_dates = {'solar':'Hours since 2016-01-01 00:00:00',
-               'demand':'Hours since 2015-01-01 00:00:00',
+start_dates = {'solar': 'Hours since 2016-01-01 00:00:00',
+               'demand': 'Hours since 2015-01-01 00:00:00',
                'wind': 'Hours since 2016-11-01 01:00:00'}
 
-norms = {'solar':4733.25,
-         'demand':81602,
-         'wind':8800}
+norms = {'solar': 4733.25,
+         'demand': 81602,
+         'wind': 8800}
 
 DATA_PATH = "./publications/forecasting-paper/data/"
 IMAGE_PATH = "./publications/forecasting-paper/images/"
+
 
 def get_prediction_data_list():
     """
@@ -40,7 +41,7 @@ def get_prediction_data_list():
         The list of paths to output files
     """
 
-    path = DATA_PATH+"*_prediction.npy"
+    path = DATA_PATH + "*_prediction.npy"
 
     path_list = glob.glob(path, recursive=True)
     return path_list
@@ -57,7 +58,7 @@ def get_input_data_list():
         The list of paths to output files
     """
 
-    path = DATA_PATH+"*_input.npy"
+    path = DATA_PATH + "*_input.npy"
 
     path_list = glob.glob(path, recursive=True)
     return path_list
@@ -83,12 +84,12 @@ def get_metadata(data_file):
               'window': 48,
               'trainlen': 5000}
 
-    param_names = {'Reservoir Size':'n_reservoir',
-                   'Sparsity':'sparsity',
-                   'Spectral Radius':'rho',
-                   'Noise':'noise',
-                   'Training Length':'trainlen',
-                   'Prediction Window':'window'}
+    param_names = {'Reservoir Size': 'n_reservoir',
+                   'Sparsity': 'sparsity',
+                   'Spectral Radius': 'rho',
+                   'Noise': 'noise',
+                   'Training Length': 'trainlen',
+                   'Prediction Window': 'window'}
 
     splitstring = data_file.split('/')[-1]
     # print(splitstring)
@@ -96,18 +97,18 @@ def get_metadata(data_file):
     simulation_name = splitstring.split('_prediction.npy')[0]
     # print(simulation_name)
 
-    with open(DATA_PATH+"simulation_MD.txt", 'r') as file:
+    with open(DATA_PATH + "simulation_MD.txt", 'r') as file:
         metadata = file.readlines()
 
     for i, line in enumerate(metadata):
         if simulation_name in line:
-            param_string = metadata[i+1]
+            param_string = metadata[i + 1]
             break
 
     param_list = param_string.split(',')
     for p in param_list:
         splitp = p.split(':')
-        name,value = splitp[0].strip(), splitp[1].strip()
+        name, value = splitp[0].strip(), splitp[1].strip()
         # print(name,value)
         key = param_names[name]
         if name in ['Reservoir Size', 'Training Length', 'Prediction Window']:
@@ -118,6 +119,7 @@ def get_metadata(data_file):
     # print(params)
 
     return params, param_string, target_file, simulation_name
+
 
 if __name__ == "__main__":
 
@@ -152,8 +154,8 @@ if __name__ == "__main__":
         # Plot the Prediction
         # ================================
         futureTotal = params['future']
-        colwidth = 3.07242*2
-        height = 0.5*colwidth
+        colwidth = 3.07242 * 2
+        height = 0.5 * colwidth
         hours = np.arange(0, len(input_data), 1)
 
         plt.figure(figsize=(colwidth, height))
@@ -175,8 +177,10 @@ if __name__ == "__main__":
             norm = norms['wind']
 
         # plot the truth
-        plt.plot(hours[-2 * futureTotal:], input_data.T[0][-2 * futureTotal:]*norm,
-                 'b', label=f"True Demand",
+        plt.plot(hours[-2 * futureTotal:],
+                 input_data.T[0][-2 * futureTotal:] * norm,
+                 'b',
+                 label=f"True Demand",
                  alpha=0.7,
                  color='tab:blue')
         # plot the prediction
@@ -186,9 +190,9 @@ if __name__ == "__main__":
                  linestyle='-')
         plt.legend(loc='upper left')
         if any(prediction.T[0] < 0):
-            x=hours[-futureTotal:]
+            x = hours[-futureTotal:]
             y1 = 0
-            y2 = norm*prediction.T[0]
+            y2 = norm * prediction.T[0]
             plt.axhline(y=y1, alpha=0)
             plt.fill_between(x, y1, y2,
                              where=(y2 <= y1),
@@ -197,6 +201,6 @@ if __name__ == "__main__":
                              alpha=0.6)
 
         # save prefix should be something like "04_wind_elevation"
-        plt.savefig(IMAGE_PATH+ simname+'_prediction.pgf')
+        plt.savefig(IMAGE_PATH + simname + '_prediction.pgf')
         plt.close()
         plt.show()
