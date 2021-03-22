@@ -1,0 +1,32 @@
+\subsection{Performance Metrics}
+We measure the accuracy of the model using two error metrics:
+mean absolute error (MAE) and root mean squared error (RMSE).
+These are defined as
+\begin{align}
+  \text{MAE} &= \frac{1}{N}\sum_{i=1}^N\left|y_i - \hat{y}_i\right|\\
+  \text{RMSE} &= \sqrt{\frac{1}{N}\sum_{i=1}^N\left(y_i - \hat{y}_i\right)^2}
+  \intertext{where}
+  \hat{y_i} &= \text{predicted output}\nonumber\\
+  y_i &= \text{true value}\nonumber
+\end{align}
+The MAE measures the expected error throughout the forecast horizon. The RMSE
+indicates the presence of significant but infrequent errors. Since the data were
+normalized by system capacity \cite{wang_quantifying_2016}, the error metrics
+are easily interpretable.
+In order to compare how each individual weather input changed the forecast accuracy, we calculated a ``percent improvement'' over the
+univariate case (i.e. a demand prediction based only on historical demand data).
+This percent improvement is calculated by
+\begin{align}
+  \text{\% Improvement} &= \frac{\hat{e} - e}{e}\times 100, \text{ [-]}
+  \intertext{where}
+  e &= \text{error from the univariate forecast}\nonumber\\
+  \hat{e} &= \text{error from the duovariate forecast.}\nonumber
+\end{align}
+The sign indicates the direction of change in
+error. Finally, in order to facilitate comparison with other work, we calculated
+the normalized root mean squared error (NRMSE) by
+\begin{align}
+  NRMSE &= \sqrt{\frac{\sum_{i=1}^N\left(y_i - \hat{y}_i\right)^2}{\sum_{i=1}^{N}\left(y_i - \tilde{y_i}\right)^2}}
+  \intertext{where}
+  \tilde{y} &= \text{mean of the target set}\nonumber
+\end{align}

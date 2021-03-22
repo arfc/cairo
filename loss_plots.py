@@ -6,14 +6,19 @@ import getopt
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
+import matplotlib as mpl
+# mpl.use("pgf")
 
-plt.rcParams['figure.figsize'] = (12, 9)
 plt.rcParams['figure.edgecolor'] = 'k'
 plt.rcParams['figure.facecolor'] = 'w'
+plt.rcParams['pgf.texsystem'] = 'pdflatex'
 plt.rcParams['savefig.dpi'] = 400
 plt.rcParams['savefig.bbox'] = 'tight'
 plt.rcParams['text.usetex'] = True
 plt.rcParams['font.family'] = "serif"
+plt.rcParams['pgf.rcfonts'] = False
+
+ftype = "png"
 
 
 # Optimization Sets
@@ -97,7 +102,7 @@ def get_variable_sets(fname):
             yset = parameter_sets[st]
             yvar = st
 
-    figure_path = fname.replace('data', 'figures').replace('npy', 'png')
+    figure_path = fname.replace('data', 'images').replace('npy', ftype)
     return xset, xvar, yset, yvar, figure_path
 
 
@@ -118,7 +123,7 @@ if __name__ == "__main__":
 
     print(len(loss_files))
 
-    target_folder = "./figures/"
+    target_folder = "./images/"
 
     if not os.path.isdir(target_folder):
         os.mkdir(target_folder)
@@ -132,6 +137,36 @@ if __name__ == "__main__":
         xset, xvar, yset, yvar, path = get_variable_sets(file)
 
         if (xset is not None) and (yset is not None):
+            X = np.array(xset)
+            Y = np.array(yset)
+            Z = np.array(loss).T
+
+            # plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
+            title = (
+                f"Hyper-parameter Optimization over {variables[xvar]} and {variables[yvar]}")
+            print(title)
+            plt.title(title)
+            im = plt.imshow(Z,
+                            vmin=abs(Z.T).min(),
+                            vmax=abs(Z.T).max(),
+                            origin='lower',
+                            cmap='viridis')
+            plt.xticks(np.linspace(0, len(X) - 1,
+                                   len(X)), X)
+            plt.yticks(np.linspace(0, len(Y) - 1,
+                                   len(Y)), Y)
+            plt.xlabel(f'{variables[xvar]}')
+            plt.ylabel(f'{variables[yvar]}')
+            cb = plt.colorbar(im)
+            cb.set_label(label="Root Mean Squared Error",
+                         rotation=-90,
+                         labelpad=25)
+            print(f"saving file to {path}")
+            plt.savefig(path)
+
+
+"""
+# Uncomment this block to plot as an error surface
             fig = plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
             ax = plt.axes(projection='3d')
 
@@ -149,21 +184,21 @@ if __name__ == "__main__":
             ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
                             cmap=mappable.cmap,
                             norm=mappable.norm)
-            ax.set_xlabel(f'{variables[xvar]}', fontsize=18)
-            ax.set_ylabel(f'{variables[yvar]}', fontsize=18)
-            ax.set_zlabel('MSE', fontsize=18)
+            ax.set_xlabel(f'{variables[xvar]}')
+            ax.set_ylabel(f'{variables[yvar]}')
+            ax.set_zlabel('MSE')
 
             cb = plt.colorbar(mappable)
-            cb.set_label(label="Mean Squared Error",
-                         fontsize=16,
+            cb.set_label(label=" Root Mean Squared Error",
                          rotation=-90,
                          labelpad=25)
             fig.tight_layout()
             print(f"saving file to {path}")
             plt.savefig(path)
-        elif (xset is not None) and (yset is None):
-            plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
-            plt.plot(xset, loss, '-ok', alpha=0.6)
-            plt.title(f'MSE as a Function of {variables[xvar]}', fontsize=20)
-            plt.xlabel(f'{variables[xvar]}', fontsize=18)
-            plt.ylabel('MSE', fontsize=18)
+"""
+# elif (xset is not None) and (yset is None):
+#     plt.figure(figsize=(16, 9), facecolor='w', edgecolor='k')
+#     plt.plot(xset, loss, '-ok', alpha=0.6)
+#     plt.title(f'MSE as a Function of {variables[xvar]}')
+#     plt.xlabel(f'{variables[xvar]}')
+#     plt.ylabel('RMSE')

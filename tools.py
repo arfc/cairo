@@ -2,7 +2,7 @@ import numpy as np
 from pyESN.pyESN import ESN
 
 
-def MSE(yhat, y):
+def MSE(yhat, y, ntargets=1):
     '''
     This function calculates the root mean squared error between
     a predicted and target vector.
@@ -19,12 +19,104 @@ def MSE(yhat, y):
     mse : float
         The mean squared error between yhat and y.
     '''
-    mse = np.sqrt(np.mean((y.flatten() - yhat.flatten())**2))
+    try:
+        n_inputs = y.shape[1]
+    except BaseException:
+        n_inputs = 1
+
+    if n_inputs > 1 and ntargets == 1:
+        mse = np.sqrt(np.mean((y.T[0] - yhat.T[0])**2))
+    else:
+        mse = np.sqrt(np.mean((y.flatten() - yhat.flatten())**2))
 
     return mse
 
 
-def MAE(yhat, y):
+def NRMSE(yhat, y, ntargets=1):
+    '''
+    This function calculates the normalized root mean squared error
+    between a predicted and target vector.
+
+    Parameters
+    ----------
+    yhat : numpy array
+        The predicted, approximated, or calculated vector
+    y : numpy array
+        The target vector
+
+    Returns
+    -------
+    mse : float
+        The mean squared error between yhat and y.
+    '''
+
+    mse = MSE(yhat, y, ntargets)
+    try:
+        n_inputs = y.shape[1]
+    except BaseException:
+        n_inputs = 1
+
+    if n_inputs > 1 and ntargets == 1:
+        sigma = np.std(y.T[0])
+    else:
+        sigma = np.std(y.flatten())
+    nrmse = mse / sigma
+
+    return nrmse
+
+
+def MASE(yhat, y, training, ntargets=1, nsteps=1):
+    '''
+    This function calculates the mean absolute scaled
+    error for a prediction.
+
+    Parameters
+    ----------
+    yhat : numpy array
+        The forecast vector
+    y : numpy array
+        The target vector
+    ntargets : integer
+        The number of target variables being predicted
+    nsteps : integer
+        The number of steps ahead for the forecast
+    '''
+
+    try:
+        n_inputs = y.shape[1]
+    except BaseException:
+        n_inputs = 1
+
+    if n_inputs > 1 and ntargets == 1:
+        n = len(training.T[0])
+        et = y.T[0] - yhat.T[0]
+        # print(training.T.shape)
+        # print(training.T[0, nsteps:].shape)
+        rdwalk = np.sum(
+            np.abs(training.T[0, nsteps:] - training.T[0, :-nsteps]))
+        qt = (n - nsteps) * (et) / (rdwalk)
+        mase = np.mean(abs(qt))
+    else:
+        # print("Flattening...")
+        y = y.flatten()
+        yhat = yhat.flatten()
+        n = len(training)
+        et = y - yhat
+        print(f'training shape {training.shape}')
+        rdwalk = np.sum(
+            np.abs(
+                training.flatten()[
+                    nsteps:] -
+                training.flatten()[
+                    :-
+                    nsteps]))
+        qt = (n - nsteps) * (et) / (rdwalk)
+        mase = np.mean(abs(qt))
+
+    return mase
+
+
+def MAE(yhat, y, ntargets=1):
     '''
     This function calculates the mean absolute error between
     a predicted and target vector.
@@ -41,7 +133,15 @@ def MAE(yhat, y):
     mae : float
         The mean squared error between yhat and y.
     '''
-    mae = np.mean(np.abs(y.flatten() - yhat.flatten()))
+    try:
+        n_inputs = y.shape[1]
+    except BaseException:
+        n_inputs = 1
+
+    if n_inputs > 1 and ntargets == 1:
+        mae = np.mean(np.abs(y.T[0] - yhat.T[0]))
+    else:
+        mae = np.mean(np.abs(y.flatten() - yhat.flatten()))
 
     return mae
 
@@ -196,6 +296,7 @@ def esn_prediction(data, params, save_path=None):
     # ===================================================
     if save_path is not None:
         np.save("./data/" + save_path + "_prediction", prediction)
+        np.save("./data/" + save_path + "_input", data)
 
     return prediction
 

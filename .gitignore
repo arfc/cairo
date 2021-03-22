@@ -21,7 +21,10 @@ arfc-pres.ist
 *.snm
 *.toc
 *.npy
+*.ist
+*.spl
 *.swp
 .snakemake
 .DS_Store
 hidden_images/
+./publications/forecasting-paper/main.ist

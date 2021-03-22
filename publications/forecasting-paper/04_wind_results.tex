@@ -1,0 +1,39 @@
+\begin{figure*}[h]
+  \centering
+  % \includegraphics[width=0.8\textwidth]{04_wind_wettemp_prediction.png}
+  \input{./images/04_wind_windspeed_prediction.pgf}
+  \caption{The optimized 4 hour ahead wind energy prediction. The inputs for this forecast were wind energy and hourly windspeed. \textit{Hyperparameters}: Reservoir Size:1000, Sparsity: 0.15, Spectral Radius: 0.9, Noise: 0.001, Training Length: 14300, Prediction Window: 4, Random state: 85}
+  \label{fig:wind04}
+\end{figure*}
+\FloatBarrier
+% \begin{center}
+  \begin{table*}[h]
+    \centering
+    \caption{Tabulated error for 4-hour ahead wind forecasts with various coupled quantities.}
+    \label{tab:wind04}
+    \begin{tabular}{lrrrrr}
+      \hline
+      & & & & Improvement & Improvement \\
+      Scenario &NRMSE & MAE & RMSE & MAE (\%) & RMSE (\%)\\
+      \hline
+      Wind Energy & 0.88507 &0.0903 & 0.1243 & [-] & [-] \\
+      Wind + Sun Elevation & 0.83394 &0.0705 & 0.1171 & -21.9269 & -5.7924 \\
+      Wind + Humidity & 0.85522 & 0.0813 & 0.1201 & -9.9668 & -3.3789 \\
+      Wind + Pressure & 0.88587 & 0.0866 & 0.1244 & -4.0974 & +0.0804 \\
+      Wind + Wet Bulb Temp. & 0.76203 & 0.0731 & 0.1070 & -19.0476 & -13.9179 \\
+      Wind + Dry Bulb Temp. & 0.79939 & 0.0747 & 0.1123 & -17.2757 & -9.9654 \\
+      Wind + Wind Speed & 0.59596 & 0.0571 & 0.0837 & -36.7663 & -32.6629 \\
+      \hline
+    \end{tabular}
+  \end{table*}
+% \end{center}
+% \FloatBarrier
+\begin{figure*}
+  \includegraphics[width=\columnwidth]{lopez2018results}
+  \caption{The results of 48-hour ahead predictions from a forecasting algorithm combining \gls{esn}
+  and long short term memory algorithms (``M6''). Compared to the Wind Power Prediction
+  Tool (WPPT). Figure reproduced from Lop\'ez et al. 2018
+  \cite{lopez_wind_2018}.}
+  \label{fig:lopez2018}
+\end{figure*}
+\FloatBarrier

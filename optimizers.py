@@ -19,6 +19,7 @@ def grid_optimizer(
         args,
         xset,
         yset=None,
+        ntargets=1,
         verbose=False,
         visualize=False,
         save_path=None):
@@ -56,6 +57,8 @@ def grid_optimizer(
     yset : numpy array or None
         The second set of values to be tested at the same
         time as the xset. Can be None.
+    ntargets : integer
+        The number of target variables being predicted.
     verbose : boolean
         Specifies if the simulation outputs should be printed.
         Useful for debugging.
@@ -96,7 +99,7 @@ def grid_optimizer(
             for y, yvalue in enumerate(yset):
                 params[yvar] = yvalue
                 predicted = esn_prediction(data, params)
-                loss[x, y] = MSE(predicted, data[-predictLen:])
+                loss[x, y] = MSE(predicted, data[-predictLen:], ntargets)
 
                 if verbose:
                     print(
@@ -105,7 +108,7 @@ def grid_optimizer(
 
         else:
             predicted = esn_prediction(data, params)
-            loss[x] = MSE(predicted, data[-predictLen:])
+            loss[x] = MSE(predicted, data[-predictLen:], ntargets)
 
             if verbose:
                 print(f"{xvar} = {xvalue}, MSE={loss[x]}")

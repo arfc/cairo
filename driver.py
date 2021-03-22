@@ -1,23 +1,28 @@
+from sunrise import generate_elevation_series
+from optimizers import grid_optimizer
+from tools import MSE, MAE, NRMSE, MASE
+from tools import esn_prediction, optimal_values, param_string
+import time
+import os
+import getopt
+import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import sys
-import getopt
-import os
-import time
+import matplotlib as mpl
+mpl.use("pgf")
 
-from tools import esn_prediction, optimal_values, param_string, MSE, MAE
-from optimizers import grid_optimizer
-from sunrise import generate_elevation_series
 
 # Plot Parameters
-plt.rcParams['figure.figsize'] = (16, 9)
+# plt.rcParams['figure.figsize'] = (16, 9)
 plt.rcParams['figure.edgecolor'] = 'k'
 plt.rcParams['figure.facecolor'] = 'w'
+plt.rcParams['pgf.texsystem'] = 'pdflatex'
 plt.rcParams['savefig.dpi'] = 400
 plt.rcParams['savefig.bbox'] = 'tight'
 plt.rcParams['text.usetex'] = True
 plt.rcParams['font.family'] = "serif"
+plt.rcParams['pgf.rcfonts'] = False
 
 # Optimization Sets
 radius_set = [0.5, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.5]
@@ -260,10 +265,10 @@ if __name__ == "__main__":
 # =============================================================================
 
     plt.plot(trainingLengths, trainlen_loss, '-ok', alpha=0.6)
-    plt.title(f'MSE as a Function of Training Length', fontsize=20)
-    plt.xlabel(f'Training Length', fontsize=18)
-    plt.ylabel('MSE', fontsize=18)
-    plt.savefig("./figures/" + save_prefix + "_trainlen_loss.png")
+    plt.title(f'RMSE as a Function of Training Length')
+    plt.xlabel(f'Training Length')
+    plt.ylabel('MSE')
+    plt.savefig("./images/" + save_prefix + "_trainlen_loss.pgf")
     plt.close()
 # =============================================================================
 # ESN Prediction
@@ -283,37 +288,57 @@ if __name__ == "__main__":
 
     rmse = MSE(init_pred, X_in.T[-futureTotal:])
     mae = MAE(init_pred, X_in.T[-futureTotal:])
+    nrmse = NRMSE(init_pred, X_in.T[-futureTotal:])
 
-
+    startTrain = params['trainlen']
+    endTrain = futureTotal
+    trainset = X_in.T[-startTrain:-endTrain]
+    mase = MASE(init_pred, X_in.T[-futureTotal:],
+                ntargets=1,
+                training=trainset,
+                nsteps=params['window'])
 # =============================================================================
 # Plot Prediction
 # =============================================================================
     assert(save_prefix is not None), "No output filename given by user."
-    target_folder = "./figures/"
+    target_folder = "./images/"
 
     if not os.path.isdir(target_folder):
         os.mkdir(target_folder)
 
     var = get_variable_name(datafile_name)
-
-    plt.suptitle(f"{VARIABLES[var]} Prediction with ESN", fontsize=21)
-    plt.title(param_string(params))
-    plt.ylabel("Energy [kWh]", fontsize=16)
-    plt.xlabel(f"Hours since {df.index[0]}", fontsize=16)
+    colwidth = 3.07242 * 2
+    height = 0.5 * colwidth
+    plt.figure(figsize=(colwidth, height))
+    plt.title(f"{VARIABLES[var]} Prediction with an ESN")
+    # plt.title(param_string(params))
+    plt.ylabel("Energy [kWh]")
+    plt.xlabel(f"Hours since {df.index[0]}")
     # plot the truth
-    plt.plot(xdf.index[-2 * futureTotal:], xdf.kw[-2 * futureTotal:],
+    hours = np.arange(0, len(xdf.index), 1)
+    plt.plot(hours[-2 * futureTotal:], xdf.kw[-2 * futureTotal:],
              'b', label=f"True {VARIABLES[var]}",
              alpha=0.7,
              color='tab:blue')
     # # plot the prediction
-    plt.plot(xdf.index[-futureTotal:], power_norm * init_pred.T[0], alpha=0.8,
+    plt.plot(hours[-futureTotal:], power_norm * init_pred.T[0], alpha=0.8,
              label='ESN Prediction',
              color='tab:red',
              linestyle='-')
-    plt.legend()
+    plt.legend(loc='upper left')
+    if any(init_pred.T[0] < 0):
+        x = hours[-futureTotal:]
+        y1 = 0
+        y2 = power_norm * init_pred.T[0]
+        plt.axhline(y=y1)
+        plt.fill_between(x, y1, y2,
+                         where=(y2 <= y1),
+                         linestyle='-',
+                         color='gray',
+                         alpha=0.6)
 
     # save prefix should be something like "04_wind_elevation"
-    plt.savefig(target_folder + save_prefix + '_prediction.png')
+    plt.savefig(target_folder + save_prefix + '_prediction.pgf')
     plt.close()
 
 # =============================================================================
@@ -328,4 +353,6 @@ if __name__ == "__main__":
         file.write(f"Optimized prediction took: {prediction_time} seconds\n")
         file.write(f"Mean Absolute Error: {mae}\n")
         file.write(f"Root Mean Squared Error: {rmse}\n")
+        file.write(f"Normalized RMSE: {nrmse}\n")
+        file.write(f"Mean Absolute Scaled Error: {mase}\n")
         file.write("\n")

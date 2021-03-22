@@ -1,0 +1,29 @@
+\begin{figure*}[h]
+  \centering
+  % \includegraphics[width=0.8\textwidth]{04_demand_elevation_prediction.png}
+  \input{./images/04_demand_elevation_prediction.pgf}
+  \caption{The optimized 4 hour ahead demand prediction. The inputs for this forecast were hourly demand and solar elevation angle. \textit{Hyperparameters}: Reservoir Size: 2500, Sparsity: 0.01, Spectral Radius: 1.5, Noise: 0.003, Training Length: 5000, Prediction Window: 4, Random state: 85.}
+  \label{fig:demand04}
+\end{figure*}
+\FloatBarrier
+  \begin{table*}[h]
+    \centering
+    \caption{Tabulated error for 4-hour ahead electricity demand forecasts with various coupled quantities.}
+    \label{tab:demand04}
+    \begin{tabular}{lrrrrr}
+      \hline
+      & & & & Improvement & Improvement \\
+      Scenario & NRMSE & MAE & RMSE & MAE (\%) & RMSE (\%)\\
+      \hline
+      Total Demand & 0.83634 & 0.0193 & 0.0263 & [-] & [-] \\
+      Demand + Sun Elevation & 0.75855 & 0.0183 & 0.0239 & -5.1831 & -9.1255 \\
+      Demand + Humidity & 0.92245 & 0.0219 & 0.0290 & +13.4715 & +10.2662 \\
+      Demand + Pressure & 0.86714 & 0.0186 & 0.0273 & -3.6269 & +3.8023 \\
+      Demand + Wet Bulb Temp. & 0.80366 & 0.0196 & 0.0253 & +1.5544 & -3.8023 \\
+      Demand + Dry Bulb Temp. & 0.85662 & 0.0208 & 0.0270 & +7.7720 & +2.6616 \\
+      Demand + Wind Speed & 0.85152 & 0.0201 & 0.0268 & +4.1451 & +1.9011 \\
+      \hline
+    \end{tabular}
+  \end{table*}
+  % \FloatBarrier
+% \end{center}

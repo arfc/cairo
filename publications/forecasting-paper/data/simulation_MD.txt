@@ -1,0 +1,438 @@
+==========================================
+Metadata for [04_wind_wettemp]
+Reservoir Size:600, Sparsity: 0.12, Spectral Radius: 0.7, Noise: 0.0007, Training Length: 19400, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 21.60087335901335 seconds
+Mean Absolute Error: 0.07307731599577823
+Root Mean Squared Error: 0.10702268910125246
+Normalized RMSE: 0.7620270532386623
+Mean Absolute Scaled Error: 0.49100264125176624
+
+==========================================
+Metadata for [04_wind_pressure]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.7, Noise: 0.0001, Training Length: 16400, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 47.30342010500317 seconds
+Mean Absolute Error: 0.08664695896868953
+Root Mean Squared Error: 0.12441555724301809
+Normalized RMSE: 0.8858684196698405
+Mean Absolute Scaled Error: 0.5812916686922741
+
+==========================================
+Metadata for [04_wind_humidity]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 1.5, Noise: 0.005, Training Length: 11000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 34.95003939099843 seconds
+Mean Absolute Error: 0.0812922352656059
+Root Mean Squared Error: 0.12011156444482943
+Normalized RMSE: 0.8552229651712977
+Mean Absolute Scaled Error: 0.5526180755842304
+
+==========================================
+Metadata for [48_wind_drytemp]
+Reservoir Size:600, Sparsity: 0.1, Spectral Radius: 1, Noise: 0.0001, Training Length: 22400, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 2.308094845007872 seconds
+Mean Absolute Error: 0.08149631497990643
+Root Mean Squared Error: 0.12129539667408075
+Normalized RMSE: 0.8636521327876324
+Mean Absolute Scaled Error: 0.2592198719243591
+
+==========================================
+Metadata for [48_wind_windspeed]
+Reservoir Size:1500, Sparsity: 0.03, Spectral Radius: 1.5, Noise: 0.0003, Training Length: 11600, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 10.598522379994392 seconds
+Mean Absolute Error: 0.07630531397687794
+Root Mean Squared Error: 0.11822681989385328
+Normalized RMSE: 0.841803134775061
+Mean Absolute Scaled Error: 0.24636375168925861
+
+==========================================
+Metadata for [48_wind_pressure]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 1.1, Noise: 0.0007, Training Length: 21200, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 5.827440711000236 seconds
+Mean Absolute Error: 0.10760689185222884
+Root Mean Squared Error: 0.13812030064366962
+Normalized RMSE: 0.9834494589493729
+Mean Absolute Scaled Error: 0.34595753181935734
+
+==========================================
+Metadata for [04_wind_windspeed]
+Reservoir Size:1000, Sparsity: 0.15, Spectral Radius: 0.9, Noise: 0.001, Training Length: 14300, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 43.702519309008494 seconds
+Mean Absolute Error: 0.05707393580290427
+Root Mean Squared Error: 0.08369930597334503
+Normalized RMSE: 0.5959590066798542
+Mean Absolute Scaled Error: 0.37969795132770284
+
+==========================================
+Metadata for [04_wind_drytemp]
+Reservoir Size:600, Sparsity: 0.05, Spectral Radius: 1, Noise: 0.01, Training Length: 18200, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 20.75319691700861 seconds
+Mean Absolute Error: 0.0747221467489985
+Root Mean Squared Error: 0.11227071695547924
+Normalized RMSE: 0.7993942623291322
+Mean Absolute Scaled Error: 0.507894579613306
+
+==========================================
+Metadata for [48_wind_wettemp]
+Reservoir Size:2000, Sparsity: 0.03, Spectral Radius: 1, Noise: 0.0001, Training Length: 22400, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 39.17530018999241 seconds
+Mean Absolute Error: 0.08859666088642947
+Root Mean Squared Error: 0.11842770622421109
+Normalized RMSE: 0.8432334933246733
+Mean Absolute Scaled Error: 0.2818043379454467
+
+==========================================
+Metadata for [48_wind_humidity]
+Reservoir Size:1000, Sparsity: 0.12, Spectral Radius: 1.1, Noise: 0.0007, Training Length: 12500, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 3.725988431018777 seconds
+Mean Absolute Error: 0.0952535523801154
+Root Mean Squared Error: 0.11930734563804539
+Normalized RMSE: 0.8494967355966235
+Mean Absolute Scaled Error: 0.3040768621157715
+
+==========================================
+Metadata for [04_demand_windspeed]
+Reservoir Size:1500, Sparsity: 0.05, Spectral Radius: 1.5, Noise: 0.0007, Training Length: 16100, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 158.4891202150029 seconds
+Mean Absolute Error: 0.0201058840228726
+Root Mean Squared Error: 0.026799611184692464
+Normalized RMSE: 0.851522124763207
+Mean Absolute Scaled Error: 0.5932006967505173
+
+==========================================
+Metadata for [04_demand_wettemp]
+Reservoir Size:3000, Sparsity: 0.03, Spectral Radius: 1.1, Noise: 0.005, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 343.83258415199816 seconds
+Mean Absolute Error: 0.019600266006162246
+Root Mean Squared Error: 0.025293227012030215
+Normalized RMSE: 0.8036587642623765
+Mean Absolute Scaled Error: 0.5964098051010055
+
+==========================================
+Metadata for [48_demand_humidity]
+Reservoir Size:1500, Sparsity: 0.2, Spectral Radius: 1.5, Noise: 0.0007, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 5.7354355819989 seconds
+Mean Absolute Error: 0.01804361016797121
+Root Mean Squared Error: 0.022282181171607615
+Normalized RMSE: 0.707986773570938
+Mean Absolute Scaled Error: 0.3815249597624398
+
+==========================================
+Metadata for [48_demand_pressure]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 1.3, Noise: 0.001, Training Length: 38000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 10.19950638600858 seconds
+Mean Absolute Error: 0.017571291616109718
+Root Mean Squared Error: 0.024475960391051155
+Normalized RMSE: 0.7776912005989292
+Mean Absolute Scaled Error: 0.31219736356474953
+
+==========================================
+Metadata for [48_demand_wettemp]
+Reservoir Size:800, Sparsity: 0.03, Spectral Radius: 1.3, Noise: 0.0001, Training Length: 6500, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 1.1378950199577957 seconds
+Mean Absolute Error: 0.024093979652171044
+Root Mean Squared Error: 0.03143657368588607
+Normalized RMSE: 0.9988554623348732
+Mean Absolute Scaled Error: 0.511866389445214
+
+==========================================
+Metadata for [48_demand_drytemp]
+Reservoir Size:2500, Sparsity: 0.005, Spectral Radius: 1.5, Noise: 0.007, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 21.92744549002964 seconds
+Mean Absolute Error: 0.021807005826446544
+Root Mean Squared Error: 0.027266005086004796
+Normalized RMSE: 0.8663411728115206
+Mean Absolute Scaled Error: 0.46110046398823207
+
+==========================================
+Metadata for [04_demand_humidity]
+Reservoir Size:800, Sparsity: 0.12, Spectral Radius: 0.7, Noise: 0.0003, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 8.224901644978672 seconds
+Mean Absolute Error: 0.021880625415751778
+Root Mean Squared Error: 0.029031981276438523
+Normalized RMSE: 0.9224527256096555
+Mean Absolute Scaled Error: 0.6657980833318186
+
+==========================================
+Metadata for [48_demand_windspeed]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 1.5, Noise: 0.005, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 1.7872811480192468 seconds
+Mean Absolute Error: 0.019736004217830436
+Root Mean Squared Error: 0.024535481241614022
+Normalized RMSE: 0.7795823967356834
+Mean Absolute Scaled Error: 0.417309958760084
+
+==========================================
+Metadata for [04_demand_drytemp]
+Reservoir Size:600, Sparsity: 0.005, Spectral Radius: 1.2, Noise: 0.0001, Training Length: 24800, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 28.18015991098946 seconds
+Mean Absolute Error: 0.020812210482647933
+Root Mean Squared Error: 0.0269600818764081
+Normalized RMSE: 0.8566208683020673
+Mean Absolute Scaled Error: 0.603584410318191
+
+==========================================
+Metadata for [04_demand_pressure]
+Reservoir Size:2000, Sparsity: 0.01, Spectral Radius: 1, Noise: 0.0001, Training Length: 9500, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 206.23890306800604 seconds
+Mean Absolute Error: 0.018658353219125443
+Root Mean Squared Error: 0.027291030703394618
+Normalized RMSE: 0.8671363286347312
+Mean Absolute Scaled Error: 0.5720336346071857
+
+==========================================
+Metadata for [04_solar_drytemp]
+Reservoir Size:1000, Sparsity: 0.05, Spectral Radius: 0.7, Noise: 0.001, Training Length: 21800, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 53.99794545600889 seconds
+Mean Absolute Error: 0.06819912775478858
+Root Mean Squared Error: 0.09932891546883817
+Normalized RMSE: 0.6133371923882912
+Mean Absolute Scaled Error: 0.3424150836040645
+
+==========================================
+Metadata for [04_solar_pressure]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.0003, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 17.056383891031146 seconds
+Mean Absolute Error: 0.0924899820370267
+Root Mean Squared Error: 0.12626749747521016
+Normalized RMSE: 0.7796778211641425
+Mean Absolute Scaled Error: 0.4728221608434242
+
+==========================================
+Metadata for [48_solar_windspeed]
+Reservoir Size:1000, Sparsity: 0.2, Spectral Radius: 0.7, Noise: 0.007, Training Length: 20600, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 4.816765874042176 seconds
+Mean Absolute Error: 0.21360297321490496
+Root Mean Squared Error: 0.2498960929110971
+Normalized RMSE: 1.5430609233117063
+Mean Absolute Scaled Error: 2.1539699726944423
+
+==========================================
+Metadata for [48_solar_drytemp]
+Reservoir Size:800, Sparsity: 0.15, Spectral Radius: 1.5, Noise: 0.01, Training Length: 11900, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 1.789546382962726 seconds
+Mean Absolute Error: 0.10797337269582204
+Root Mean Squared Error: 0.15122179326136814
+Normalized RMSE: 0.933765859307585
+Mean Absolute Scaled Error: 1.1055372869973912
+
+==========================================
+Metadata for [48_solar_wettemp]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.007, Training Length: 6800, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 2.293574976036325 seconds
+Mean Absolute Error: 0.15186807284872153
+Root Mean Squared Error: 0.18843008813175513
+Normalized RMSE: 1.1635200149997245
+Mean Absolute Scaled Error: 1.6339093826302242
+
+==========================================
+Metadata for [48_solar_humidity]
+Reservoir Size:800, Sparsity: 0.2, Spectral Radius: 1.5, Noise: 0.0001, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 0.9570554139791057 seconds
+Mean Absolute Error: 0.10006304370174564
+Root Mean Squared Error: 0.12973261229076008
+Normalized RMSE: 0.8010742471921627
+Mean Absolute Scaled Error: 1.109269229981683
+
+==========================================
+Metadata for [04_solar_windspeed]
+Reservoir Size:1500, Sparsity: 0.01, Spectral Radius: 1.3, Noise: 0.0001, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 56.41018202295527 seconds
+Mean Absolute Error: 0.07232975649730089
+Root Mean Squared Error: 0.11371423642834423
+Normalized RMSE: 0.7021638178201967
+Mean Absolute Scaled Error: 0.36976017301680847
+
+==========================================
+Metadata for [04_solar_humidity]
+Reservoir Size:800, Sparsity: 0.12, Spectral Radius: 1.5, Noise: 0.0001, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 8.039810921996832 seconds
+Mean Absolute Error: 0.066298076164453
+Root Mean Squared Error: 0.09707715307228262
+Normalized RMSE: 0.5994329871555039
+Mean Absolute Scaled Error: 0.3389253510643921
+
+==========================================
+Metadata for [48_solar_pressure]
+Reservoir Size:600, Sparsity: 0.03, Spectral Radius: 0.5, Noise: 0.003, Training Length: 23300, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 2.3356308640213683 seconds
+Mean Absolute Error: 0.19103912493206518
+Root Mean Squared Error: 0.2157578923511872
+Normalized RMSE: 1.3322640170354836
+Mean Absolute Scaled Error: 1.944332801161102
+
+==========================================
+Metadata for [04_solar_wettemp]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 0.9, Noise: 0.0001, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 8.035231329966336 seconds
+Mean Absolute Error: 0.05256735679065357
+Root Mean Squared Error: 0.06727556893163311
+Normalized RMSE: 0.41541386382898604
+Mean Absolute Scaled Error: 0.26873192836856447
+
+==========================================
+Metadata for [48_demand]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.0001, Training Length: 34400, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 7.07974271196872 seconds
+Mean Absolute Error: 0.01889225460042493
+Root Mean Squared Error: 0.02413661311862418
+Normalized RMSE: 0.7669088907938277
+Mean Absolute Scaled Error: 0.33680656093503236
+
+==========================================
+Metadata for [04_demand_elevation]
+Reservoir Size:2500, Sparsity: 0.01, Spectral Radius: 1.5, Noise: 0.003, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 215.1601327409735 seconds
+Mean Absolute Error: 0.018349079643696385
+Root Mean Squared Error: 0.023873489603746825
+Normalized RMSE: 0.7585484898566863
+Mean Absolute Scaled Error: 0.5583378822838002
+
+==========================================
+Metadata for [04_demand]
+Reservoir Size:600, Sparsity: 0.005, Spectral Radius: 1.5, Noise: 0.01, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 5.453059658058919 seconds
+Mean Absolute Error: 0.019343357346961423
+Root Mean Squared Error: 0.02632203785838602
+Normalized RMSE: 0.836347865303093
+Mean Absolute Scaled Error: 0.5885924191882556
+
+==========================================
+Metadata for [48_demand_elevation]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.5, Noise: 0.007, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 1.5319674559868872 seconds
+Mean Absolute Error: 0.01910154471084904
+Root Mean Squared Error: 0.02402959646730389
+Normalized RMSE: 0.7635085785396952
+Mean Absolute Scaled Error: 0.4038945648550631
+
+==========================================
+Metadata for [48_solar_elevation]
+Reservoir Size:1500, Sparsity: 0.15, Spectral Radius: 0.5, Noise: 0.003, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 5.630973681923933 seconds
+Mean Absolute Error: 0.095669979065729
+Root Mean Squared Error: 0.1375071002700647
+Normalized RMSE: 0.8490802342401053
+Mean Absolute Scaled Error: 1.0605690181374479
+
+==========================================
+Metadata for [04_solar]
+Reservoir Size:800, Sparsity: 0.01, Spectral Radius: 1.5, Noise: 0.0007, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 8.057592235971242 seconds
+Mean Absolute Error: 0.06142559497044159
+Root Mean Squared Error: 0.09579434790103017
+Normalized RMSE: 0.5915119088028061
+Mean Absolute Scaled Error: 0.31401652271259134
+
+==========================================
+Metadata for [04_solar_elevation]
+Reservoir Size:600, Sparsity: 0.05, Spectral Radius: 0.9, Noise: 0.005, Training Length: 5000, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 5.772373713902198 seconds
+Mean Absolute Error: 0.05536209069551862
+Root Mean Squared Error: 0.08321469341377619
+Normalized RMSE: 0.5138349309760656
+Mean Absolute Scaled Error: 0.28301901216702025
+
+==========================================
+Metadata for [48_solar]
+Reservoir Size:600, Sparsity: 0.2, Spectral Radius: 1.1, Noise: 0.0007, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 0.6573685039766133 seconds
+Mean Absolute Error: 0.14327653151121109
+Root Mean Squared Error: 0.2061625336740483
+Normalized RMSE: 1.2730144991763932
+Mean Absolute Scaled Error: 1.5883211413957297
+
+==========================================
+Metadata for [48_wind]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 1.3, Noise: 0.005, Training Length: 10700, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 2.8887332079466432 seconds
+Mean Absolute Error: 0.10351551298610573
+Root Mean Squared Error: 0.13084855298668466
+Normalized RMSE: 0.9316728825478502
+Mean Absolute Scaled Error: 0.34256474503897577
+
+==========================================
+Metadata for [04_wind_elevation]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.003, Training Length: 11300, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 36.35663173603825 seconds
+Mean Absolute Error: 0.07052144881417192
+Root Mean Squared Error: 0.11712307346007741
+Normalized RMSE: 0.8339441971094491
+Mean Absolute Scaled Error: 0.48203278079177564
+
+==========================================
+Metadata for [48_wind_elevation]
+Reservoir Size:1000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.0001, Training Length: 19100, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 4.246645154082216 seconds
+Mean Absolute Error: 0.0857039796477271
+Root Mean Squared Error: 0.11406893251270919
+Normalized RMSE: 0.8121979856673437
+Mean Absolute Scaled Error: 0.2816113696646269
+
+==========================================
+Metadata for [04_wind]
+Reservoir Size:800, Sparsity: 0.2, Spectral Radius: 0.5, Noise: 0.0003, Training Length: 18800, Prediction Window: 4
+Random state: 85
+Optimized prediction took: 27.7452462479705 seconds
+Mean Absolute Error: 0.09026651798639036
+Root Mean Squared Error: 0.12430314362159012
+Normalized RMSE: 0.8850680078936086
+Mean Absolute Scaled Error: 0.612539423161691
+
+==========================================
+Metadata for [lorenz63]
+Reservoir Size:2000, Sparsity: 0.1, Spectral Radius: 0.9, Noise: 0.001, Training Length: 3200, Prediction Window: 500
+Random state: 85
+Optimized prediction took: 10.09619523701258 seconds
+Mean Absolute Error: 0.0026033581321343777
+Root Mean Squared Error: 0.004011478952065198
+
+==========================================
+Metadata for [48_solar]
+Reservoir Size:600, Sparsity: 0.2, Spectral Radius: 1.1, Noise: 0.0007, Training Length: 5000, Prediction Window: 48
+Random state: 85
+Optimized prediction took: 0.6705122799999117 seconds
+Mean Absolute Error: 0.1432765315112096
+Root Mean Squared Error: 0.20616253367412732
+Normalized RMSE: 1.2730144991768813
+Mean Absolute Scaled Error: 1.5883211413957135
+

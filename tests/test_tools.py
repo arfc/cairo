@@ -72,7 +72,7 @@ def test_MSE_sldiff():
     y = np.array([[1, 2, 3]])
     yhat = np.array([[1, 1, 3]])
 
-    obs = MSE(yhat, y)
+    obs = MSE(yhat.T, y.T)
     exp = 0.5773502691896257
     assert obs == approx(exp, 0.01)
 
@@ -87,7 +87,7 @@ def test_MSE_comdiff():
     y = np.array([[1, 2, 3]])
     yhat = np.array([[0, 1, 2]])
 
-    obs = MSE(yhat, y)
+    obs = MSE(yhat.T, y.T)
     exp = 1
     assert obs == exp
 
@@ -102,7 +102,7 @@ def test_MSE_diffsize():
     yhat = np.array([[1, 2, 3]])
     y = np.array([[1, 2]])
     with pytest.raises(ValueError):
-        MSE(yhat, y)
+        MSE(yhat.T, y.T)
 
     return
 
@@ -139,7 +139,7 @@ def test_MAE_sldiff():
     yhat = np.array([[1, 2, 3]])
     y = np.array([[1, 1, 3]])
 
-    obs_i = MAE(yhat, y)
+    obs_i = MAE(yhat.T, y.T)
     exp_i = 1/3
     assert approx(obs_i, 0.01) == exp_i
 
@@ -156,7 +156,7 @@ def test_MAE_comdiff():
     yhat = np.array([[1, 2, 3]])
     y = np.array([[4, 5, 6]])
 
-    obs_i = MAE(yhat, y)
+    obs_i = MAE(yhat.T, y.T)
     exp_i = 3.0
     assert obs_i == exp_i
 
@@ -171,7 +171,7 @@ def test_MAE_diffsize():
     yhat = np.array([[1, 2, 3]])
     y = np.array([[1, 2]])
     with pytest.raises(ValueError):
-        MAE(yhat, y)
+        MAE(yhat.T, y.T)
 
     return
 
