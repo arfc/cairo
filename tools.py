@@ -2,7 +2,7 @@ import numpy as np
 from pyESN.pyESN import ESN
 
 
-def MSE(yhat, y, ntargets = 1):
+def MSE(yhat, y, ntargets=1):
     '''
     This function calculates the root mean squared error between
     a predicted and target vector.
@@ -21,7 +21,7 @@ def MSE(yhat, y, ntargets = 1):
     '''
     try:
         n_inputs = y.shape[1]
-    except:
+    except BaseException:
         n_inputs = 1
 
     if n_inputs > 1 and ntargets == 1:
@@ -32,7 +32,7 @@ def MSE(yhat, y, ntargets = 1):
     return mse
 
 
-def NRMSE(yhat, y, ntargets = 1):
+def NRMSE(yhat, y, ntargets=1):
     '''
     This function calculates the normalized root mean squared error
     between a predicted and target vector.
@@ -53,14 +53,14 @@ def NRMSE(yhat, y, ntargets = 1):
     mse = MSE(yhat, y, ntargets)
     try:
         n_inputs = y.shape[1]
-    except:
+    except BaseException:
         n_inputs = 1
 
     if n_inputs > 1 and ntargets == 1:
         sigma = np.std(y.T[0])
     else:
         sigma = np.std(y.flatten())
-    nrmse = mse/sigma
+    nrmse = mse / sigma
 
     return nrmse
 
@@ -84,7 +84,7 @@ def MASE(yhat, y, training, ntargets=1, nsteps=1):
 
     try:
         n_inputs = y.shape[1]
-    except:
+    except BaseException:
         n_inputs = 1
 
     if n_inputs > 1 and ntargets == 1:
@@ -92,8 +92,9 @@ def MASE(yhat, y, training, ntargets=1, nsteps=1):
         et = y.T[0] - yhat.T[0]
         # print(training.T.shape)
         # print(training.T[0, nsteps:].shape)
-        rdwalk = np.sum(np.abs(training.T[0, nsteps:] - training.T[0, :-nsteps]))
-        qt = (n-nsteps)*(et)/(rdwalk)
+        rdwalk = np.sum(
+            np.abs(training.T[0, nsteps:] - training.T[0, :-nsteps]))
+        qt = (n - nsteps) * (et) / (rdwalk)
         mase = np.mean(abs(qt))
     else:
         # print("Flattening...")
@@ -102,12 +103,17 @@ def MASE(yhat, y, training, ntargets=1, nsteps=1):
         n = len(training)
         et = y - yhat
         print(f'training shape {training.shape}')
-        rdwalk = np.sum(np.abs(training.flatten()[nsteps:] - training.flatten()[:-nsteps]))
-        qt = (n-nsteps)*(et)/(rdwalk)
+        rdwalk = np.sum(
+            np.abs(
+                training.flatten()[
+                    nsteps:] -
+                training.flatten()[
+                    :-
+                    nsteps]))
+        qt = (n - nsteps) * (et) / (rdwalk)
         mase = np.mean(abs(qt))
 
     return mase
-
 
 
 def MAE(yhat, y, ntargets=1):
@@ -129,7 +135,7 @@ def MAE(yhat, y, ntargets=1):
     '''
     try:
         n_inputs = y.shape[1]
-    except:
+    except BaseException:
         n_inputs = 1
 
     if n_inputs > 1 and ntargets == 1:

@@ -1,16 +1,16 @@
+from lorenz import generate_L63
+from optimizers import grid_optimizer
+from tools import esn_prediction, optimal_values, param_string, MSE, MAE, NRMSE
+import time
+import os
+import getopt
+import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 mpl.use("pgf")
-import sys
-import getopt
-import os
-import time
 
-from tools import esn_prediction, optimal_values, param_string, MSE, MAE, NRMSE
-from optimizers import grid_optimizer
-from lorenz import generate_L63
 
 # Plot Parameters
 plt.rcParams['figure.edgecolor'] = 'k'
@@ -210,8 +210,8 @@ if __name__ == "__main__":
 
     plt.suptitle(f"Lorenz-63 Model Prediction with ESN", fontsize=21)
     plt.title(param_string(params))
-    colwidth = 3.07242*2
-    height = 0.9*colwidth
+    colwidth = 3.07242 * 2
+    height = 0.9 * colwidth
     fig = plt.figure(figsize=(colwidth, height))
     futureTotal = params['future']
     ax1 = plt.subplot(311)

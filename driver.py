@@ -1,17 +1,17 @@
+from sunrise import generate_elevation_series
+from optimizers import grid_optimizer
+from tools import MSE, MAE, NRMSE, MASE
+from tools import esn_prediction, optimal_values, param_string
+import time
+import os
+import getopt
+import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 mpl.use("pgf")
-import sys
-import getopt
-import os
-import time
 
-from tools import esn_prediction, optimal_values, param_string
-from tools import MSE, MAE, NRMSE, MASE
-from optimizers import grid_optimizer
-from sunrise import generate_elevation_series
 
 # Plot Parameters
 # plt.rcParams['figure.figsize'] = (16, 9)
@@ -307,8 +307,8 @@ if __name__ == "__main__":
         os.mkdir(target_folder)
 
     var = get_variable_name(datafile_name)
-    colwidth = 3.07242*2
-    height = 0.5*colwidth
+    colwidth = 3.07242 * 2
+    height = 0.5 * colwidth
     plt.figure(figsize=(colwidth, height))
     plt.title(f"{VARIABLES[var]} Prediction with an ESN")
     # plt.title(param_string(params))
@@ -327,9 +327,9 @@ if __name__ == "__main__":
              linestyle='-')
     plt.legend(loc='upper left')
     if any(init_pred.T[0] < 0):
-        x=hours[-futureTotal:]
+        x = hours[-futureTotal:]
         y1 = 0
-        y2 = power_norm*init_pred.T[0]
+        y2 = power_norm * init_pred.T[0]
         plt.axhline(y=y1)
         plt.fill_between(x, y1, y2,
                          where=(y2 <= y1),
