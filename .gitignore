@@ -2,6 +2,8 @@
 /__pycache__/
 /tests/__pycache__/
 /.pytest_cache/
+~lock.*
+/data/NRELDATA/.ipynb_checkpoints
 .ipynb_checkpoints
 .~lock.uiuc_demand_data.csv#
 .~lock.railsplitter_data.csv#
