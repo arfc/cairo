@@ -1,4 +1,4 @@
-Finally, we performed the same prediction tasks as before for wind energy.
+Finally, we performed the same prediction tasks for wind energy as we performed for solar energy and electricity demand.
 Figure \ref{fig:wind48} and Figure \ref{fig:wind04} show the best forecasts
 that minimized the RMSE for
 48- and 4-hours ahead, respectively. All features except air pressure improved
@@ -7,7 +7,7 @@ forecast the most, while adding windspeed improved the 4-hour ahead forecast
 the most. Those results are shown in Table \ref{tab:wind48} and \ref{tab:wind04}
 respectively. Lop\'ez et al. 2018 developed an advanced algorithm based on
 \gls{esn} by replacing the neurons in the reservoir with \gls{lstm} blocks \cite{lopez_wind_2018}. Our conventional \gls{esn} achieved
-results comparable to the algorithm from Lop\'ez et al. 2018 by simply adding a
+an MSE 10\% lower than the algorithm from Lop\'ez et al. 2018 by simply adding a
 single meteorological predictor.
 Chitsazan et al. 2017 \cite{chitsazan_wind_2017} compared wind speed
 forecasting with a conventional \gls{esn} to an \gls{esn} with nonlinear
