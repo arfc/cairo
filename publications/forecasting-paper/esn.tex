@@ -10,7 +10,7 @@
   \subfloat[Predicting Flow]{
     \includegraphics[clip, width=0.85\columnwidth]{reservoir_predicting.png}
   }
-  \caption{(a) Shows the behavior of an \gls{esn} during the training phase. (b) Shows \gls{esn} behavior during the predicting phase. The output $u(t+\Delta t)$ is used as the next input value. }
+  \caption{(a) Shows the behavior of an \gls{esn} during the training phase. (b) Shows \gls{esn} behavior during the predicting phase. The output $U(t+\Delta t)$ is used as the next input value. }
   \label{fig:reservoir_graph}
 \end{figure}
 
@@ -35,13 +35,13 @@ calculated by \cite{shi_energy_2016, pathak_model-free_2018, lukosevicius_practi
    \intertext{where}
    x(t) &= \text{the collection of reservoir activations}\nonumber.
  \end{align}
- The output is read by an output weight matrix,
- $W^{out}$.
+ The output, $U(t+\Delta t)$, is read by an output weight matrix,
+ $W^{out}$, thus:
  \begin{align}
    U(t+\Delta t) &= \left(W^{out}\right)^T\cdot x(t).
  \end{align}
  In the training phase, we
- discard the output, $U(t+\Delta t)$,  and the next training input is passed to
+ discard the output and the next training input is passed to
  the network. During the prediction phase, we keep the output and use it as the
  next input. Figure \ref{fig:reservoir_graph} illustrates this behavior. The
  speed of \glspl{esn} is owed
@@ -53,14 +53,15 @@ calculated by \cite{shi_energy_2016, pathak_model-free_2018, lukosevicius_practi
  \glspl{esn} are fast because a large reservoir, that does not require
  training, replaces the hidden layers in a conventional feed-forward neural
  network.
- The trade off is that \glspl{esn} are sensitive to various hyper-parameters
+ The trade-off is that \glspl{esn} are sensitive to various hyper-parameters
  that must be optimized \cite{lukosevicius_practical_2012}. Table \ref{tab:parameters} summarizes these hyper-parameters. The spectral radius ($\rho$) should satisfy the ``echo state property'' which means that
  previous reservoir activations have a decaying influence on future states. This
  is usually guaranteed for $\rho < 1$, but is not a requirement
  \cite{lukosevicius_practical_2012}.
- \begin{table*}[h]
+ \begin{table*}[ht]
    \centering
    \caption{Description of Model Hyper-Parameters}
+   \resizebox{\textwidth}{!}{
    \begin{tabular}{l l l}
      \hline
      Hyper-parameter & Purpose & Tested Values\\
@@ -73,12 +74,13 @@ calculated by \cite{shi_energy_2016, pathak_model-free_2018, lukosevicius_practi
      &&2500, 3000, 4000]\\
      \texttt{sparsity} & The density of connections in \textbf{W}& [0.005, 0.01, 0.03, 0.05, \\
      &&0.1, 0.12, 0.15, 0.2]\\
-     Training Length & Size of the training set before prediction & $L \in$ [5000, 25000], step size = 300\\
+     Training Length & Training set size & $L \in$ [5000, 25000], step size = 300\\
      \hline
    \end{tabular}
+   } % end resizebox
    \label{tab:parameters}
  \end{table*}
-\FloatBarrier
+% \FloatBarrier
  We optimize the hyper-parameters by performing a grid search over the test
  values specified in Table \ref{tab:parameters}. We took the following
  optimization steps for each prediction task:
@@ -103,18 +105,34 @@ calculated by \cite{shi_energy_2016, pathak_model-free_2018, lukosevicius_practi
  \end{figure}
 
  \subsection{Prediction Tasks}
+In order to verify that the performance of our \gls{esn} implementation was
+consistent with the literature \cite{pathak_using_2017} we first
+performed a benchmarking task by making a prediction for the Lorenz
+1963 model. The Lorenz 1963 model is described by a system of coupled differential equations:
+\begin{align}
+  \frac{\text{d}x}{\text{d}t} &= \sigma (y - x),\\
+  \frac{\text{d}y}{\text{d}t} &= x(\rho - z)- y,\\
+  \frac{\text{d}z}{\text{d}t} &= xy - \beta z,
+  \intertext{where}
+  \sigma &= 10,\nonumber\\
+  \beta &= 8/3,\nonumber\\
+  \rho &=28, \nonumber
+\end{align}
+since the system demonstrates chaotic behavior for these parameter values
+\cite{lorenz_deterministic_1963}.
 
-We first performed a benchmarking task by making a prediction for the Lorenz
-1963 model \cite{lorenz_deterministic_1963}. Then, we optimized predictions for
+Next, we optimized predictions for
 univariate time-series
 representing total demand, solar energy, and wind energy 4-hours ahead and
 48-hours ahead. Finally, we repeated those same six tasks with an additional
-predictor. Table \ref{tab:tasks} summarizes each combination of tasks.
+predictor. One value from each column in Table \ref{tab:tasks} was selected for
+each task for a total of 42 predictions.
 
-\begin{table*}[h]
+\begin{table*}[ht]
   \centering
   \caption{Summary of prediction tasks.}
   \label{tab:tasks}
+  \resizebox{\columnwidth}{!}{
   \begin{tabular}{c c c}
     \hline
     Target & Future & Additional Predictor\\
@@ -127,7 +145,7 @@ predictor. Table \ref{tab:tasks} summarizes each combination of tasks.
     Wind Energy && Dry Bulb Temp.\\
     && Wind Speed\\
     \hline
-  \end{tabular}\\[-1.4pt]%
-
+  \end{tabular}%
+  } % end resizebox
 \end{table*}
-\FloatBarrier
+% \FloatBarrier

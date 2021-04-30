@@ -2,14 +2,15 @@
 
 Improving renewable energy forecasting is important for grid-planning
 and unit commitment, especially as the share of variable renewable resources
-increases, challenging the baseload power from nuclear plants. We first
+increases, challenging grid stability. We first
 demonstrated that our implementation of the \gls{esn} algorithm is consistent
-with the literature. Then, we used this model to predict
-total demand, solar energy, and wind energy, and evaluated the influence of
-several meteorological factors on model performance. Our results show that
-researchers must carefully choose each additional input to avoid increasing the
-system complexity.
-The conventional \gls{esn} used here did not demonstrate an
+with the literature. Then, we used it to predict
+total demand, solar energy, and wind energy. Finally, we evaluated the
+influence of several meteorological factors on prediction accuracy. Our results 
+show that researchers must carefully choose each additional training input to
+avoid increasing the system complexity. Our results also indicate that properly
+chosen training inputs can achieve comparable accuracy to more complex
+algorithms. The conventional \gls{esn} used here did not demonstrate an
 improvement over the state-of-the-art, nor was it accurate enough to improve
 grid-scale energy economy. Future work will explore other applications of
-\glspl{esn} and evaluate improvements to the model algorithm.
+\glspl{esn} and pursue improvements to the model algorithm.
