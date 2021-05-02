@@ -1,10 +1,10 @@
 \subsection{Data Selection and Processing}
 
-The \gls{uiuc} Solar Farm 1.0 dashboard provides data for the solar energy on
-campus \cite{alsoenergy_university_2019}. The \gls{uiuc} Facilities and
-Services Department shared proprietary data for campus electricity demand and
-wind energy with us. All data had hourly resolution. Weather data were
-retrieved from the
+The \gls{uiuc} Solar Farm 1.0 dashboard provides data for the solar energy
+generated  on campus \cite{alsoenergy_university_2019}. The \gls{uiuc}
+Facilities and Services Department shared proprietary data for campus
+electricity demand and wind energy with us \cite{marquissee_campus_2019}. All
+data had hourly resolution. Weather data were retrieved from the
 \gls{noaa}\cite{national_center_for_environmental_information_find_nodate} for
 two locations: Champaign, IL, where \gls{uiuc} is located, and Lincoln, IL,
 where Railsplitter Windfarm is located. \gls{uiuc} has a power purchase
@@ -15,28 +15,32 @@ instrument failure. In order to fill in this missing data, we calculated the
 theoretical solar energy production based on irradiance data from OpenEI
 \cite{noauthor_national_nodate, garcia_nuclear_2015} with
 \begin{align}
-  P &= G_T\eta_{ref}\tau_{pv}A\left[1-\gamma\left(T-25\right)\right] \text{ } \left[W\right]\\
+  P &= G_T\eta_{ref}\tau_{pv}A\left(1-\gamma\left(T-25\right)\right) \text{ } \left[W\right]\\
   \intertext{where}
-  G_T &= P_{DNI}\cos\left(\beta+\delta-lat\right)\\
-  &+ P_{DHI}\left(\frac{180-\beta}{180}\right) \left[\frac{W}{m^2}\right]\nonumber\\
+  P &= \text{ the total power of the solar farm}\nonumber\\
+  G_T &= \text{ the total incident solar irradiance}\nonumber\\
+  &= P_{DNI}\cos\left(\beta+\delta-lat\right)+ P_{DHI}\left(\frac{180-\beta}{180}\right) \left[\frac{W}{m^2}\right]\\
   \intertext{and}
-  \delta &=
-  23.44\sin\left(\left(\frac{\pi}{180}\right)\left(\frac{360}{365}\right)(N+284)
+  \delta &= \text{ the solar declination angle}\nonumber\\
+  &= 23.44\sin\left(\left(\frac{\pi}{180}\right)\left(\frac{360}{365}\right)(N+284)
   \right) \left[^\circ \right]\\
-  \eta, \tau, \gamma &= \text{solar panel properties}\nonumber\\
-  P_{DNI}&= \text{direct normal irradiance}\nonumber\\
-  P_{DHI}&= \text{diffuse horizontal irradiance}\nonumber\\
-  \beta &= \text{tilt angle of the solar panels.}\nonumber\\\nonumber
+  \eta_{ref} &= \text{ conversion efficiency [-]}\nonumber\\
+  \tau_{pv} &= \text{ transmittance [-]}\nonumber\\
+  \gamma &= \text{ thermal coefficient [-]}\nonumber\\
+  A &= \text{ solar panel coverage  $[m^2]$}\nonumber\\
+  P_{DNI}&= \text{direct normal irradiance  $\left[\frac{W}{m^2}\right]$}\nonumber\\
+  P_{DHI}&= \text{diffuse horizontal irradiance  $\left[\frac{W}{m^2}\right]$}\nonumber\\
+  \beta &= \text{tilt angle of the solar panels [$^\circ$]}\nonumber\\\nonumber
 \end{align}
 We also calculated the solar elevation angle, $\alpha$, using
 coordinates for the \gls{uiuc} Solar Farm 1.0
-\cite{us_department_of_commerce_esrl_nodate, meeus_astronomical_1998}.
+\cite{us_department_of_commerce_esrl_nodate, meeus_astronomical_1998},
 \begin{align}
   \alpha &= \sin^{-1}\left[\sin(\delta)\sin(\phi)+\cos(\delta)\cos(\phi)\cos(\omega)\right] \left[^\circ \right]
   \intertext{where}\nonumber
-  \delta &= \text{declination angle}\\\nonumber
-  \phi &= \text{latitude of interest}\\\nonumber
-  \omega &= \text{hour angle}\\\nonumber
+  \delta &= \text{declination angle  [$^\circ$]}\\\nonumber
+  \phi &= \text{latitude of interest  [$^\circ$]}\\\nonumber
+  \omega &= \text{hour angle  [$^\circ$]}\\\nonumber
 \end{align}
 Finally, we normalized all of the data using the infinity norm
 \begin{align}
@@ -57,7 +61,7 @@ system.
     \hline
     System & Maximum Value\\
     \hline
-    Electricity Load & 81.6 [MW]\\
+    Electricity Demand & 81.6 [MW]\\
     Solar Energy & 4.7 [MW]\\
     Wind Energy & 8.8 [MW]\\
     \hline

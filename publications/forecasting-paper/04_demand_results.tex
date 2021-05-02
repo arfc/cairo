@@ -1,15 +1,16 @@
-\begin{figure*}[h]
+\begin{figure}[H]
   \centering
   % \includegraphics[width=0.8\textwidth]{04_demand_elevation_prediction.png}
-  \input{./images/04_demand_elevation_prediction.pgf}
-  \caption{The optimized 4 hour ahead demand prediction. The inputs for this forecast were hourly demand and solar elevation angle. \textit{Hyperparameters}: Reservoir Size: 2500, Sparsity: 0.01, Spectral Radius: 1.5, Noise: 0.003, Training Length: 5000, Prediction Window: 4, Random state: 85.}
+  \resizebox{\columnwidth}{!}{\input{./images/04_demand_elevation_prediction.pgf}}
+  \caption{The optimized 4 hour ahead demand prediction. The training inputs for this forecast were historical hourly demand and solar elevation angle. \textit{Hyperparameters}: Reservoir Size: 2500, Sparsity: 0.01, Spectral Radius: 1.5, Noise: 0.003, Training Length: 5000, Prediction Window: 4, Random state: 85.}
   \label{fig:demand04}
-\end{figure*}
+\end{figure}
 \FloatBarrier
-  \begin{table*}[h]
+  \begin{table*}[ht]
     \centering
     \caption{Tabulated error for 4-hour ahead electricity demand forecasts with various coupled quantities.}
     \label{tab:demand04}
+    \resizebox{\textwidth}{!}{
     \begin{tabular}{lrrrrr}
       \hline
       & & & & Improvement & Improvement \\
@@ -24,6 +25,7 @@
       Demand + Wind Speed & 0.85152 & 0.0201 & 0.0268 & +4.1451 & +1.9011 \\
       \hline
     \end{tabular}
+    } % end resize box
   \end{table*}
   % \FloatBarrier
 % \end{center}

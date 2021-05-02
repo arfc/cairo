@@ -1,41 +1,46 @@
-Finally, we performed the same prediction tasks as before for wind energy.
+Finally, we performed the same prediction tasks for wind energy as we performed for solar energy and electricity demand.
 Figure \ref{fig:wind48} and Figure \ref{fig:wind04} show the best forecasts
 that minimized the RMSE for
 48- and 4-hours ahead, respectively. All features except air pressure improved
 the forecast. Including solar elevation angle improved the 48-hour ahead
 forecast the most, while adding windspeed improved the 4-hour ahead forecast
 the most. Those results are shown in Table \ref{tab:wind48} and \ref{tab:wind04}
-respectively. Qualitatively, our conventional \gls{esn} achieved results
-comparable to a more complex algorithm by simply adding a single meteorological
-predictor \cite{lopez_wind_2018}. Figure \ref{fig:lopez2018} shows the results for a 48-hour ahead forecast from a complex hybrid algorithm.
-Chitsazan et al. 2017 compared wind speed forecasting with a conventional
-\gls{esn} to an \gls{esn} with nonlinear readouts and achieved better results
-with the base model than we did \cite{chitsazan_wind_2017}. However, this could
-be attributed to the fact that they used data with 10-minute resolution and
-10-minute prediction steps. Unfortunately they did not include information about
-the hyper-parameters used for each prediction task.
+respectively. Lop\'ez et al. 2018 developed an advanced algorithm based on
+\gls{esn} by replacing the neurons in the reservoir with \gls{lstm} blocks \cite{lopez_wind_2018}. Our conventional \gls{esn} achieved
+an MSE 10\% lower than the algorithm from Lop\'ez et al. 2018 by simply adding a
+single meteorological predictor.
+Chitsazan et al. 2017 \cite{chitsazan_wind_2017} compared wind speed
+forecasting with a conventional \gls{esn} to an \gls{esn} with nonlinear
+readouts and achieved better results with the base model than we did
+\cite{chitsazan_wind_2017}. However, this could be attributed to the fact that
+they used data with 10-minute resolution and 10-minute prediction steps.
+Unfortunately they did not include information about the hyper-parameters used
+for each prediction task.
 
 Still, the state-of-the-art Weather Research and Forecasting model
 \cite{powers_weather_2017}, a numerical weather prediction model, far
-outperforms our best results. Thus, conventional \glspl{esn} are insufficient
-for applications in grid planning \cite{wang_quantifying_2016}.
+outperforms our best results. Additionally, the 48-hour ahead forecast accuracy
+needs to be an order of magnitude lower than our model for meaningful economic
+benefit. Thus, conventional \glspl{esn} are currently insufficient for
+applications in grid planning \cite{wang_quantifying_2016}.
 
-\begin{figure*}[h]
+\begin{figure}[H]
   \centering
-  \input{./images/48_wind_elevation_prediction.pgf}
+  \resizebox{\columnwidth}{!}{\input{./images/48_wind_elevation_prediction.pgf}}
   \caption{The optimized 48-hour ahead wind energy prediction that minimized
-  the RMSE. The inputs for this forecast were wind energy and solar elevation
+  the RMSE. The training inputs for this forecast were historical wind energy and solar elevation
   angle. \textit{Hyperparameters}: Reservoir Size:1000, Sparsity: 0.1, Spectral
   Radius: 0.9, Noise: 0.0001, Training Length: 19100, Prediction Window: 48,
   Random state: 85}
   \label{fig:wind48}
-\end{figure*}
+\end{figure}
 % \FloatBarrier
 
 \begin{table*}[h]
   \centering
   \caption{Tabulated error for 48-hour ahead wind forecasts with various coupled quantities.}
   \label{tab:wind48}
+  \resizebox{\textwidth}{!}{
   \begin{tabular}{lrrrrr}
     \hline
     & & & & Improvement & Improvement \\
@@ -50,5 +55,6 @@ for applications in grid planning \cite{wang_quantifying_2016}.
     Wind + Wind Speed & 0.84180 & 0.0763 & 0.1182 & -26.2802 & -9.6330 \\
     \hline
   \end{tabular}
+  } % end resizebox
 \end{table*}
-\FloatBarrier
+% \FloatBarrier

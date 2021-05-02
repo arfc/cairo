@@ -8,7 +8,7 @@ all current plans to reduce carbon emissions depend on increasing the share of
 energy production by renewable and clean energy sources, especially solar and
 wind \cite{cany_nuclear_2018, chilvers_realising_2017,99th_general_assembly_illinois_2016,isee_illinois_2015}.
  While solar and wind generate zero carbon emissions, these
-forms of electricity generation increase variability, which can lead to
+forms of electricity generation increase grid variability, which can lead to
 blackouts and power system failures
 \cite{haes_alhelou_survey_2019}. Further, even modest variable energy
 penetration negatively affects the economics of other clean energy sources,
@@ -52,36 +52,38 @@ energy, and solar energy
 Typically, \glspl{esn} make extreme short term predictions, on the
 order of seconds or minutes
 \cite{chen_novel_2019,wang_echo_2019,chitsazan_wind_2019}, one-hour ahead
-\cite{shi_energy_2016}, and up to a single day ahead
-\cite{deihimi_application_2012}. Forecasts must be multiple-hours to a
-couple of days ahead to aid unit commitment and grid-scale energy economy
-\cite{wang_quantifying_2016,mc_garrigle_quantifying_2015,brancucci_martinez-anido_value_2016}. In this work we use a classic \gls{esn} architecture to
-forecast total demand, wind production, and solar production, 4-hours and 48-
-hours ahead.
+\cite{shi_energy_2016}, and up to one ahead
+\cite{deihimi_application_2012}. Forecasts must be at least 4-hours ahead
+\cite{wang_quantifying_2016} to 48-hours ahead
+\cite{wang_quantifying_2016,mc_garrigle_quantifying_2015,brancucci_martinez-anido_value_2016}
+to aid resource scheduling and grid-scale energy economy. In this work we use
+a classic \gls{esn} architecture to forecast total demand, wind production, and
+solar production, 4-hours and 48-hours ahead.
 
 Approaches in the literature to improve the forecasting capability of
 the basic \gls{esn} include: adding multiple reservoirs
 \cite{hu_forecasting_2020,gallicchio_deep_2019,yao_novel_2019,li_multi-reservoir_2020}, including non-linear units \cite{holzmann_echo_2008, chitsazan_wind_2019}, combining with other network architecture
 \cite{chen_novel_2019, lopez_wind_2018}; and using a particle swarm approach
-\cite{chouikhi_pso-based_2017,wang_echo_2019}. Some works indicate that
+\cite{chouikhi_pso-based_2017,wang_echo_2019}. Some work indicates that
 including weather parameters may be useful for renewable energy forecasting
 \cite{li_echo_2019,chitsazan_wind_2019}, but none have demonstrated the effect
 each parameter has on model performance. The primary goal of this work
-is filling that gap.
+is to fill that gap.
 
 \subsection{Contributions}
-In this work, we use \glspl{esn} for three main prediction tasks: total
+In this work, we use \glspl{esn} to predict three key values: total
 electricity demand, wind energy production, and solar energy production. We
 split these tasks into further sub tasks, predicting 4-hours ahead and 48-hours
 ahead. These predictions facilitate scheduling and grid planning
 because current market rules put renewable energy on the grid first, forcing
 conventional power generators to work around this variability
-\cite{wang_quantifying_2016}. Using \glspl{esn} to make predictions two-days
+\cite{wang_quantifying_2016}. Using \glspl{esn} to make predictions two days
 ahead is unique to this paper since the longest predictions by \glspl{esn} in
-the literature only reach one-day ahead \cite{deihimi_application_2012}.
+the literature only reach one day ahead \cite{deihimi_application_2012}.
 Finally, we repeat these tasks with several commonly used weather parameters
 and evaluate their effect on model performance. The need to consider exogenous
-meteorological inputs has been noted previously. Suprisingly, sun elevation is
+meteorological inputs has been noted in the literature
+\cite{chitsazan_wind_2019}. Suprisingly, sun elevation is
 seldom used as a correlated quantity for energy demand and wind power.
 
 In Section 2 of this paper, we discuss how data
