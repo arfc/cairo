@@ -224,28 +224,6 @@ def test_optimal_values_equal_arrays():
     return
 
 
-@pytest.mark.skip(reason="A separate issue has been made to address this")
-def test_optimal_values_equal_loss_entries():
-    """
-    Optimal_values returns the correct
-    set for a loss array with two
-    zeros.
-    """
-    x = np.array([1, 0, 0])
-    y = np.array([1, 0, 0])
-    b = np.array([
-        [0.80, 0, 0.46],
-        [0.12, 0.49, 0.93],
-        [0, 0.50, 0.66]
-    ])
-    min_set = (0, 1)
-
-    opt_set = optimal_values(b, x, y)
-    assert (min_set == opt_set)
-
-    return
-
-
 def test_esn_prediction_diffsize():
     """
     The ESN does not train because of

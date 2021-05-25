@@ -28,8 +28,18 @@ and then run the commands
 ```
 cd cairo/docs
 make html
-cd _build/html
-open index.html
+open _build/html/index.html
 ```
 From there, you can navigate the documentation by interfacing with the html 
 rendering.
+
+### Testing
+This repository contains various tests for each module, and makes use of 
+[pytest](https://docs.pytest.org/en/stable/#) to run them. Upon downloading 
+CAIRO, you should make sure that all of the tests pass. See the 
+`contributing.md` document for instructions on how to run the tests.
+
+Checkout pytest's page on 
+[Usage and Invocations](https://docs.pytest.org/en/stable/usage.html#usage-and-invocations) 
+for information on variations you can use in addition to the instructions in 
+`contributing.md`.
