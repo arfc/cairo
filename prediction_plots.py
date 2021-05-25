@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 import matplotlib as mpl
 mpl.use("pgf")
-
+plt.style.use('ggplot')
 plt.rcParams['figure.edgecolor'] = 'k'
 plt.rcParams['figure.facecolor'] = 'w'
 plt.rcParams['pgf.texsystem'] = 'pdflatex'
@@ -133,8 +133,6 @@ if __name__ == "__main__":
 # Start of for loop
 
     for pfile in prediction_list:
-        if 'lorenz63' in pfile:
-            continue
         params, pstring, plot_target, simname = get_metadata(pfile)
         print(simname)
 
@@ -158,47 +156,89 @@ if __name__ == "__main__":
         height = 0.5 * colwidth
         hours = np.arange(0, len(input_data), 1)
 
-        plt.figure(figsize=(colwidth, height))
-        plt.ylabel("Energy [kWh]")
-        if 'demand' in simname:
-            plt.title(f"Demand Prediction with an ESN")
-            plt.xlabel(start_dates['demand'])
-            norm = norms['demand']
-        elif 'solar' in simname:
-            plt.title(f"Solar Generation Prediction with an ESN")
-            plt.xlabel(start_dates['solar'])
-            norm = norms['solar']
+        if 'lorenz63' in simname:
+            height = 0.75 * colwidth
+            plt.figure(figsize=(colwidth, height))
+            futureTotal = 500
+            t = np.arange(0, 100, 0.02)
+            ax1 = plt.subplot(311)
+            ax1.plot(t[-2 * futureTotal:],
+                     input_data[-2 * futureTotal:, 0],
+                     label='Ground Truth')
+            ax1.plot(t[-futureTotal:],
+                     prediction[:, 0], label='Prediction')
+            ax2 = plt.subplot(312, sharex=ax1)
+            ax2.plot(t[-2 * futureTotal:],
+                     input_data[-2 * futureTotal:, 1],
+                     label='Ground Truth')
+            ax2.plot(t[-futureTotal:],
+                     prediction[:, 1],
+                     label='Prediction')
+            ax3 = plt.subplot(313, sharex=ax1)
+            ax3.plot(t[-2 * futureTotal:],
+                     input_data[-2 * futureTotal:, 2],
+                     label='Ground Truth')
+            ax3.plot(t[-futureTotal:],
+                     prediction[:, 2],
+                     label='Prediction')
 
-        # I don't think this will be a problem since I check wind last
-        # but it *may* do this for 'demand_windspeed'.
-        elif 'wind' in simname:
-            plt.title(f"Wind Generation Prediction with an ESN")
-            plt.xlabel(start_dates['wind'])
-            norm = norms['wind']
+            ax3.set_xlabel("t")  # , fontsize=16)
+            ax1.set_ylabel("x")  # , fontsize=16)
+            ax2.set_ylabel("y")  # , fontsize=16)
+            ax3.set_ylabel("z")  # , fontsize=16)
+            plt.subplots_adjust(hspace=.5)
+            plt.legend(loc=(1.02, 1.65), fancybox=True, shadow=True)
+        else:
+            plt.figure(figsize=(colwidth, height))
+            if 'demand' in simname:
+                plt.title(f"Demand Prediction with an ESN")
+                plt.ylabel("Energy Demand [kW]")
+                plt.xlabel(start_dates['demand'])
+                norm = norms['demand']
+                label = f'True Demand'
+            elif 'solar' in simname:
+                plt.title(f"Solar Generation Prediction with an ESN")
+                plt.xlabel(start_dates['solar'])
+                plt.ylabel("Solar Power [kW]")
+                norm = norms['solar']
+                label = f'True Solar Generation'
 
-        # plot the truth
-        plt.plot(hours[-2 * futureTotal:],
-                 input_data.T[0][-2 * futureTotal:] * norm,
-                 'b',
-                 label=f"True Demand",
-                 alpha=0.7,
-                 color='tab:blue')
-        # plot the prediction
-        plt.plot(hours[-futureTotal:], norm * prediction.T[0], alpha=0.8,
-                 label='ESN Prediction',
-                 color='tab:red',
-                 linestyle='-')
-        plt.legend(loc='upper left')
-        if any(prediction.T[0] < 0):
-            x = hours[-futureTotal:]
-            y1 = 0
-            y2 = norm * prediction.T[0]
-            plt.axhline(y=y1, alpha=0)
-            plt.fill_between(x, y1, y2,
-                             where=(y2 <= y1),
-                             linestyle='-',
-                             color='gray',
-                             alpha=0.6)
+            # I don't think this will be a problem since I check wind last
+            # but it *may* do this for 'demand_windspeed'.
+            elif 'wind' in simname:
+                plt.title(f"Wind Generation Prediction with an ESN")
+                plt.ylabel("Wind Power [kW]")
+                plt.xlabel(start_dates['wind'])
+                norm = norms['wind']
+                label = f'True Wind Generation'
+
+            # plot the truth
+            plt.plot(hours[-2 * futureTotal:],
+                     input_data.T[0][-2 * futureTotal:] * norm,
+                     'b',
+                     label=f"{label}",
+                     alpha=0.7,
+                     color='k',
+                     markersize=5,
+                     marker='.')
+            # plot the prediction
+            plt.plot(hours[-futureTotal:], norm * prediction.T[0], alpha=0.8,
+                     label='ESN Prediction',
+                     color='red',
+                     linestyle='-',
+                     markersize=5,
+                     marker='.')
+            plt.legend(loc=(1.02, 0.45), fancybox=True, shadow=True)
+            if any(prediction.T[0] < 0):
+                x = hours[-futureTotal:]
+                y1 = 0
+                y2 = norm * prediction.T[0]
+                plt.axhline(y=y1, alpha=0)
+                plt.fill_between(x, y1, y2,
+                                 where=(y2 <= y1),
+                                 linestyle='-',
+                                 color='gray',
+                                 alpha=0.6)
 
         # save prefix should be something like "04_wind_elevation"
         plt.savefig(IMAGE_PATH + simname + '_prediction.pgf')
