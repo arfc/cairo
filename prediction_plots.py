@@ -162,24 +162,24 @@ if __name__ == "__main__":
             futureTotal = 500
             t = np.arange(0, 100, 0.02)
             ax1 = plt.subplot(311)
-            ax1.plot(t[-2 * futureTotal:], 
-                     input_data[-2 * futureTotal:, 0], 
+            ax1.plot(t[-2 * futureTotal:],
+                     input_data[-2 * futureTotal:, 0],
                      label='Ground Truth')
-            ax1.plot(t[-futureTotal:], 
+            ax1.plot(t[-futureTotal:],
                      prediction[:, 0], label='Prediction')
             ax2 = plt.subplot(312, sharex=ax1)
-            ax2.plot(t[-2 * futureTotal:], 
+            ax2.plot(t[-2 * futureTotal:],
                      input_data[-2 * futureTotal:, 1],
                      label='Ground Truth')
-            ax2.plot(t[-futureTotal:], 
-                     prediction[:, 1], 
+            ax2.plot(t[-futureTotal:],
+                     prediction[:, 1],
                      label='Prediction')
             ax3 = plt.subplot(313, sharex=ax1)
-            ax3.plot(t[-2 * futureTotal:], 
-                     input_data[-2 * futureTotal:, 2], 
+            ax3.plot(t[-2 * futureTotal:],
+                     input_data[-2 * futureTotal:, 2],
                      label='Ground Truth')
-            ax3.plot(t[-futureTotal:], 
-                     prediction[:, 2], 
+            ax3.plot(t[-futureTotal:],
+                     prediction[:, 2],
                      label='Prediction')
 
             ax3.set_xlabel("t")  # , fontsize=16)
