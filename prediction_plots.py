@@ -18,7 +18,6 @@ plt.rcParams['font.family'] = "serif"
 plt.rcParams['pgf.rcfonts'] = False
 
 
-
 start_dates = {'solar': 'Hours since 2016-01-01 00:00:00',
                'demand': 'Hours since 2015-01-01 00:00:00',
                'wind': 'Hours since 2016-11-01 01:00:00'}
@@ -157,29 +156,28 @@ if __name__ == "__main__":
         height = 0.5 * colwidth
         hours = np.arange(0, len(input_data), 1)
 
-
         if 'lorenz63' in simname:
             height = 0.75 * colwidth
             plt.figure(figsize=(colwidth, height))
             futureTotal = 500
-            t = np.arange(0,100,0.02)
+            t = np.arange(0, 100, 0.02)
             ax1 = plt.subplot(311)
             ax1.plot(t[-2 * futureTotal:], input_data[-2 *
-                                                futureTotal:, 0], label='Ground Truth')
+                                                      futureTotal:, 0], label='Ground Truth')
             ax1.plot(t[-futureTotal:], prediction[:, 0], label='Prediction')
             ax2 = plt.subplot(312, sharex=ax1)
             ax2.plot(t[-2 * futureTotal:], input_data[-2 *
-                                                futureTotal:, 1], label='Ground Truth')
+                                                      futureTotal:, 1], label='Ground Truth')
             ax2.plot(t[-futureTotal:], prediction[:, 1], label='Prediction')
             ax3 = plt.subplot(313, sharex=ax1)
             ax3.plot(t[-2 * futureTotal:], input_data[-2 *
-                                                futureTotal:, 2], label='Ground Truth')
+                                                      futureTotal:, 2], label='Ground Truth')
             ax3.plot(t[-futureTotal:], prediction[:, 2], label='Prediction')
 
-            ax3.set_xlabel("t")#, fontsize=16)
-            ax1.set_ylabel("x")#, fontsize=16)
-            ax2.set_ylabel("y")#, fontsize=16)
-            ax3.set_ylabel("z")#, fontsize=16)
+            ax3.set_xlabel("t")  # , fontsize=16)
+            ax1.set_ylabel("x")  # , fontsize=16)
+            ax2.set_ylabel("y")  # , fontsize=16)
+            ax3.set_ylabel("z")  # , fontsize=16)
             plt.subplots_adjust(hspace=.5)
             plt.legend(loc=(1.02, 1.65), fancybox=True, shadow=True)
         else:
@@ -189,13 +187,13 @@ if __name__ == "__main__":
                 plt.ylabel("Energy Demand [kW]")
                 plt.xlabel(start_dates['demand'])
                 norm = norms['demand']
-                label=f'True Demand'
+                label = f'True Demand'
             elif 'solar' in simname:
                 plt.title(f"Solar Generation Prediction with an ESN")
                 plt.xlabel(start_dates['solar'])
                 plt.ylabel("Solar Power [kW]")
                 norm = norms['solar']
-                label=f'True Solar Generation'
+                label = f'True Solar Generation'
 
             # I don't think this will be a problem since I check wind last
             # but it *may* do this for 'demand_windspeed'.
@@ -204,7 +202,7 @@ if __name__ == "__main__":
                 plt.ylabel("Wind Power [kW]")
                 plt.xlabel(start_dates['wind'])
                 norm = norms['wind']
-                label=f'True Wind Generation'
+                label = f'True Wind Generation'
 
             # plot the truth
             plt.plot(hours[-2 * futureTotal:],
